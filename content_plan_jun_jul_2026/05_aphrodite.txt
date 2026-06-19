@@ -1,0 +1,38 @@
+APHRODITE — Minggu, 12 Juli
+
+=== PROMPT GAMBAR ISI-VIDEO (Google Flow) ===
+Generate 10 images on the theme of life as Aphrodite's attendant on the sunlit isle of Cyprus — the Aegean shore at dusk, an eternal rose garden, a bronze hand-mirror, sacred doves, and gentle waves carrying moonlight.
+
+=== PROMPT THUMBNAIL VARIANT A — "The Rose Garden Shore" (siap paste ke Flow) ===
+A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
+
+Scene: a sunlit Aegean shoreline at golden dusk, an ancient rose garden spilling down toward the water, white doves resting on a low marble railing. A bronze hand-mirror lies on a stone bench in the foreground, catching the last light. Soft waves touch the shore in the distance.
+
+Lighting: warm rose-gold dusk light over the sea, soft pink reflected in the water.
+
+Color palette: warm rose-gold, soft pink and coral roses, deep blue-violet sea.
+
+Composition: 16:9, garden and shoreline filling the frame, open sky and sea across the top third for text overlay.
+
+Style anchor: painterly brushstroke texture, canvas grain, rose-gold palette, serene romantic mood, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+
+=== PROMPT THUMBNAIL VARIANT B — "Doves at Dawn" (siap paste ke Flow) ===
+A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
+
+Scene: a flock of white doves taking flight over a calm dawn sea, soft pastel light spreading across the water. A weathered marble archway frames the view from a garden terrace in the foreground, rose vines climbing its edges.
+
+Lighting: soft pastel dawn light, gentle pink-gold reflected on calm water.
+
+Color palette: soft pastel pink and gold, pale blue sea, white dove wings.
+
+Composition: 16:9, sea and doves filling the frame, archway framing the foreground, open space across the bottom third for text overlay.
+
+Style anchor: painterly brushstroke texture, canvas grain, pastel dawn palette, gentle peaceful mood, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+
+=== TEKS OVERLAY (sama untuk A & B) ===
+Besar (brand, konsisten semua video): "Ancient Mythology for Sleep"
+Kecil (topik): "Aphrodite's Attendant on the Sunlit Isle of Cyprus"

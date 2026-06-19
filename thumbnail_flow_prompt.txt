@@ -1,0 +1,72 @@
+THUMBNAIL A/B PROMPTS — Zeus (A Day Serving Zeus / Greek Mythology)
+For Google Flow, generate manually. Both override BRAND_DNA's "obscured face" rule
+on purpose — big, clear, emotive face wins clicks in this niche (per competitor
+inspection: soothingpod, Get Sleepy). Keep painterly style + color palette, lose the
+silhouette/obscured-face restriction for thumbnails only.
+
+After generating, add bold title text yourself in the left third of frame (left
+deliberately less busy for this) — white/gold, large, ~30-40% of frame height,
+strong drop shadow for contrast against the painted background.
+
+═══════════════════════════════════════
+VARIANT A — "Divine Glow" (calm, warm, inviting)
+═══════════════════════════════════════
+
+A dark cinematic oil painting thumbnail, painterly brushstroke texture. Zeus
+depicted as a powerful bearded king of the gods, face large and clearly visible
+filling the right half of the frame, looking toward the viewer with a commanding,
+serene expression — strong jawline, flowing silver-white hair and beard catching
+warm golden light, a laurel-and-gold circlet crown. Bare muscular shoulder draped
+in a deep navy cloak with burned-gold trim. Behind him, soft-focus marble columns
+of Mount Olympus and a glowing divine light breaking through night clouds.
+
+Lighting: warm divine golden glow on his face and shoulder, contrasted against deep
+midnight navy (#0a0a1e) background — strong chiaroscuro so the face pops forward
+from the dark backdrop.
+
+Color palette: deep midnight navy and near-black background, burned antique gold
+(#d4a843) and warm amber (#c8892a) light on the figure, no bright whites, no neon.
+
+Composition: 16:9, Zeus positioned right two-thirds of frame, face large and sharp,
+left third of frame darker/emptier and slightly flatter for text overlay — soft
+visible architecture or cloud detail is fine, just not busy.
+
+Style anchor: dark cinematic oil painting, painterly brushstroke texture, deep
+midnight navy and burned gold palette, chiaroscuro lighting, serene but powerful
+mood, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: cartoon style, modern objects, horror/blood elements, cluttered background,
+small or distant figure, face turned away or obscured.
+
+═══════════════════════════════════════
+VARIANT B — "Storm King" (dramatic, dynamic, high-energy contrast)
+═══════════════════════════════════════
+
+A dark cinematic oil painting thumbnail, painterly brushstroke texture. Zeus
+depicted as a towering storm-god king, face large and clearly visible filling the
+right half of the frame, head turned slightly toward the viewer with a fierce,
+intense expression — weathered strong features, windswept silver-white hair and
+beard, storm-grey eyes lit from within by a faint lightning glow. Crackling veins
+of pale blue-white lightning trace across his bare shoulder and arm. He holds a
+thunderbolt loosely at his side, faint electric light spilling from it.
+
+Lighting: cold blue-white lightning flashes cutting through deep midnight navy
+storm clouds behind him, mixed with a thin rim of warm amber light on the edge of
+his face for contrast — two-tone lighting (cool storm + warm ember edge).
+
+Color palette: deep midnight navy and near-black storm clouds, electric pale-blue
+lightning accents, burned antique gold (#d4a843) rim light, no bright whites, no
+neon excess — lightning stays a thin accent, not a flat bright fill.
+
+Composition: 16:9, Zeus positioned right two-thirds of frame, face large and sharp,
+storm clouds and a distant silhouette of Mount Olympus behind him, left third of
+frame darker and less busy for text overlay.
+
+Style anchor: dark cinematic oil painting, painterly brushstroke texture, deep
+midnight navy with electric-blue and burned gold accents, dramatic chiaroscuro
+lighting, powerful and intense mood, 16:9 cinematic composition, no text, no
+watermark.
+
+Avoid: cartoon style, modern objects, horror/blood elements, cluttered background,
+small or distant figure, face turned away or obscured, lightning overpowering the
+whole frame (it should accent, not flood, the image).

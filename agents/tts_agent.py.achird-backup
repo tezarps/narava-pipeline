@@ -1,0 +1,220 @@
+import hashlib
+import re
+import subprocess
+import shutil
+import wave
+import time
+from pathlib import Path
+from google import genai
+from google.genai import types
+from config import OUTPUT_DIR, GEMINI_API_KEY, GEMINI_TTS_MODEL, GEMINI_TTS_VOICE
+
+SILENCE_MS = 700
+SAMPLE_RATE = 24000
+MAX_VOLUME_RANGE_DB = 9  # if segments within a chunk differ more than this, re-roll the chunk
+QUALITY_RETRIES = 4
+
+SLEEP_STYLE = ""
+
+
+def _chunk_text(text, max_chars=800):
+    sentences = text.replace("\n\n", " ").replace("\n", " ").split(". ")
+    chunks, current = [], ""
+    for s in sentences:
+        candidate = current + s + ". "
+        if len(candidate) <= max_chars:
+            current = candidate
+        else:
+            if current:
+                chunks.append(current.strip())
+            current = s + ". "
+    if current.strip():
+        chunks.append(current.strip())
+    return chunks
+
+
+def _write_wav(pcm_bytes, wav_path):
+    with wave.open(str(wav_path), "wb") as wf:
+        wf.setnchannels(1)
+        wf.setsampwidth(2)
+        wf.setframerate(SAMPLE_RATE)
+        wf.writeframes(pcm_bytes)
+
+
+def _wav_duration(wav_path):
+    with wave.open(str(wav_path), "rb") as wf:
+        return wf.getnframes() / wf.getframerate()
+
+
+def _segment_mean_volumes(wav_path, n_segments=4):
+    """Mean volume (dB) of N equal time slices — used to detect fade/whisper drift within a chunk."""
+    duration = _wav_duration(wav_path)
+    if duration < 2:
+        return []
+    seg_len = duration / n_segments
+    volumes = []
+    for i in range(n_segments):
+        result = subprocess.run(
+            ["ffmpeg", "-ss", str(i * seg_len), "-t", str(seg_len), "-i", str(wav_path),
+             "-af", "volumedetect", "-f", "null", "-"],
+            capture_output=True, text=True
+        )
+        match = re.search(r"mean_volume:\s*(-?\d+\.?\d*)\s*dB", result.stderr)
+        if match:
+            volumes.append(float(match.group(1)))
+    return volumes
+
+
+def _is_consistent(wav_path):
+    """Reject chunks where volume drifts too much between segments (fade/whisper artifact)."""
+    volumes = _segment_mean_volumes(wav_path)
+    if len(volumes) < 2:
+        return True, 0
+    spread = max(volumes) - min(volumes)
+    return spread <= MAX_VOLUME_RANGE_DB, spread
+
+
+def _finalize_mp3(wav_path, out_path):
+    # light safety-net normalization only — consistency is now enforced by re-rolling bad takes
+    subprocess.run(
+        ["ffmpeg", "-y", "-i", str(wav_path),
+         "-af", "loudnorm=I=-16:TP=-1.5:LRA=9",
+         "-b:a", "192k", str(out_path)],
+        capture_output=True, check=True
+    )
+    wav_path.unlink()
+
+
+def _call_tts(client, text):
+    """Single API call — returns raw PCM bytes or raises ValueError/Exception."""
+    resp = client.models.generate_content(
+        model=GEMINI_TTS_MODEL,
+        contents=SLEEP_STYLE + text,
+        config=types.GenerateContentConfig(
+            response_modalities=["AUDIO"],
+            speech_config=types.SpeechConfig(
+                voice_config=types.VoiceConfig(
+                    prebuilt_voice_config=types.PrebuiltVoiceConfig(
+                        voice_name=GEMINI_TTS_VOICE
+                    )
+                )
+            ),
+        ),
+    )
+    candidates = getattr(resp, "candidates", None)
+    if not candidates:
+        raise ValueError("empty candidates (finish_reason may be SAFETY/QUOTA)")
+    parts = getattr(candidates[0].content, "parts", None) if candidates[0].content else None
+    if not parts:
+        fr = getattr(candidates[0], "finish_reason", "unknown")
+        raise ValueError(f"empty parts, finish_reason={fr}")
+    inline = parts[0].inline_data
+    if not inline or not inline.data:
+        raise ValueError(f"inline_data missing, mime={getattr(inline, 'mime_type', 'N/A')}")
+    return inline.data
+
+
+def _synthesize_chunk(client, text, out_path, max_api_retries=5, max_quality_retries=QUALITY_RETRIES):
+    delays = [30, 60, 120, 180, 300]
+    wav_path = out_path.with_suffix(".wav")
+    api_attempt = 0
+    quality_attempt = 0
+
+    while True:
+        try:
+            pcm = _call_tts(client, text)
+        except Exception as api_err:
+            wait = delays[min(api_attempt, len(delays) - 1)]
+            print(f"    API error attempt {api_attempt+1}/{max_api_retries}: {api_err} — wait {wait}s")
+            api_attempt += 1
+            if api_attempt >= max_api_retries:
+                raise RuntimeError(f"TTS API failed after {max_api_retries} attempts: {api_err}")
+            time.sleep(wait)
+            continue
+
+        _write_wav(pcm, wav_path)
+
+        # Quality gate: re-roll the whole chunk if volume drifts (fade/whisper) instead of
+        # patching it after the fact with aggressive audio processing.
+        ok, spread = _is_consistent(wav_path)
+        if ok:
+            _finalize_mp3(wav_path, out_path)
+            return
+
+        quality_attempt += 1
+        if quality_attempt >= max_quality_retries:
+            print(f"    Volume drift {spread:.1f}dB persists after {max_quality_retries} re-rolls — accepting best take")
+            _finalize_mp3(wav_path, out_path)
+            return
+        print(f"    Volume drift {spread:.1f}dB detected — re-rolling chunk ({quality_attempt}/{max_quality_retries})...")
+
+
+def _merge_with_ffmpeg(chunk_dir, out_path):
+    chunks = sorted(chunk_dir.glob("*.mp3"))
+
+    silence_path = chunk_dir / "silence.mp3"
+    subprocess.run([
+        "ffmpeg", "-y", "-f", "lavfi",
+        "-i", f"anullsrc=r={SAMPLE_RATE}:cl=mono",
+        "-t", f"{SILENCE_MS / 1000:.3f}",
+        "-q:a", "2", str(silence_path)
+    ], capture_output=True, check=True)
+
+    concat_file = chunk_dir / "concat.txt"
+    lines = []
+    for chunk in chunks:
+        lines.append(f"file '{chunk}'")
+        lines.append(f"file '{silence_path}'")
+    concat_file.write_text("\n".join(lines))
+
+    subprocess.run([
+        "ffmpeg", "-y",
+        "-f", "concat", "-safe", "0",
+        "-i", str(concat_file),
+        "-c:a", "libmp3lame", "-b:a", "192k",
+        str(out_path)
+    ], capture_output=True, check=True)
+
+
+def generate_audio(script_text, topic_id):
+    client = genai.Client(api_key=GEMINI_API_KEY)
+    chunks = _chunk_text(script_text)
+    total_chars = sum(len(c) for c in chunks)
+    print(f"    TTS: {len(chunks)} chunks, ~{total_chars:,} chars")
+    print(f"    Voice: {GEMINI_TTS_VOICE} ({GEMINI_TTS_MODEL})")
+
+    chunk_dir = OUTPUT_DIR / "audio" / f"chunks_{topic_id}"
+    script_hash = hashlib.md5(script_text.encode()).hexdigest()[:8]
+    hash_file = chunk_dir / ".script_hash"
+
+    # If chunk dir exists but was from a different script, wipe it
+    if chunk_dir.exists() and hash_file.exists():
+        if hash_file.read_text().strip() != script_hash:
+            print(f"    Script changed — clearing cached chunks")
+            shutil.rmtree(chunk_dir)
+
+    chunk_dir.mkdir(parents=True, exist_ok=True)
+    hash_file.write_text(script_hash)
+
+    for i, chunk in enumerate(chunks):
+        out = chunk_dir / f"{i:04d}.mp3"
+        if out.exists() and out.stat().st_size > 0:
+            print(f"    TTS: {i+1}/{len(chunks)} (cached)")
+            continue
+        _synthesize_chunk(client, chunk, out)
+        print(f"    TTS: {i+1}/{len(chunks)} done")
+        time.sleep(3)
+
+    print("    Merging audio...")
+    out_path = OUTPUT_DIR / "audio" / f"{topic_id}.mp3"
+    _merge_with_ffmpeg(chunk_dir, out_path)
+    shutil.rmtree(chunk_dir)
+
+    r = subprocess.run(
+        ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+         "-of", "default=noprint_wrappers=1:nokey=1", str(out_path)],
+        capture_output=True, text=True
+    )
+    mins = float(r.stdout.strip()) / 60
+    print(f"    Audio: {mins:.0f} min → {out_path.name}")
+    return out_path

@@ -1,0 +1,38 @@
+PERSEPHONE — Minggu, 26 Juli (pasangan naratif Hades)
+
+=== PROMPT GAMBAR ISI-VIDEO (Google Flow) ===
+Generate 10 images on the theme of Persephone's companion in the quiet underworld — an underworld pomegranate garden, a dark crystal corridor, flowers blooming in darkness, soft light filtering from above, and Persephone's resting chamber.
+
+=== PROMPT THUMBNAIL VARIANT A — "The Pomegranate Garden" (siap paste ke Flow) ===
+A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
+
+Scene: an underground garden glowing softly, pomegranate trees heavy with fruit growing impossibly in darkness, pale flowers blooming along dark crystal walls. A single shaft of soft light filters down from far above, illuminating the garden's center.
+
+Lighting: soft pale light from above mixing with a faint warm glow from the pomegranates themselves.
+
+Color palette: deep violet-black background, warm pomegranate red and gold, pale soft light.
+
+Composition: 16:9, garden filling the frame, open dark space across the bottom third for text overlay.
+
+Style anchor: painterly brushstroke texture, canvas grain, violet and pomegranate-red palette, quietly wondrous mood, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+
+=== PROMPT THUMBNAIL VARIANT B — "Persephone's Resting Chamber" (siap paste ke Flow) ===
+A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
+
+Scene: a quiet underground chamber lined with pale crystal, a simple resting place draped in soft dark fabric, surrounded by small glowing white flowers growing from the crystal walls themselves. Faint warm light pools near the resting place.
+
+Lighting: soft warm glow from the flowers, cool pale crystal reflections in the walls.
+
+Color palette: deep violet-black, soft white flower glow, warm faint gold accents.
+
+Composition: 16:9, chamber filling the frame, open dark space across the top third for text overlay.
+
+Style anchor: painterly brushstroke texture, canvas grain, violet and soft white palette, serene intimate mood, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+
+=== TEKS OVERLAY (sama untuk A & B) ===
+Besar (brand, konsisten semua video): "Ancient Mythology for Sleep"
+Kecil (topik): "Persephone's Companion in the Quiet Underworld"

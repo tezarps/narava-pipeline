@@ -1,0 +1,38 @@
+DEMETER — Minggu, 28 Juni
+
+=== PROMPT GAMBAR ISI-VIDEO (Google Flow) ===
+Generate 10 images on the theme of life as the keeper of Demeter's sacred fields through the seasons — sowing seeds at spring dawn, golden wheat fields at harvest, a stone altar with offerings of the earth's bounty, a quiet winter storm, and an autumn night with falling leaves.
+
+=== PROMPT THUMBNAIL VARIANT A — "Golden Harvest" (siap paste ke Flow) ===
+A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
+
+Scene: a vast golden wheat field at dawn, stretching toward the horizon, dew catching the first warm sunlight. A single small figure — a keeper of Demeter's fields — walks through the tall grain, back to viewer, trailing a hand through the wheat. Scattered poppies in red and gold. A simple stone altar with offered fruit sits at the field's edge.
+
+Lighting: warm golden dawn light sweeping across the field, soft mist low to the ground.
+
+Color palette: warm gold, amber wheat, soft pink-orange sky, deep green accents.
+
+Composition: 16:9, field filling the frame, figure small against the vastness, open sky across the top third for text overlay.
+
+Style anchor: painterly brushstroke texture, canvas grain, warm golden-hour palette, serene abundant mood, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+
+=== PROMPT THUMBNAIL VARIANT B — "The Offering Altar" (siap paste ke Flow) ===
+A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
+
+Scene: a weathered stone altar at dusk, overflowing with a harvest offering — a sheaf of golden wheat, ripe fruit, and grapes spilling across the stone. Behind it, a sweeping view of darkening fields under a deep amber-violet sky. Fireflies or faint glowing motes drift in the warm evening air.
+
+Lighting: warm amber dusk light on the altar, cooling to soft violet across the distant fields.
+
+Color palette: warm amber and gold, deep violet sky, rich harvest reds and browns.
+
+Composition: 16:9, altar filling the lower two-thirds of frame, sweeping field view behind, open sky across the top third for text overlay.
+
+Style anchor: painterly brushstroke texture, canvas grain, amber-violet harvest palette, reverent abundant mood, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+
+=== TEKS OVERLAY (sama untuk A & B) ===
+Besar (brand, konsisten semua video): "Ancient Mythology for Sleep"
+Kecil (topik): "Tending Demeter's Sacred Fields Through the Seasons"

@@ -1,0 +1,38 @@
+ATHENA — Minggu, 5 Juli
+
+=== PROMPT GAMBAR ISI-VIDEO (Google Flow) ===
+Generate 10 images on the theme of life as a weaver in Athena's temple in ancient Athens — an ancient loom, spools of golden thread, the grand Parthenon, a sacred owl, and a library of wisdom scrolls.
+
+=== PROMPT THUMBNAIL VARIANT A — "The Loom and the Owl" (siap paste ke Flow) ===
+A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
+
+Scene: inside a grand marble temple at golden hour, a large ancient wooden loom strung with gold-threaded fabric catching the light, half-finished with a pattern of olive branches. A small owl perches on the loom's frame, watching calmly. Tall marble columns recede into soft shadow behind.
+
+Lighting: warm golden lamplight mixed with soft daylight through unseen high windows, illuminating the loom and owl.
+
+Color palette: warm gold thread, white-grey marble, deep amber shadow.
+
+Composition: 16:9, loom and owl filling the right two-thirds of frame, open marble floor and column space across the left third for text overlay.
+
+Style anchor: painterly brushstroke texture, canvas grain, warm gold and marble palette, calm wise mood, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+
+=== PROMPT THUMBNAIL VARIANT B — "The Parthenon at Dusk" (siap paste ke Flow) ===
+A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
+
+Scene: a wide exterior view of the Parthenon at dusk, its marble columns glowing warm against a deepening violet sky. A sacred owl perches on the edge of a nearby column in the foreground, silhouetted. Soft stars beginning to appear above.
+
+Lighting: warm amber temple light against a cooling violet-blue dusk sky.
+
+Color palette: warm amber marble, deep violet-blue sky, soft white starlight.
+
+Composition: 16:9, temple filling the frame at vast scale, owl small in the foreground, open sky across the top third for text overlay.
+
+Style anchor: painterly brushstroke texture, canvas grain, amber and violet palette, majestic serene mood, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+
+=== TEKS OVERLAY (sama untuk A & B) ===
+Besar (brand, konsisten semua video): "Ancient Mythology for Sleep"
+Kecil (topik): "Athena's Weaver in the Temple of Ancient Athens"

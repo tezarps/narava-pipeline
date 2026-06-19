@@ -1,0 +1,1403 @@
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/scheduler.py", line 66, in run
+    audio_path = generate_audio(script, topic_id)
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 109, in generate_audio
+    _synthesize_chunk(client, chunk, out)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 65, in _synthesize_chunk
+    pcm_bytes = resp.candidates[0].content.parts[0].inline_data.data
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+TypeError: 'NoneType' object is not subscriptable
+
+====================================================
+  Narava AI Pipeline  —  2026-06-16 02:08
+====================================================
+
+Topic ID : 1
+Category : greek
+Angle    : What It Was Like to Serve Zeus on Mount Olympus for Sleep
+
+[1/6] The Oracle — selecting topic...
+[2/6] The Scribe — writing script...
+    Drafting Part 1 (Haiku)...
+    Drafting Part 2 (Haiku)...
+    Polishing Part 1 (Sonnet)...
+    Polishing Part 2 (Sonnet)...
+    Script: 10,338 words (~79 min audio)
+
+[3/6] The Voice — narrating story...
+    TTS: 13 chunks, ~60,108 chars
+    Voice: Charon (gemini-3.1-flash-tts-preview)
+
+✗ Failed at [voice]: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/scheduler.py", line 66, in run
+    audio_path = generate_audio(script, topic_id)
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 109, in generate_audio
+    def generate_audio(script_text, topic_id):
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 65, in _synthesize_chunk
+    ),
+TypeError: 'NoneType' object is not subscriptable
+
+====================================================
+  Narava AI Pipeline  —  2026-06-16 02:33
+====================================================
+
+Topic ID : 2
+Category : greek
+Angle    : A Day as Hera's Handmaiden in the Palace of Olympus for Sleep
+
+[1/6] The Oracle — selecting topic...
+[2/6] The Scribe — writing script...
+    Drafting Part 1 (Haiku)...
+    Drafting Part 2 (Haiku)...
+    Polishing Part 1 (Sonnet)...
+    Polishing Part 2 (Sonnet)...
+    Script: 10,566 words (~81 min audio)
+
+[3/6] The Voice — narrating story...
+    TTS: 14 chunks, ~62,576 chars
+    Voice: Charon (gemini-3.1-flash-tts-preview)
+
+✗ Failed at [voice]: 'NoneType' object is not subscriptable
+
+====================================================
+  Narava AI Pipeline  —  2026-06-16 03:34
+====================================================
+
+Topic ID : 2
+Category : greek
+Angle    : A Day as Hera's Handmaiden in the Palace of Olympus for Sleep
+
+[1/6] The Oracle — selecting topic...
+[2/6] The Scribe — writing script...
+    Drafting Part 1 (Haiku)...
+    Drafting Part 2 (Haiku)...
+    Polishing Part 1 (Sonnet)...
+    Polishing Part 2 (Sonnet)...
+    Script: 9,638 words (~74 min audio)
+
+[3/6] The Voice — narrating story...
+    TTS: 12 chunks, ~57,130 chars
+    Voice: Charon (gemini-3.1-flash-tts-preview)
+    TTS: 1/12 (cached)
+    TTS: 2/12 (cached)
+    TTS: 3/12 (cached)
+    TTS: 4/12 (cached)
+    TTS: 5/12 (cached)
+    TTS: 6/12 (cached)
+    TTS: 7/12 (cached)
+    TTS: 8/12 done
+    TTS: 9/12 done
+    TTS: 10/12 done
+    TTS: 11/12 done
+    TTS: 12/12 done
+    Merging audio...
+    Audio: 73 min → 2.mp3
+
+[4/6] The Architect — assembling video...
+    Assembling video + music (greek)...
+    Video: 75MB, 73 min → 2.mp4
+
+[5/6] The Herald — crafting metadata...
+    Title: Hera's Handmaiden in the Palace of Olympus for Sleep | Greek
+    Thumbnail: manual A — A.png
+
+[6/6] The Messenger — uploading to YouTube...
+    Upload: 67%    Uploaded: youtube.com/watch?v=PYNDTCfRcgE
+    Scheduled: 20:00 EDT = 07:00 WIB
+    Thumbnail set
+
+✓ Complete — youtube.com/watch?v=PYNDTCfRcgE
+⚡ A/B Test: upload thumbnail B manually →
+   https://studio.youtube.com/video/PYNDTCfRcgE/edit → Thumbnail → Test & Compare
+   File: /Users/admin/Documents/narava-pipeline/thumbnails/greek/hera/B.png
+
+
+====================================================
+  Narava AI Pipeline  —  2026-06-16 22:18
+  [AUDIO TEST MODE — stops after voice]
+====================================================
+
+Topic ID : 2
+Category : greek
+Angle    : A Day as Hera's Handmaiden in the Palace of Olympus for Sleep
+
+[1/6] The Oracle — selecting topic...
+[2/6] The Scribe — writing script...
+    Drafting Part 1 (Haiku)...
+    Drafting Part 2 (Haiku)...
+    Polishing Part 1 (Sonnet)...
+    Polishing Part 2 (Sonnet)...
+    Script: 9,146 words (~70 min audio)
+
+[3/6] The Voice — narrating story...
+    [SAMPLE: first 400 words only]
+    TTS: 2 chunks, ~2,379 chars
+    Voice: Charon (gemini-3.1-flash-tts-preview)
+    TTS: 1/2 done
+    TTS: 2/2 done
+    Merging audio...
+    Audio: 4 min → 2.mp3
+
+⏸ Audio sample ready: /Users/admin/Documents/narava-pipeline/output/audio/2.mp3
+  Listen and approve, then run: python3 scheduler.py
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 125, in _synthesize_chunk
+    pcm = _call_tts(client, text)
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 90, in _call_tts
+    resp = client.models.generate_content(
+        model=GEMINI_TTS_MODEL,
+    ...<10 lines>...
+        ),
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 6480, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4916, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1611, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1404, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1381, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 155, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 184, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h37m49.89626798s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16669s'}]}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/scheduler.py", line 91, in run
+    audio_path = generate_audio(tts_script, topic_id)
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 204, in generate_audio
+    _synthesize_chunk(client, chunk, out)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 131, in _synthesize_chunk
+    raise RuntimeError(f"TTS API failed after {max_api_retries} attempts: {api_err}")
+RuntimeError: TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h37m49.89626798s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16669s'}]}}
+
+====================================================
+  Narava AI Pipeline  —  2026-06-17 02:08
+====================================================
+
+Topic ID : 3
+Category : greek
+Angle    : Life as Poseidon's Sea-Keeper in the Depths of the Ancient Ocean for Sleep
+
+[1/6] The Oracle — selecting topic...
+[2/6] The Scribe — writing script...
+    Drafting Part 1 (Haiku)...
+    Drafting Part 2 (Haiku)...
+    Polishing Part 1 (Sonnet)...
+    Polishing Part 2 (Sonnet)...
+    Script: 8,131 words (~62 min audio)
+
+[3/6] The Voice — narrating story...
+    TTS: 64 chunks, ~48,528 chars
+    Voice: Achird (gemini-3.1-flash-tts-preview)
+    TTS: 1/64 done
+    API error attempt 1/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h44m21.750314501s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '17061s'}]}} — wait 30s
+    API error attempt 2/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h43m51.270958808s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '17031s'}]}} — wait 60s
+    API error attempt 3/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h42m50.802517808s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'model': 'gemini-3.1-flash-tts', 'location': 'global'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16970s'}]}} — wait 120s
+    API error attempt 4/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h40m50.368933048s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16850s'}]}} — wait 180s
+    API error attempt 5/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h37m49.89626798s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16669s'}]}} — wait 300s
+
+✗ Failed at [voice]: TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h37m49.89626798s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16669s'}]}}
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 125, in _synthesize_chunk
+    pcm = _call_tts(client, text)
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 90, in _call_tts
+    resp = client.models.generate_content(
+        model=GEMINI_TTS_MODEL,
+    ...<10 lines>...
+        ),
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 6480, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4916, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1611, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1404, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1381, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 155, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 184, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h30m37.472941407s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '77437s'}]}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/scheduler.py", line 91, in run
+    audio_path = generate_audio(tts_script, topic_id)
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 204, in generate_audio
+    _synthesize_chunk(client, chunk, out)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 131, in _synthesize_chunk
+    raise RuntimeError(f"TTS API failed after {max_api_retries} attempts: {api_err}")
+RuntimeError: TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h30m37.472941407s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '77437s'}]}}
+
+====================================================
+  Narava AI Pipeline  —  2026-06-17 09:14
+====================================================
+
+Topic ID : 1
+Category : greek
+Angle    : What It Was Like to Serve Zeus on Mount Olympus for Sleep
+
+[1/6] The Oracle — selecting topic...
+[2/6] The Scribe — writing script...
+    Drafting Part 1 (Haiku)...
+    Drafting Part 2 (Haiku)...
+    Polishing Part 1 (Sonnet)...
+    Polishing Part 2 (Sonnet)...
+    Script: 8,416 words (~64 min audio)
+
+[3/6] The Voice — narrating story...
+    TTS: 65 chunks, ~49,886 chars
+    Voice: Achird (gemini-3.1-flash-tts-preview)
+    Volume drift 11.0dB detected — re-rolling chunk (1/4)...
+    API error attempt 1/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h37m9.549823981s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'model': 'gemini-3.1-flash-tts', 'location': 'global'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '77829s'}]}} — wait 30s
+    API error attempt 2/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h36m39.178760289s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '77799s'}]}} — wait 60s
+    API error attempt 3/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h35m38.702540573s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '77738s'}]}} — wait 120s
+    API error attempt 4/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h33m38.199918648s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '77618s'}]}} — wait 180s
+    API error attempt 5/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h30m37.472941407s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '77437s'}]}} — wait 300s
+
+✗ Failed at [voice]: TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h30m37.472941407s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '77437s'}]}}
+
+====================================================
+  Narava AI Pipeline  —  2026-06-17 10:21
+====================================================
+
+Topic ID : 1
+Category : greek
+Angle    : What It Was Like to Serve Zeus on Mount Olympus for Sleep
+
+[1/6] The Oracle — selecting topic...
+[2/6] The Scribe — using cached script (no API call)...
+
+[3/6] The Voice — narrating story...
+    TTS: 34 chunks, ~49,917 chars
+    Voice: Achird (gemini-2.5-flash-preview-tts)
+    TTS: 1/34 (cached)
+    TTS: 2/34 (cached)
+    TTS: 3/34 (cached)
+    TTS: 4/34 (cached)
+    TTS: 5/34 (cached)
+    TTS: 6/34 (cached)
+    TTS: 7/34 (cached)
+    TTS: 8/34 (cached)
+    TTS: 9/34 (cached)
+    TTS: 10/34 (cached)
+    TTS: 11/34 (cached)
+    TTS: 12/34 (cached)
+    TTS: 13/34 (cached)
+    TTS: 14/34 (cached)
+    TTS: 15/34 (cached)
+    TTS: 16/34 (cached)
+    TTS: 17/34 (cached)
+    TTS: 18/34 (cached)
+    TTS: 19/34 (cached)
+    TTS: 20/34 (cached)
+    TTS: 21/34 (cached)
+    TTS: 22/34 (cached)
+    TTS: 23/34 (cached)
+    TTS: 24/34 (cached)
+    TTS: 25/34 (cached)
+    TTS: 26/34 (cached)
+    TTS: 27/34 (cached)
+    TTS: 28/34 (cached)
+    TTS: 29/34 (cached)
+    TTS: 30/34 (cached)
+    TTS: 31/34 (cached)
+    TTS: 32/34 (cached)
+    Volume drift 25.4dB detected — re-rolling chunk (1/4)...
+    TTS: 33/34 done
+    Volume drift 29.6dB detected — re-rolling chunk (1/4)...
+    TTS: 34/34 done
+    Merging audio...
+    Audio: 58 min → 1.mp3
+
+[4/6] The Architect — assembling video...
+    Ken Burns clip 1/10...
+    Ken Burns clip 2/10...
+    Ken Burns clip 3/10...
+    Ken Burns clip 4/10...
+    Ken Burns clip 5/10...
+    Ken Burns clip 6/10...
+    Ken Burns clip 7/10...
+    Ken Burns clip 8/10...
+    Ken Burns clip 9/10...
+    Ken Burns clip 10/10...
+    Assembling video + music (greek)...
+(eval):1: command not found: setsid
+
+[4/6] The Architect — assembling video (resumed)...
+    Assembling video + music (greek)...
+    Video: 505MB, 58 min → 1.mp4
+
+[5/6] The Herald — crafting metadata...
+    Title: Serving Zeus on Mount Olympus for Sleep | Greek Mythology
+    Thumbnail: auto-generated — 1_thumb.jpg
+
+[6/6] The Messenger — uploading to YouTube...
+    Upload: 9%    Upload: 19%    Upload: 29%    Upload: 39%    Upload: 49%    Upload: 59%    Upload: 69%    Upload: 79%    Upload: 89%    Upload: 99%    Uploaded: youtube.com/watch?v=1Y63uidOAR0
+    Scheduled: 20:00 EDT = 07:00 WIB
+    Thumbnail set
+
+✓ Complete — youtube.com/watch?v=1Y63uidOAR0
+
+
+[3/6] The Voice — re-narrating with 3.1 Achird...
+    TTS: 65 chunks, ~49,886 chars
+    Voice: Achird (gemini-3.1-flash-tts-preview)
+    TTS: 1/65 done
+    TTS: 2/65 done
+    TTS: 3/65 done
+    TTS: 4/65 done
+    TTS: 5/65 done
+    TTS: 6/65 done
+    TTS: 7/65 done
+    TTS: 8/65 done
+    TTS: 9/65 done
+    TTS: 10/65 done
+    TTS: 11/65 done
+    TTS: 12/65 done
+    TTS: 13/65 done
+    TTS: 14/65 done
+    TTS: 15/65 done
+    TTS: 16/65 done
+    TTS: 17/65 done
+    TTS: 18/65 done
+    TTS: 19/65 done
+    TTS: 20/65 done
+    TTS: 21/65 done
+    TTS: 22/65 done
+    TTS: 23/65 done
+    TTS: 24/65 done
+    TTS: 25/65 done
+    TTS: 26/65 done
+    TTS: 27/65 done
+    TTS: 28/65 done
+    TTS: 29/65 done
+    TTS: 30/65 done
+    TTS: 31/65 done
+    TTS: 32/65 done
+    TTS: 33/65 done
+    TTS: 34/65 done
+    TTS: 35/65 done
+    TTS: 36/65 done
+    TTS: 37/65 done
+    TTS: 38/65 done
+    API error attempt 1/5: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}} — wait 30s
+    TTS: 39/65 done
+    TTS: 40/65 done
+    TTS: 41/65 done
+    TTS: 42/65 done
+    TTS: 43/65 done
+    TTS: 44/65 done
+    TTS: 45/65 done
+    TTS: 46/65 done
+    TTS: 47/65 done
+    TTS: 48/65 done
+    TTS: 49/65 done
+    TTS: 50/65 done
+    TTS: 51/65 done
+    TTS: 52/65 done
+
+[3/6] The Voice — re-narrating with 3.1 Achird...
+    TTS: 65 chunks, ~49,886 chars
+    Voice: Achird (gemini-3.1-flash-tts-preview)
+    TTS: 1/65 (cached)
+    TTS: 2/65 (cached)
+    TTS: 3/65 (cached)
+    TTS: 4/65 (cached)
+    TTS: 5/65 (cached)
+    TTS: 6/65 (cached)
+    TTS: 7/65 (cached)
+    TTS: 8/65 (cached)
+    TTS: 9/65 (cached)
+    TTS: 10/65 (cached)
+    TTS: 11/65 (cached)
+    TTS: 12/65 (cached)
+    TTS: 13/65 (cached)
+    TTS: 14/65 (cached)
+    TTS: 15/65 (cached)
+    TTS: 16/65 (cached)
+    TTS: 17/65 (cached)
+    TTS: 18/65 (cached)
+    TTS: 19/65 (cached)
+    TTS: 20/65 (cached)
+    TTS: 21/65 (cached)
+    TTS: 22/65 (cached)
+    TTS: 23/65 (cached)
+    TTS: 24/65 (cached)
+    TTS: 25/65 (cached)
+    TTS: 26/65 (cached)
+    TTS: 27/65 (cached)
+    TTS: 28/65 (cached)
+    TTS: 29/65 (cached)
+    TTS: 30/65 (cached)
+    TTS: 31/65 (cached)
+    TTS: 32/65 (cached)
+    TTS: 33/65 (cached)
+    TTS: 34/65 (cached)
+    TTS: 35/65 (cached)
+    TTS: 36/65 (cached)
+    TTS: 37/65 (cached)
+    TTS: 38/65 (cached)
+    TTS: 39/65 (cached)
+    TTS: 40/65 (cached)
+    TTS: 41/65 (cached)
+    TTS: 42/65 (cached)
+    TTS: 43/65 (cached)
+    TTS: 44/65 (cached)
+    TTS: 45/65 (cached)
+    TTS: 46/65 (cached)
+    TTS: 47/65 (cached)
+    TTS: 48/65 (cached)
+    TTS: 49/65 (cached)
+    TTS: 50/65 (cached)
+    TTS: 51/65 (cached)
+    TTS: 52/65 (cached)
+    TTS: 53/65 done
+    TTS: 54/65 done
+    TTS: 55/65 done
+    TTS: 56/65 done
+    TTS: 57/65 done
+    TTS: 58/65 done
+    TTS: 59/65 done
+    API error attempt 1/5: empty parts, finish_reason=FinishReason.OTHER — wait 30s
+    API error attempt 2/5: empty parts, finish_reason=FinishReason.OTHER — wait 60s
+    API error attempt 3/5: empty parts, finish_reason=FinishReason.OTHER — wait 120s
+    API error attempt 4/5: empty parts, finish_reason=FinishReason.OTHER — wait 180s
+    TTS: 60/65 done
+    TTS: 61/65 done
+    TTS: 62/65 done
+    TTS: 63/65 done
+    TTS: 64/65 done
+
+[3/6] The Voice — re-narrating with 3.1 Achird...
+    TTS: 65 chunks, ~49,886 chars
+    Voice: Achird (gemini-3.1-flash-tts-preview)
+    TTS: 1/65 (cached)
+    TTS: 2/65 (cached)
+    TTS: 3/65 (cached)
+    TTS: 4/65 (cached)
+    TTS: 5/65 (cached)
+    TTS: 6/65 (cached)
+    TTS: 7/65 (cached)
+    TTS: 8/65 (cached)
+    TTS: 9/65 (cached)
+    TTS: 10/65 (cached)
+    TTS: 11/65 (cached)
+    TTS: 12/65 (cached)
+    TTS: 13/65 (cached)
+    TTS: 14/65 (cached)
+    TTS: 15/65 (cached)
+    TTS: 16/65 (cached)
+    TTS: 17/65 (cached)
+    TTS: 18/65 (cached)
+    TTS: 19/65 (cached)
+    TTS: 20/65 (cached)
+    TTS: 21/65 (cached)
+    TTS: 22/65 (cached)
+    TTS: 23/65 (cached)
+    TTS: 24/65 (cached)
+    TTS: 25/65 (cached)
+    TTS: 26/65 (cached)
+    TTS: 27/65 (cached)
+    TTS: 28/65 (cached)
+    TTS: 29/65 (cached)
+    TTS: 30/65 (cached)
+    TTS: 31/65 (cached)
+    TTS: 32/65 (cached)
+    TTS: 33/65 (cached)
+    TTS: 34/65 (cached)
+    TTS: 35/65 (cached)
+    TTS: 36/65 (cached)
+    TTS: 37/65 (cached)
+    TTS: 38/65 (cached)
+    TTS: 39/65 (cached)
+    TTS: 40/65 (cached)
+    TTS: 41/65 (cached)
+    TTS: 42/65 (cached)
+    TTS: 43/65 (cached)
+    TTS: 44/65 (cached)
+    TTS: 45/65 (cached)
+    TTS: 46/65 (cached)
+    TTS: 47/65 (cached)
+    TTS: 48/65 (cached)
+    TTS: 49/65 (cached)
+    TTS: 50/65 (cached)
+    TTS: 51/65 (cached)
+    TTS: 52/65 (cached)
+    TTS: 53/65 (cached)
+    TTS: 54/65 (cached)
+    TTS: 55/65 (cached)
+    TTS: 56/65 (cached)
+    TTS: 57/65 (cached)
+    TTS: 58/65 (cached)
+    TTS: 59/65 (cached)
+    TTS: 60/65 (cached)
+    TTS: 61/65 (cached)
+    TTS: 62/65 (cached)
+    TTS: 63/65 (cached)
+    TTS: 64/65 (cached)
+    TTS: 65/65 done
+    Merging audio...
+    Audio: 61 min → 1.mp3
+
+[4/6] The Architect — assembling video...
+    Ken Burns clip 1/10...
+    Ken Burns clip 2/10...
+    Ken Burns clip 3/10...
+    Ken Burns clip 4/10...
+    Ken Burns clip 5/10...
+    Ken Burns clip 6/10...
+    Ken Burns clip 7/10...
+    Ken Burns clip 8/10...
+    Ken Burns clip 9/10...
+    Ken Burns clip 10/10...
+    Assembling video + music (greek)...
+    Video: 533MB, 61 min → 1.mp4
+
+[5/6] The Herald — crafting metadata...
+    Title: Serving Zeus on Mount Olympus for Sleep | Greek Mythology
+    Thumbnail: manual A — A.png
+
+[6/6] The Messenger — uploading NEW video to YouTube...
+    Upload: 9%    Upload: 18%    Upload: 28%    Upload: 37%    Upload: 46%    Upload: 56%    Upload: 65%    Upload: 75%    Upload: 84%    Upload: 93%    Uploaded: youtube.com/watch?v=zc9qdkwvkiU
+    Scheduled: 20:00 EDT = 07:00 WIB
+    Thumbnail set
+
+✓ Complete — youtube.com/watch?v=zc9qdkwvkiU
+⚠ OLD video (2.5 Flash audio) is now orphaned — delete manually via YouTube Studio if still present.
+
+
+====================================================
+  Narava AI Pipeline  —  2026-06-18 02:19
+====================================================
+
+Topic ID : 3
+Category : greek
+Angle    : Life as Poseidon's Sea-Keeper in the Depths of the Ancient Ocean for Sleep
+
+[1/6] The Oracle — selecting topic...
+[2/6] The Scribe — using cached script (no API call)...
+
+[3/6] The Voice — narrating story...
+    TTS: 64 chunks, ~48,528 chars
+    Voice: Achird (gemini-3.1-flash-tts-preview)
+    TTS: 1/64 (cached)
+    TTS: 2/64 (cached)
+    TTS: 3/64 done
+    API error attempt 1/5: empty parts, finish_reason=FinishReason.OTHER — wait 30s
+
+[3/6] The Voice — narrating with 3.1 Achird...
+    TTS: 70 chunks, ~53,128 chars
+    Voice: Achird (gemini-3.1-flash-tts-preview)
+    TTS: 4/64 done
+    TTS: 1/70 done
+    TTS: 5/64 done
+    TTS: 2/70 done
+    TTS: 6/64 done
+    TTS: 3/70 done
+    TTS: 7/64 done
+    TTS: 4/70 done
+    TTS: 8/64 done
+    TTS: 5/70 done
+    API error attempt 1/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h35m37.994064051s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16537s'}]}} — wait 30s
+    TTS: 9/64 done
+    API error attempt 1/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h35m2.620248244s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16502s'}]}} — wait 30s
+    API error attempt 2/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h34m32.169165926s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16472s'}]}} — wait 60s
+    TTS: 6/70 done
+    TTS: 7/70 done
+    API error attempt 3/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h33m31.818117382s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16411s'}]}} — wait 120s
+    TTS: 8/70 done
+    API error attempt 1/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h32m56.321903323s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'model': 'gemini-3.1-flash-tts', 'location': 'global'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16376s'}]}} — wait 30s
+    API error attempt 2/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h32m25.585029998s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16345s'}]}} — wait 60s
+    API error attempt 4/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h31m31.154283258s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'model': 'gemini-3.1-flash-tts', 'location': 'global'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16291s'}]}} — wait 180s
+    API error attempt 3/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h31m24.909664237s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16284s'}]}} — wait 120s
+    API error attempt 4/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h29m24.319650576s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16164s'}]}} — wait 180s
+    API error attempt 5/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h28m30.511202847s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16110s'}]}} — wait 300s
+
+✗ Failed at [voice]: TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h28m30.511202847s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16110s'}]}}
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 125, in _synthesize_chunk
+    pcm = _call_tts(client, text)
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 90, in _call_tts
+    resp = client.models.generate_content(
+        model=GEMINI_TTS_MODEL,
+    ...<10 lines>...
+        ),
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 6480, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4916, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1611, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1404, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1381, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 155, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 184, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h28m30.511202847s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16110s'}]}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/scheduler.py", line 91, in run
+    audio_path = generate_audio(tts_script, topic_id)
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 207, in generate_audio
+    _synthesize_chunk(client, chunk, out)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 131, in _synthesize_chunk
+    raise RuntimeError(f"TTS API failed after {max_api_retries} attempts: {api_err}")
+RuntimeError: TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h28m30.511202847s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16110s'}]}}
+    API error attempt 5/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h26m23.727442032s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '15983s'}]}} — wait 300s
+
+✗ Failed at [voice]: TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h26m23.727442032s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '15983s'}]}}
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 125, in _synthesize_chunk
+    pcm = _call_tts(client, text)
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 90, in _call_tts
+    resp = client.models.generate_content(
+        model=GEMINI_TTS_MODEL,
+    ...<10 lines>...
+        ),
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 6480, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4916, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1611, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1404, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1381, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 155, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 184, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h26m23.727442032s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '15983s'}]}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/redo_hera_31.py", line 34, in <module>
+    audio_path = generate_audio(script, topic_id)
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 207, in generate_audio
+    _synthesize_chunk(client, chunk, out)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 131, in _synthesize_chunk
+    raise RuntimeError(f"TTS API failed after {max_api_retries} attempts: {api_err}")
+RuntimeError: TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 4h26m23.727442032s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '15983s'}]}}
+
+[3/6] The Voice — narrating with 3.1 Achird...
+    TTS: 70 chunks, ~53,128 chars
+    Voice: Achird (gemini-3.1-flash-tts-preview)
+    TTS: 1/70 (cached)
+    TTS: 2/70 (cached)
+    TTS: 3/70 (cached)
+    TTS: 4/70 (cached)
+    TTS: 5/70 (cached)
+    TTS: 6/70 (cached)
+    TTS: 7/70 (cached)
+    TTS: 8/70 (cached)
+    API error attempt 1/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h8m1.070210192s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '76081s'}]}} — wait 30s
+    API error attempt 2/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h7m30.351457001s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '76050s'}]}} — wait 60s
+    API error attempt 3/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h6m29.709855359s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'model': 'gemini-3.1-flash-tts', 'location': 'global'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '75989s'}]}} — wait 120s
+    API error attempt 4/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h4m29.110334366s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'model': 'gemini-3.1-flash-tts', 'location': 'global'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '75869s'}]}} — wait 180s
+    API error attempt 5/5: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h1m28.351822812s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '75688s'}]}} — wait 300s
+
+✗ Failed at [voice]: TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h1m28.351822812s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '75688s'}]}}
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 125, in _synthesize_chunk
+    pcm = _call_tts(client, text)
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 90, in _call_tts
+    resp = client.models.generate_content(
+        model=GEMINI_TTS_MODEL,
+    ...<10 lines>...
+        ),
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 6480, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4916, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1611, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1404, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1381, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 155, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 184, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h1m28.351822812s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '75688s'}]}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/redo_hera_31.py", line 34, in <module>
+    audio_path = generate_audio(script, topic_id)
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 207, in generate_audio
+    _synthesize_chunk(client, chunk, out)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/narava-pipeline/agents/tts_agent.py", line 131, in _synthesize_chunk
+    raise RuntimeError(f"TTS API failed after {max_api_retries} attempts: {api_err}")
+RuntimeError: TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_requests_per_model_per_day, limit: 100, model: gemini-3.1-flash-tts\nPlease retry in 21h1m28.351822812s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_requests_per_model_per_day', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-flash-tts'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '75688s'}]}}
+
+[3/6] The Voice — narrating with 3.1 Achird...
+    TTS: 70 chunks, ~53,128 chars
+    Voice: Achird (gemini-3.1-flash-tts-preview)
+    TTS: 1/70 (cached)
+    TTS: 2/70 (cached)
+    TTS: 3/70 (cached)
+    TTS: 4/70 (cached)
+    TTS: 5/70 (cached)
+    TTS: 6/70 (cached)
+    TTS: 7/70 (cached)
+    TTS: 8/70 (cached)
+    TTS: 9/70 done
+    TTS: 10/70 done
+    TTS: 11/70 done
+    API error attempt 1/5: empty parts, finish_reason=FinishReason.OTHER — wait 30s
+    TTS: 12/70 done
+    TTS: 13/70 done
+    API error attempt 1/5: empty parts, finish_reason=FinishReason.OTHER — wait 30s
+    TTS: 14/70 done
+    TTS: 15/70 done
+    TTS: 16/70 done
+    TTS: 17/70 done
+    TTS: 18/70 done
+    TTS: 19/70 done
+    TTS: 20/70 done
+    TTS: 21/70 done
+    TTS: 22/70 done
+    TTS: 23/70 done
+    TTS: 24/70 done
+    TTS: 25/70 done
+    TTS: 26/70 done
+    TTS: 27/70 done
+    TTS: 28/70 done
+    TTS: 29/70 done
+    TTS: 30/70 done
+    TTS: 31/70 done
+    TTS: 32/70 done
+    TTS: 33/70 done
+    TTS: 34/70 done
+    TTS: 35/70 done
+    TTS: 36/70 done
+    TTS: 37/70 done
+    TTS: 38/70 done
+    TTS: 39/70 done
+    TTS: 40/70 done
+    TTS: 41/70 done
+    TTS: 42/70 done
+    TTS: 43/70 done
+    TTS: 44/70 done
+    TTS: 45/70 done
+    TTS: 46/70 done
+    TTS: 47/70 done
+    TTS: 48/70 done
+    TTS: 49/70 done
+    TTS: 50/70 done
+    TTS: 51/70 done
+    TTS: 52/70 done
+    TTS: 53/70 done
+    TTS: 54/70 done
+    TTS: 55/70 done
+    TTS: 56/70 done
+    TTS: 57/70 done
+    TTS: 58/70 done
+    TTS: 59/70 done
+    TTS: 60/70 done
+    TTS: 61/70 done
+    TTS: 62/70 done
+    TTS: 63/70 done
+    TTS: 64/70 done
+    TTS: 65/70 done
+    TTS: 66/70 done
+    TTS: 67/70 done
+    TTS: 68/70 done
+    TTS: 69/70 done
+    TTS: 70/70 done
+    Merging audio...
+    Audio: 67 min → 2.mp3
+
+[4/6] The Architect — assembling video...
+    Ken Burns clip 1/10...
+    Ken Burns clip 2/10...
+    Ken Burns clip 3/10...
+    Ken Burns clip 4/10...
+    Ken Burns clip 5/10...
+    Ken Burns clip 6/10...
+    Ken Burns clip 7/10...
+    Ken Burns clip 8/10...
+    Ken Burns clip 9/10...
+    Ken Burns clip 10/10...
+    Assembling video + music (greek)...
+    Video: 505MB, 67 min → 2.mp4
+
+[5/6] The Herald — crafting metadata...
+    Title: Hera's Handmaiden on Mount Olympus for Sleep | Greek Mythology
+    Thumbnail: manual A — A.png
+
+[6/6] The Messenger — uploading to YouTube...
+    Upload: 9%    Upload: 19%    Upload: 29%    Upload: 39%    Upload: 49%    Upload: 59%    Upload: 69%    Upload: 79%    Upload: 89%    Upload: 99%    Uploaded: youtube.com/watch?v=jteX6af7vTg
+    Scheduled: 20:00 EDT = 07:00 WIB
+    Thumbnail set
+
+✓ Complete — youtube.com/watch?v=jteX6af7vTg
+
+
+[4/6] The Architect — re-assembling video (crop bug fixed)...
+    Ken Burns clip 1/10...
+    Ken Burns clip 2/10...
+    Ken Burns clip 3/10...
+    Ken Burns clip 4/10...
+    Ken Burns clip 5/10...
+    Ken Burns clip 6/10...
+    Ken Burns clip 7/10...
+    Ken Burns clip 8/10...
+    Ken Burns clip 9/10...
+    Ken Burns clip 10/10...
+    Assembling video + music (greek)...
+    Video: 641MB, 67 min → 2.mp4
+
+[5/6] The Herald — crafting metadata...
+    Title: Hera's Handmaiden in Olympus for Sleep | Greek Mythology Bedtime Story
+    Thumbnail: manual A — A.png
+
+[6/6] The Messenger — uploading corrected video to YouTube...
+    Upload: 7%    Upload: 15%    Upload: 23%    Upload: 31%    Upload: 38%    Upload: 46%    Upload: 54%    Upload: 62%    Upload: 70%    Upload: 77%    Upload: 85%    Upload: 93%    Uploaded: youtube.com/watch?v=-rOtd0lIH00
+    Scheduled: 20:00 EDT = 07:00 WIB
+
+✗ Failed at [messenger]: Media larger than: 2097152
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/redo_hera_video_only.py", line 62, in <module>
+    video_id = upload_video(video_path, thumbnail_path, metadata)
+  File "/Users/admin/Documents/narava-pipeline/agents/upload_agent.py", line 126, in upload_video
+    yt.thumbnails().set(
+    ~~~~~~~~~~~~~~~~~~~^
+        videoId=video_id,
+        ^^^^^^^^^^^^^^^^^
+        media_body=MediaFileUpload(str(thumbnail_path)),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ).execute()
+    ^
+  File "/opt/homebrew/lib/python3.14/site-packages/googleapiclient/discovery.py", line 1214, in method
+    raise MediaUploadSizeError("Media larger than: %s" % maxSize)
+googleapiclient.errors.MediaUploadSizeError: Media larger than: 2097152
+
+====================================================
+  Narava AI Pipeline  —  2026-06-18 16:33
+====================================================
+
+Topic ID : 3
+Category : greek
+Angle    : Life as Poseidon's Sea-Keeper in the Depths of the Ancient Ocean for Sleep
+
+[1/6] The Oracle — selecting topic...
+[2/6] The Scribe — writing script...
+    Drafting Part 1 (Haiku)...
+    Drafting Part 2 (Haiku)...
+    Polishing Part 1 (Sonnet)...
+    Polishing Part 2 (Sonnet)...
+    Script: 4,982 words (~38 min audio)
+
+[3/6] The Voice — narrating story...
+    TTS: 4 chunks, ~29,620 chars
+    Voice: Ron — Older American Story Teller (eleven_multilingual_v2)
+    TTS: 1/4 done
+    TTS: 2/4 done
+    TTS: 3/4 done
+    TTS: 4/4 done
+    Merging audio...
+    Audio: 39 min → 3.mp3
+
+[4/6] The Architect — assembling video...
+
+✗ Failed at [architect]: No images found in images/greek/poseidon/
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/scheduler.py", line 102, in run
+    video_path, raw_thumb, duration_sec = create_video(audio_path, topic["category"], topic_id, topic_slug=topic["topic"].lower().replace(" ", "_"))
+                                          ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/narava-pipeline/agents/assembly_agent.py", line 170, in create_video
+    images = _get_images(category, topic_slug, count=10)
+  File "/Users/admin/Documents/narava-pipeline/agents/assembly_agent.py", line 50, in _get_images
+    raise FileNotFoundError(f"No images found in images/{category.lower()}/{topic_slug or ''}/")
+FileNotFoundError: No images found in images/greek/poseidon/
+[2/6] The Scribe — writing script (with Shelby intro)...
+    Drafting Part 1 (Haiku)...
+    Drafting Part 2 (Haiku)...
+    Polishing Part 1 (Sonnet)...
+    Polishing Part 2 (Sonnet)...
+    Script: 5,763 words (~44 min audio)
+
+[3/6] The Voice — narrating with Shelby...
+    TTS: 4 chunks, ~34,829 chars
+    Voice: Shelby (eleven_multilingual_v2)
+    TTS: 1/4 done
+    TTS: 2/4 done
+    TTS: 3/4 done
+    TTS: 4/4 done
+    Merging audio...
+    Audio: 46 min → 3.mp3
+
+✓ Done — /Users/admin/Documents/narava-pipeline/output/audio/3.mp3
+
+[4/6] The Architect — assembling video...
+    Ken Burns clip 1/10...
+    Ken Burns clip 2/10...
+    Ken Burns clip 3/10...
+    Ken Burns clip 4/10...
+    Ken Burns clip 5/10...
+    Ken Burns clip 6/10...
+    Ken Burns clip 7/10...
+    Ken Burns clip 8/10...
+    Ken Burns clip 9/10...
+    Ken Burns clip 10/10...
+    Assembling video + music (greek)...
+    Video: 512MB, 46 min → 3.mp4
+
+[5/6] The Herald — crafting metadata...
+    Title: Poseidon's Sea-Keeper for Sleep | Greek Mythology Bedtime Story
+    Thumbnail: manual A — A.png
+
+[6/6] The Messenger — uploading to YouTube...
+    Upload: 9%    Upload: 19%    Upload: 29%    Upload: 39%    Upload: 48%    Upload: 58%    Upload: 68%    Upload: 78%    Upload: 87%    Upload: 97%    Uploaded: youtube.com/watch?v=TSQBGOsRwwY
+    Scheduled: 20:00 EDT = 07:00 WIB
+    Thumbnail set
+
+✓ Complete — youtube.com/watch?v=TSQBGOsRwwY
+⚡ A/B Test: upload thumbnail B manually →
+   File: /Users/admin/Documents/narava-pipeline/thumbnails/greek/poseidon/B.png
+
+[2/6] The Scribe — writing script for Demeter...
+    Drafting Part 1 (Haiku)...
+    Drafting Part 2 (Haiku)...
+    Polishing Part 1 (Sonnet)...
+    Polishing Part 2 (Sonnet)...
+    Script: 5,608 words (~43 min audio)
+
+[3/6] The Voice — narrating with Shelby...
+    TTS: 43 chunks, ~32,603 chars
+    Voice: Shelby (eleven_multilingual_v2)
+    TTS: 1/43 done
+    TTS: 2/43 done
+    TTS: 3/43 done
+    TTS: 4/43 done
+    TTS: 5/43 done
+    TTS: 6/43 done
+    TTS: 7/43 done
+    TTS: 8/43 done
+    TTS: 9/43 done
+    TTS: 10/43 done
+    TTS: 11/43 done
+    TTS: 12/43 done
+    TTS: 13/43 done
+    TTS: 14/43 done
+    TTS: 15/43 done
+    TTS: 16/43 done
+    TTS: 17/43 done
+    TTS: 18/43 done
+    TTS: 19/43 done
+    TTS: 20/43 done
+    TTS: 21/43 done
+    TTS: 22/43 done
+    TTS: 23/43 done
+    TTS: 24/43 done
+    TTS: 25/43 done
+    TTS: 26/43 done
+    TTS: 27/43 done
+    TTS: 28/43 done
+    TTS: 29/43 done
+    TTS: 30/43 done
+    TTS: 31/43 done
+    TTS: 32/43 done
+    TTS: 33/43 done
+    TTS: 34/43 done
+    TTS: 35/43 done
+    TTS: 36/43 done
+    TTS: 37/43 done
+    TTS: 38/43 done
+    TTS: 39/43 done
+    TTS: 40/43 done
+    TTS: 41/43 done
+    TTS: 42/43 done
+    TTS: 43/43 done
+    Merging audio...
+    Audio: 44 min → 4.mp3
+
+✓ Done — /Users/admin/Documents/narava-pipeline/output/audio/4.mp3
+[2/6] The Scribe — writing script for Athena...
+    Drafting Part 1 (Haiku)...
+    Drafting Part 2 (Haiku)...
+    Polishing Part 1 (Sonnet)...
+    Polishing Part 2 (Sonnet)...
+    Script: 5,862 words (~45 min audio)
+
+[3/6] The Voice — narrating with Shelby...
+    TTS: 46 chunks, ~34,365 chars
+    Voice: Shelby (eleven_multilingual_v2)
+    TTS: 1/46 done
+    TTS: 2/46 done
+    TTS: 3/46 done
+    TTS: 4/46 done
+    TTS: 5/46 done
+    TTS: 6/46 done
+    TTS: 7/46 done
+    TTS: 8/46 done
+    TTS: 9/46 done
+    TTS: 10/46 done
+    TTS: 11/46 done
+    TTS: 12/46 done
+    TTS: 13/46 done
+    TTS: 14/46 done
+    TTS: 15/46 done
+    TTS: 16/46 done
+    TTS: 17/46 done
+    TTS: 18/46 done
+    TTS: 19/46 done
+    TTS: 20/46 done
+    TTS: 21/46 done
+    TTS: 22/46 done
+    TTS: 23/46 done
+    TTS: 24/46 done
+    TTS: 25/46 done
+    TTS: 26/46 done
+    TTS: 27/46 done
+    TTS: 28/46 done
+    TTS: 29/46 done
+    TTS: 30/46 done
+    TTS: 31/46 done
+    TTS: 32/46 done
+    TTS: 33/46 done
+    TTS: 34/46 done
+    TTS: 35/46 done
+    TTS: 36/46 done
+    TTS: 37/46 done
+    TTS: 38/46 done
+    TTS: 39/46 done
+    TTS: 40/46 done
+    TTS: 41/46 done
+    TTS: 42/46 done
+    TTS: 43/46 done
+    TTS: 44/46 done
+    TTS: 45/46 done
+    TTS: 46/46 done
+    Merging audio...
+    Audio: 47 min → 6.mp3
+
+✓ Done — /Users/admin/Documents/narava-pipeline/output/audio/6.mp3
+
+[4/6] The Architect — assembling video...
+    Ken Burns clip 1/10...
+    Ken Burns clip 2/10...
+    Ken Burns clip 3/10...
+    Ken Burns clip 4/10...
+    Ken Burns clip 5/10...
+    Ken Burns clip 6/10...
+    Ken Burns clip 7/10...
+
+[4/6] The Architect — assembling video...
+    Ken Burns clip 8/10...
+    Ken Burns clip 9/10...
+    Ken Burns clip 10/10...
+    Assembling video + music (greek)...
+    Video: 11MB, 47 min → 6.mp4
+
+[5/6] The Herald — crafting metadata...
+    Title: Athena's Weaver for Sleep | Greek Mythology Bedtime Story
+    Thumbnail: auto-generated — 6_thumb.jpg
+
+[6/6] The Messenger — uploading to YouTube...
+    Uploaded: youtube.com/watch?v=iAqGsB7w7Ww
+    Scheduled: 20:00 EDT = 07:00 WIB
+    Thumbnail set
+
+✓ Complete — youtube.com/watch?v=iAqGsB7w7Ww
+
+
+[4/6] The Architect — assembling video...
+    Ken Burns clip 1/10...
+    Ken Burns clip 2/10...
+    Ken Burns clip 3/10...
+    Ken Burns clip 4/10...
+    Ken Burns clip 5/10...
+    Ken Burns clip 6/10...
+    Ken Burns clip 7/10...
+    Ken Burns clip 8/10...
+    Ken Burns clip 9/10...
+    Ken Burns clip 10/10...
+[2/6] The Scribe — writing script for Hermes...
+    Drafting Part 1 (Haiku)...
+    Assembling video + music (greek)...
+    Drafting Part 2 (Haiku)...
+    Polishing Part 1 (Sonnet)...
+    Polishing Part 2 (Sonnet)...
+    Script: 5,102 words (~39 min audio)
+
+[3/6] The Voice — narrating with Shelby...
+    TTS: 41 chunks, ~30,407 chars
+    Voice: Shelby (eleven_multilingual_v2)
+    TTS: 1/41 done
+    TTS: 2/41 done
+    TTS: 3/41 done
+    TTS: 4/41 done
+    TTS: 5/41 done
+    TTS: 6/41 done
+    TTS: 7/41 done
+    TTS: 8/41 done
+    TTS: 9/41 done
+    TTS: 10/41 done
+    TTS: 11/41 done
+    TTS: 12/41 done
+    TTS: 13/41 done
+    TTS: 14/41 done
+    TTS: 15/41 done
+    TTS: 16/41 done
+    TTS: 17/41 done
+    TTS: 18/41 done
+    TTS: 19/41 done
+    TTS: 20/41 done
+    TTS: 21/41 done
+    TTS: 22/41 done
+    TTS: 23/41 done
+    TTS: 24/41 done
+    Video: 503MB, 47 min → 6.mp4
+
+[5/6] The Herald — crafting metadata...
+    TTS: 25/41 done
+    Title: Athena's Weaver for Sleep | Greek Mythology Bedtime Story
+    Thumbnail: auto-generated — 6_thumb.jpg
+
+[6/6] The Messenger — uploading to YouTube...
+    TTS: 26/41 done
+    Upload: 9%    TTS: 27/41 done
+    Upload: 19%    TTS: 28/41 done
+    Upload: 29%    TTS: 29/41 done
+    Upload: 39%    TTS: 30/41 done
+    Upload: 49%    Upload: 59%    TTS: 31/41 done
+    Upload: 69%    TTS: 32/41 done
+    Upload: 79%    TTS: 33/41 done
+    Upload: 89%    Upload: 99%    Uploaded: youtube.com/watch?v=drVGCbN4G_k
+    Scheduled: 20:00 EDT = 07:00 WIB
+    TTS: 34/41 done
+    Thumbnail set
+
+✓ Complete — youtube.com/watch?v=drVGCbN4G_k
+
+    TTS: 35/41 done
+    TTS: 36/41 done
+    TTS: 37/41 done
+    TTS: 38/41 done
+    TTS: 39/41 done
+    TTS: 40/41 done
+    TTS: 41/41 done
+    Merging audio...
+    Audio: 42 min → 5.mp3
+
+✓ Done — /Users/admin/Documents/narava-pipeline/output/audio/5.mp3
+
+[4/6] The Architect — assembling video...
+    Ken Burns clip 1/10...
+    Ken Burns clip 2/10...
+    Ken Burns clip 3/10...
+    Ken Burns clip 4/10...
+    Ken Burns clip 5/10...
+    Ken Burns clip 6/10...
+    Ken Burns clip 7/10...
+    Ken Burns clip 8/10...
+    Ken Burns clip 9/10...
+    Ken Burns clip 10/10...
+    Assembling video + music (greek)...
+    Video: 471MB, 44 min → 4.mp4
+
+[5/6] The Herald — crafting metadata...
+    Title: Demeter's Sacred Fields for Sleep | Greek Mythology Bedtime Story
+    Thumbnail: manual A — A.png
+
+[6/6] The Messenger — uploading to YouTube...
+    Upload: 10%    Upload: 21%    Upload: 31%    Upload: 42%    Upload: 53%    Upload: 63%    Upload: 74%    Upload: 84%    Upload: 95%    Uploaded: youtube.com/watch?v=r4DIgmZLH4k
+    Scheduled: 20:00 EDT = 07:00 WIB
+
+✗ Failed at [messenger]: Media larger than: 2097152
+Traceback (most recent call last):
+  File "/Users/admin/Documents/narava-pipeline/resume_from_architect.py", line 62, in <module>
+    video_id = upload_video(video_path, thumbnail_path, metadata)
+  File "/Users/admin/Documents/narava-pipeline/agents/upload_agent.py", line 135, in upload_video
+    yt.thumbnails().set(
+    ~~~~~~~~~~~~~~~~~~~^
+        videoId=video_id,
+        ^^^^^^^^^^^^^^^^^
+        media_body=MediaFileUpload(str(thumbnail_path)),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ).execute()
+    ^
+  File "/opt/homebrew/lib/python3.14/site-packages/googleapiclient/discovery.py", line 1214, in method
+    raise MediaUploadSizeError("Media larger than: %s" % maxSize)
+googleapiclient.errors.MediaUploadSizeError: Media larger than: 2097152
+
+[4/6] The Architect — assembling video...
+    Ken Burns clip 1/10...
+    Ken Burns clip 2/10...
+    Ken Burns clip 3/10...
+    Ken Burns clip 4/10...
+    Ken Burns clip 5/10...
+    Ken Burns clip 6/10...
+    Ken Burns clip 7/10...
+    Ken Burns clip 8/10...
+    Ken Burns clip 9/10...
+    Ken Burns clip 10/10...
+    Assembling video + music (greek)...
+    Video: 433MB, 42 min → 5.mp4
+
+[5/6] The Herald — crafting metadata...
+    Title: Hermes' Messenger for Sleep | Greek Mythology Bedtime Story
+    Thumbnail: manual A — A.png
+
+[6/6] The Messenger — uploading to YouTube...
+    Upload: 11%    Upload: 23%    Upload: 34%    Upload: 46%    Upload: 57%    Upload: 69%    Upload: 80%    Upload: 92%    Uploaded: youtube.com/watch?v=xx0CsQ8rjhw
+    Scheduled: 20:00 EDT = 07:00 WIB
+    Thumbnail set
+
+✓ Complete — youtube.com/watch?v=xx0CsQ8rjhw
+⚡ A/B Test: upload thumbnail B manually →
+   File: /Users/admin/Documents/narava-pipeline/thumbnails/greek/hermes/B.png
+

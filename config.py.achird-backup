@@ -1,0 +1,25 @@
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
+
+ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
+GEMINI_API_KEY = os.environ["GEMINI_API_KEY"]
+YOUTUBE_CLIENT_SECRET = os.environ.get("YOUTUBE_CLIENT_SECRET_PATH", "youtube_client_secret.json")
+
+HAIKU_MODEL = "claude-haiku-4-5-20251001"
+SONNET_MODEL = "claude-sonnet-4-6"
+
+BASE_DIR = Path(__file__).parent
+IMAGES_DIR = BASE_DIR / "images"
+OUTPUT_DIR = BASE_DIR / "output"
+TOPICS_FILE = BASE_DIR / "topics" / "mythology_topics.csv"
+TOKEN_FILE = BASE_DIR / "youtube_token.pickle"
+
+GEMINI_TTS_MODEL = "gemini-3.1-flash-tts-preview"
+GEMINI_TTS_VOICE = "Achird"
+
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+(OUTPUT_DIR / "audio").mkdir(exist_ok=True)
+(OUTPUT_DIR / "video").mkdir(exist_ok=True)

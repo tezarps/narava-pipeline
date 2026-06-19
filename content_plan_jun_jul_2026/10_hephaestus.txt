@@ -1,0 +1,38 @@
+HEPHAESTUS — Rabu, 29 Juli
+
+=== PROMPT GAMBAR ISI-VIDEO (Google Flow) ===
+Generate 10 images on the theme of tending Hephaestus' forge beneath the volcano — a roaring furnace, metal being forged, volcanic smoke, sacred tools hanging on the walls, and red-gold light reflecting off the cave walls.
+
+=== PROMPT THUMBNAIL VARIANT A — "The Volcanic Forge" (siap paste ke Flow) ===
+A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
+
+Scene: a vast volcanic forge cave, a massive stone furnace glowing deep red-gold at its center, half-finished metalwork resting nearby. Tools hang along the rough cave walls, catching the firelight. Faint smoke drifts upward toward an unseen opening above.
+
+Lighting: warm red-gold firelight from the furnace as the dominant source, deep black-brown shadow at the cave's edges.
+
+Color palette: deep volcanic black-brown, warm red-gold fire, faint amber metal glow.
+
+Composition: 16:9, furnace and cave filling the frame, open shadowed space across the top third for text overlay.
+
+Style anchor: painterly brushstroke texture, canvas grain, volcanic red-gold palette, industrious warm mood, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+
+=== PROMPT THUMBNAIL VARIANT B — "The Forging" (siap paste ke Flow) ===
+A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
+
+Scene: a close view of an anvil with a glowing red-gold piece of metal being shaped, sparks drifting upward into darkness. A hammer rests beside the anvil. Behind, the soft blur of the furnace glow and volcanic cave wall.
+
+Lighting: intense warm red-gold glow from the heated metal as the dominant source, deep shadow surrounding it.
+
+Color palette: brilliant red-gold metal glow, deep black-brown shadow, faint ember orange sparks.
+
+Composition: 16:9, anvil and metal filling the right two-thirds of frame, open dark space across the left third for text overlay.
+
+Style anchor: painterly brushstroke texture, canvas grain, intense red-gold palette, industrious dramatic mood, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+
+=== TEKS OVERLAY (sama untuk A & B) ===
+Besar (brand, konsisten semua video): "Ancient Mythology for Sleep"
+Kecil (topik): "Tending Hephaestus' Forge Beneath the Volcano"

@@ -1,0 +1,105 @@
+THE GREAT FLOOD (Comparative Mythology) — Standalone Test Episode, belum dijadwalkan
+
+=== ANGLE / FRAME DEVICE (outline untuk script_agent) ===
+Lihat detail lengkap di 00_SCHEDULE.md bagian "Frame device" — ringkasan: kamu adalah
+Penjaga Arsip Ingatan, sosok abadi yang merawat sebuah perpustakaan di luar waktu berisi
+"malam-malam yang diingat" dari seluruh dunia manusia. Malam ini, lima rak menyala secara
+bersamaan — semuanya menyimpan ingatan tentang malam yang sama: malam ketika air naik dan
+dunia lama berakhir. Kamu berjalan dari rak ke rak, meredupkan satu ingatan sebelum
+menyalakan yang berikutnya, mengalami sekilas masing-masing sebagai dirimu sendiri (2nd
+person, present tense), lalu kembali ke keheningan arsip sebagai jangkar sensorik di
+antara tiap segmen.
+
+Urutan 5 budaya/tradisi (durasi kira-kira sama, ~700-900 kata polished tiap segmen):
+1. Mesopotamia (epik Gilgamesh) — Utnapishtim membangun kapal di Shuruppak atas
+   peringatan Ea, hujan tujuh hari, burung gagak/merpati dilepas mencari daratan.
+2. Tradisi Ibrahimik (Nuh/Noah) — bahtera, hewan berpasangan, empat puluh hari hujan,
+   pelangi sebagai tanda.
+3. Hindu (Manu dan ikan Matsya) — ikan kecil yang tumbuh raksasa memperingatkan Manu,
+   perahu diikat ke tanduk ikan, berlayar menuju puncak gunung.
+4. Yunani (Deukalion dan Pyrrha) — Zeus membanjiri dunia karena kebejatan manusia,
+   peti kayu, mendarat di Gunung Parnassus, melempar batu yang menjadi manusia baru.
+5. Tiongkok (banjir besar dan Gun-Yu) — bukan kapal tapi pengendalian air selama
+   bergenerasi; Gun gagal membendung, Yu berhasil mengalirkan air ke laut lewat kerja
+   keras dan kesabaran, bukan penyelamatan tunggal semalam.
+
+Throughline sensorik yang menyatukan kelima segmen: SUARA AIR (gemericik kecil di awal
+tiap segmen, sebelum naik menjadi gambaran visual budaya tersebut), AROMA KAYU/RESIN
+bahtera atau perahu, dan GERAKAN TANGAN si Penjaga Arsip menyentuh gulungan/tablet/sutra
+yang berbeda tekstur di tiap rak (tanah liat dingin untuk Mesopotamia, kulit kering untuk
+tradisi Ibrahimik, kain sutra untuk Hindu, marmer dingin untuk Yunani, bambu dan tinta
+untuk Tiongkok) — gerakan tangan ini jadi jangkar "kamu" yang konsisten meski latar
+berubah total tiap segmen.
+
+Pembukaan: kamu memasuki arsip pada malam yang sangat sepi, lampu-lampu kecil di sepanjang
+rak menyala satu demi satu tanpa kamu sentuh — tanda bahwa ingatan-ingatan ini "ingin
+diingat malam ini". Tidak ada ketegangan atau ancaman; nada penasaran yang tenang, bukan
+horor.
+
+Penutup: setelah kelima ingatan diredupkan kembali, kamu berdiri di tengah arsip yang
+sunyi, menyadari (secara sensorik, bukan didaktik) bahwa kelima rak itu kini berhenti
+berdenyut karena sudah selesai diceritakan — tidak ada simpulan "mana yang benar", hanya
+ketenangan bahwa air yang sama pernah diingat lima cara berbeda. Bagian malam terakhir:
+ambient penuh, arsip meredup ke kegelapan hangat, kamu duduk dan akhirnya beristirahat.
+
+Catatan untuk script_agent.py: device "you serve god X" yang ada di _DRAFT_PART1/_DRAFT_PART2
+perlu di-generalize jadi "you are the keeper of an archive of remembered nights" dengan
+sub-angle per segmen, lalu setiap segmen dipanggil dengan angle berbeda dan category tetap
+"comparative" — lihat catatan implementasi di 00_SCHEDULE.md.
+
+=== PROMPT GAMBAR ISI-VIDEO (Google Flow) — updated 2026-06-20 v3, soft painterly, same tone as Thumbnail Variant B ===
+Generate these as 10 SEPARATE images, one clean painterly scene per image — do NOT combine
+multiple objects or vessels into a single frame, each image has exactly ONE clear subject.
+
+Same rendering style throughout as Thumbnail Variant B and your existing Greek series
+reference images (the Parthenon at dusk, the weaving loom interiors): a traditional
+painterly oil painting, soft visible brushstroke texture and canvas grain, warm or cool
+atmospheric lighting depending on time of day but always gentle and soft-edged — never
+harsh, theatrical, neon, or high-contrast. NOT a smooth digital render, NOT CGI, NOT a
+graphic novel or concept-art poster style.
+
+Wherever the robed keeper/figure appears (images 6 and 10), render them exactly like the
+hooded figure in Thumbnail Variant B — calm, ancient, face gently hidden in shadow under
+the hood, unidentifiable, not coded as any specific culture or religion — so the figure
+feels like the same character throughout the video and the thumbnail.
+
+1. A weathered wooden ark alone on dark turbulent floodwater, heavy grey rain clouds above, soft diffused light, no other objects in frame.
+2. A vast candlelit archive at night, towering shelves disappearing into soft shadow, warm gentle candlelight.
+3. A close shot of a hand touching a cold clay tablet on a dark wooden shelf, soft candlelight from one side.
+4. A small wooden boat tied by rope to the horn of a giant fish breaking the water's surface, calm grey-blue sea, soft overcast light, no other vessels.
+5. A plain wooden chest resting alone on a misty mountainside, soft mist rolling past, muted cool light, no other objects.
+6. A quiet riverbank at dusk, the hooded keeper crouched at the water's edge directing the current with both hands, soft violet-blue twilight light, no other figures.
+7. The ark from image 1, now resting on dry rocky ground, rain clearing, a single faint rainbow, soft pale gold light breaking through.
+8. A reed-and-pitch boat alone on calm water at dawn, soft mist low over the surface, gentle pale light, no other objects.
+9. A simple bound-log raft alone on still water under a darkening sky, soft muted violet-blue light, no other objects.
+10. The hooded keeper of the archive, standing alone in the candlelit archive as the last shelf dims to dark, soft warm candlelight fading into soft shadow.
+
+=== PROMPT THUMBNAIL VARIANT A — "The Watcher and the Stranded Ark" (updated 2026-06-20 v5 — soft painterly, matches Greek series style) ===
+A traditional painterly oil painting illustration, soft visible brushstroke texture and canvas grain throughout, exactly the same hand-painted rendering style as your existing Greek series reference images (the Parthenon at dusk, the weaving loom interiors) — warm, soft, atmospheric, classical illustration. NOT a smooth digital render, NOT CGI, NOT a graphic/poster/concept-art style, NOT high-contrast neon lighting.
+
+Scene: a tall, mysterious hooded figure stands quietly in the right third of the frame, shown from roughly the chest up, facing toward the viewer with the face gently hidden in shadow under the hood — calm, ancient, unidentifiable, not coded as any specific culture or religion. In the background to the left, smaller and distant, Noah's ark rests grounded on dry rocky ground, weathered and tilted, long after the floodwaters receded.
+
+Lighting: soft warm late-afternoon light, the kind of gentle golden-hour glow used in the Parthenon reference image — warm amber light falling softly across the figure's hood and shoulders from one side, the stranded ark sitting in soft, muted cool shadow in the background. Gentle and atmospheric, not harsh or theatrical.
+
+Color palette: warm amber and muted gold (same restrained warmth as the Greek series), soft grey-blue shadow on the ark — quiet and harmonious, not saturated or neon.
+
+Composition: 16:9, hooded figure filling the right third of the frame from chest height upward, stranded ark visible smaller in the mid-background to the left, open sky at upper-left for text overlay.
+
+Style anchor: soft painterly brushstroke texture, canvas grain, warm muted oil-painting palette, quiet atmospheric mood, same classical illustration style as the existing Greek reference images, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, photorealistic rendering, graphic novel or concept-art poster style, neon or oversaturated lighting, visible facial features on the figure, cluttered composition, modern objects, horror/gore elements, text, watermark.
+
+=== PROMPT THUMBNAIL VARIANT B — "The Watcher at Dusk" (updated 2026-06-20 v5 — soft painterly, matches Greek series style) ===
+Same prompt as Variant A in every detail (composition, figure, ark, soft painterly Greek-series style), with only the lighting changed for A/B testing.
+
+Lighting: soft cool dusk light instead of warm late-afternoon — a gentle violet-blue twilight glow falling softly across the figure's hood and shoulders, the stranded ark sitting in a small warm pocket of lamp-like amber light, the only warm note in an otherwise cool, soft-toned scene. Still gentle and atmospheric, not harsh or theatrical.
+
+Color palette: soft muted violet-blue dominant, one small warm amber accent on the stranded ark — quiet and harmonious, not saturated or neon.
+
+Style anchor: soft painterly brushstroke texture, canvas grain, muted cool oil-painting palette, quiet atmospheric mood, same classical illustration style as the existing Greek reference images, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, photorealistic rendering, graphic novel or concept-art poster style, neon or oversaturated lighting, visible facial features on the figure, cluttered composition, modern objects, horror/gore elements, text, watermark.
+
+=== TEKS OVERLAY (sama untuk A & B) ===
+Besar (brand, khusus lini comparative — updated 2026-06-20): "A Story Before You Sleep"
+Kecil (topik, updated 2026-06-20 — versi hook): "Noah Wasn't the Only One Who Survived the Flood"

@@ -1,0 +1,38 @@
+PENELOPE — Minggu, 19 Juli (2 hari setelah film "The Odyssey" rilis — Anne Hathaway sebagai Penelope, tangkap lonjakan pencarian) — TOPIK BARU, sudah ditambahkan ke topics/mythology_topics.csv
+
+=== PROMPT GAMBAR ISI-VIDEO (Google Flow) ===
+Generate 10 images on the theme of Penelope's long wait in the halls of Ithaca — a loom woven by day and unraveled by night, a window looking out over the sea, a quiet palace chamber, a single oil lamp burning, and a gull carrying hope.
+
+=== PROMPT THUMBNAIL VARIANT A — "The Night Loom" (siap paste ke Flow) ===
+A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
+
+Scene: a quiet palace chamber at night, a large loom by an open window overlooking a moonlit sea, half-finished weaving draped over it. A single oil lamp burns steadily on a stone sill nearby. The window frames a distant view of the dark ocean horizon.
+
+Lighting: warm amber lamplight inside, cool silver moonlight from the window and sea beyond.
+
+Color palette: warm amber lamp glow, deep navy night sea, soft cream weaving threads.
+
+Composition: 16:9, loom and window filling the frame, open dark wall space across the bottom third for text overlay.
+
+Style anchor: painterly brushstroke texture, canvas grain, amber and navy night palette, patient quietly hopeful mood, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+
+=== PROMPT THUMBNAIL VARIANT B — "Watching the Horizon" (siap paste ke Flow) ===
+A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
+
+Scene: a wide palace window by day, soft daylight streaming in, a single gull gliding past against a bright sea horizon. The loom sits empty in the foreground, threads catching the light. Sheer fabric curtains drift gently at the window's edge.
+
+Lighting: soft warm daylight streaming through the window, gentle highlights on the threads.
+
+Color palette: warm cream and gold daylight, soft blue sea, pale fabric tones.
+
+Composition: 16:9, window and sea view filling the frame, loom in the foreground, open space across the bottom third for text overlay.
+
+Style anchor: painterly brushstroke texture, canvas grain, warm daylight palette, quietly hopeful mood, 16:9 cinematic composition, no text, no watermark.
+
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+
+=== TEKS OVERLAY (sama untuk A & B) ===
+Besar (brand, konsisten semua video): "Ancient Mythology for Sleep"
+Kecil (topik): "Penelope's Twenty-Year Wait in the Halls of Ithaca"
