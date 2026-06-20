@@ -12,6 +12,7 @@ PLAYLIST_IDS_FILE = Path(__file__).parent.parent / "playlist_ids.json"
 
 SCOPES = [
     "https://www.googleapis.com/auth/youtube",
+    "https://www.googleapis.com/auth/yt-analytics.readonly",
 ]
 
 # Optimal publish time: 8 PM US Eastern
