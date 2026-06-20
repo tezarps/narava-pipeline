@@ -204,10 +204,16 @@ def run(audio_only=False):
         sb.run_done(sb_run_id)
         print(f"\n✓ Complete — youtube.com/watch?v={video_id}")
         notify(f"✅ Narava — published\n{topic['topic']} ({topic['category']})\nyoutube.com/watch?v={video_id}")
+
+        # Thumbnail A/B self-test: YouTube has no public API for its native
+        # "Test & Compare", so ab_test_check.py (separate daily cron) does our
+        # own sequential rotation instead — needs both variants in Storage and
+        # a tracking row, both registered here right after a successful upload.
         if thumb_b:
-            print(f"⚡ A/B Test: upload thumbnail B manually →")
-            print(f"   https://studio.youtube.com/video/{video_id}/edit → Thumbnail → Test & Compare")
-            print(f"   File: {thumb_b}")
+            sb.upload_thumbnail(topic["category"], topic_slug, "A", thumbnail_path)
+            sb.upload_thumbnail(topic["category"], topic_slug, "B", thumb_b)
+            sb.create_thumbnail_test(topic_id, video_id)
+            print(f"⚡ A/B test registered — ab_test_check.py will rotate thumbnails A/B automatically")
         print()
 
     except Exception as e:

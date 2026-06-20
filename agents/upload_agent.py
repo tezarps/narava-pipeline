@@ -79,7 +79,10 @@ def _next_publish_time():
     return utc_str, f"{target.strftime('%H:%M')} {label} = {wib.strftime('%H:%M')} WIB"
 
 
-def _get_service():
+def get_credentials():
+    """Public so other scripts (e.g. ab_test_check.py) can build their own
+    service — e.g. youtubeAnalytics v2 — off the same token without reaching
+    into a private function's internals."""
     creds = None
     if TOKEN_FILE.exists():
         with open(TOKEN_FILE, "rb") as f:
@@ -92,7 +95,11 @@ def _get_service():
             creds = flow.run_local_server(port=8080)
         with open(TOKEN_FILE, "wb") as f:
             pickle.dump(creds, f)
-    return build("youtube", "v3", credentials=creds)
+    return creds
+
+
+def _get_service():
+    return build("youtube", "v3", credentials=get_credentials())
 
 
 def _add_to_playlist(yt, video_id, playlist_id):

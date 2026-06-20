@@ -57,6 +57,12 @@ def mark_topic_failed(topic_id, reason=""):
     db.table("topics").update({"status": "failed", "notes": str(reason)[:200]}).eq("id", topic_id).execute()
 
 
+def get_topic(topic_id):
+    db = _require_client()
+    res = db.table("topics").select("*").eq("id", topic_id).limit(1).execute()
+    return res.data[0] if res.data else None
+
+
 # ---- Pipeline run log (for the dashboard) ----
 
 def run_start(topic_id, angle):
@@ -172,6 +178,19 @@ def download_thumbnails(category, slug, local_dir):
     return local_dir
 
 
+def download_thumbnail_variant_bytes(category, slug, variant):
+    """Fetch a single A or B thumbnail's raw bytes — used by ab_test_check.py,
+    which needs to hand the image straight to YouTube's thumbnails().set()
+    without caring about the file extension on disk."""
+    db = _require_client()
+    remote_prefix = f"{category.lower()}/{slug.lower()}"
+    entries = db.storage.from_(THUMBNAILS_BUCKET).list(remote_prefix)
+    match = next((e for e in entries if e["name"].startswith(variant)), None)
+    if not match:
+        raise FileNotFoundError(f"No thumbnail variant {variant} for {category}/{slug}")
+    return db.storage.from_(THUMBNAILS_BUCKET).download(f"{remote_prefix}/{match['name']}")
+
+
 # ---- Images: synced into the SAME local folder structure assembly_agent.py
 # already expects (images/{category}/{slug}/NN.ext) — this keeps assembly_agent.py
 # untouched; only the CI job needs to pull images down before running create_video(). ----
@@ -207,3 +226,32 @@ def download_topic_images(category, slug, local_dir):
         data = db.storage.from_(IMAGES_BUCKET).download(remote_path)
         (local_dir / entry["name"]).write_bytes(data)
     return local_dir
+
+
+# ---- Thumbnail A/B self-test (sequential rotation — see ab_test_check.py) ----
+
+def create_thumbnail_test(topic_id, video_id):
+    db = _require_client()
+    db.table("thumbnail_tests").insert({"topic_id": topic_id, "video_id": video_id}).execute()
+
+
+def get_running_thumbnail_tests():
+    """Tests still in phase A (waiting to flip to B) or phase B (waiting to
+    resolve) — anything not yet resolved."""
+    db = _require_client()
+    res = db.table("thumbnail_tests").select("*").eq("resolved", False).execute()
+    return res.data
+
+
+def flip_to_variant_b(test_id, ctr_a):
+    db = _require_client()
+    db.table("thumbnail_tests").update({
+        "active_variant": "B", "switched_at": "now()", "ctr_a": ctr_a,
+    }).eq("id", test_id).execute()
+
+
+def resolve_thumbnail_test(test_id, ctr_b, winner):
+    db = _require_client()
+    db.table("thumbnail_tests").update({
+        "resolved": True, "ctr_b": ctr_b, "winner": winner,
+    }).eq("id", test_id).execute()

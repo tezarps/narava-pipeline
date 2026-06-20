@@ -43,5 +43,29 @@ create policy "public read topics" on topics
 create policy "public read pipeline_runs" on pipeline_runs
     for select using (true);
 
+-- Thumbnail A/B self-test — since YouTube's native "Test & Compare" has no
+-- public API, this tracks our own sequential rotation: publish with A, swap
+-- to B after a few days, compare CTR, keep the winner. Driven by
+-- ab_test_check.py on a daily GitHub Actions cron.
+create table if not exists thumbnail_tests (
+    id bigserial primary key,
+    topic_id bigint references topics(id),
+    video_id text not null,
+    active_variant text not null default 'A' check (active_variant in ('A', 'B')),
+    started_at timestamptz not null default now(),
+    switched_at timestamptz,
+    resolved boolean not null default false,
+    ctr_a numeric,
+    ctr_b numeric,
+    winner text check (winner in ('A', 'B'))
+);
+
+create index if not exists idx_thumbnail_tests_resolved on thumbnail_tests(resolved);
+
+alter table thumbnail_tests enable row level security;
+
+create policy "public read thumbnail_tests" on thumbnail_tests
+    for select using (true);
+
 -- After running this file, migrate existing CSV rows with the companion
 -- script: python3 supabase_setup/migrate_csv_to_supabase.py
