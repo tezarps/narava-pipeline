@@ -237,33 +237,58 @@ def _render_thumbnail(image_path, title, out_path):
     black.putalpha(shadow)
     base.alpha_composite(black)
 
-    subtitle_lines = textwrap.wrap(title.upper(), width=34)[:3]
+    # Text column is confined to the dark panel only — never bleed past the
+    # fade edge into the photo side (this was the "memanjang satu baris" bug:
+    # the headline measured its own width and ignored where the shadow ends).
+    left_margin = 56
+    text_max_w = fade_end - left_margin - 30
 
-    def _fit(text, font_path, start_size, max_w):
-        size = start_size
+    def _wrap_pixels(text, font, max_w):
         tmp = Image.new("L", (1, 1))
-        while size > 24:
+        d = ImageDraw.Draw(tmp)
+        words, lines, cur = text.split(), [], ""
+        for word in words:
+            trial = (cur + " " + word).strip()
+            if d.textbbox((0, 0), trial, font=font)[2] <= max_w or not cur:
+                cur = trial
+            else:
+                lines.append(cur)
+                cur = word
+        if cur:
+            lines.append(cur)
+        return lines
+
+    def _fit_wrapped(text, font_path, max_w, start_size, min_size=26, max_lines=3):
+        size = start_size
+        while size >= min_size:
             font = ImageFont.truetype(font_path, size)
-            tw = ImageDraw.Draw(tmp).textbbox((0, 0), text, font=font)[2]
-            if tw <= max_w:
-                return font
+            lines = _wrap_pixels(text, font, max_w)
+            if len(lines) <= max_lines:
+                return font, lines
             size -= 2
-        return ImageFont.truetype(font_path, 24)
+        font = ImageFont.truetype(font_path, min_size)
+        return font, _wrap_pixels(text, font, max_w)
 
-    headline_font = _fit(HEADLINE, CINZEL_BOLD, 64, max_w=1160)
-    headline_layer, (_, hh), hpad = _draw_text_layer(
-        HEADLINE, headline_font,
-        glow_color=GOLD_TOP, fill_gradient=(GOLD_TOP, GOLD_BOTTOM),
-    )
-    base.alpha_composite(headline_layer, (56 - hpad, 120 - hpad))
-
-    y = 120 + hh + 36
-    for line in subtitle_lines:
-        sub_layer, (_, sh), spad = _draw_text_layer(
-            line, ImageFont.truetype(LATO_REGULAR, 36),
-            glow_color=(0, 0, 0), solid_color=(240, 240, 240, 255),
+    # Main headline: WHITE + white glow (fixed brand line).
+    headline_font, headline_lines = _fit_wrapped(HEADLINE, CINZEL_BOLD, text_max_w, start_size=58)
+    y = 110
+    for line in headline_lines:
+        layer, (_, lh), pad = _draw_text_layer(
+            line, headline_font,
+            glow_color=(255, 255, 255), solid_color=(255, 255, 255, 255),
         )
-        base.alpha_composite(sub_layer, (56 - spad, y - spad))
+        base.alpha_composite(layer, (left_margin - pad, y - pad))
+        y += lh + 10
+
+    # Subtitle (per-episode title): gold gradient + soft glow.
+    subtitle_font, subtitle_lines = _fit_wrapped(title.upper(), LATO_REGULAR, text_max_w, start_size=36, min_size=24)
+    y += 26
+    for line in subtitle_lines:
+        layer, (_, sh), pad = _draw_text_layer(
+            line, subtitle_font,
+            glow_color=GOLD_TOP, fill_gradient=(GOLD_TOP, GOLD_BOTTOM),
+        )
+        base.alpha_composite(layer, (left_margin - pad, y - pad))
         y += sh + 14
 
     if LOGO_PATH.exists():
