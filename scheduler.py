@@ -157,7 +157,7 @@ def run(audio_only=False):
         sb.run_update_agent(sb_run_id, "architect")
         _ensure_local_images(topic["category"], topic_slug, topic=topic["topic"], angle=topic.get("angle", ""))
         _ensure_local_thumbnails(topic["category"], topic_slug)
-        video_path, raw_thumb, duration_sec = create_video(audio_path, topic["category"], topic_id, topic_slug=topic_slug)
+        video_path, raw_thumb_a, raw_thumb_b, duration_sec = create_video(audio_path, topic["category"], topic_id, topic_slug=topic_slug)
         size_mb = video_path.stat().st_size / 1024 / 1024
         agent_done("architect", f"Video ready: {size_mb:.0f}MB")
 
@@ -174,15 +174,22 @@ def run(audio_only=False):
         agent_done("herald", metadata["title"][:60])
         print(f"    Title: {metadata['title']}")
 
-        # Thumbnail: prefer manual A.jpg from thumbnails folder, fallback to auto-generate
+        # Thumbnail: prefer manual A/B from thumbnails folder; otherwise always
+        # auto-generate BOTH variants (from two different scene frames) so
+        # there's always an A/B pair ready for YouTube's Test & Compare —
+        # which still has to be uploaded there by hand, see note below.
         thumb_a, thumb_b = get_manual_thumbnails(topic["category"], topic_slug)
         if thumb_a:
             thumbnail_path = thumb_a
             print(f"    Thumbnail: manual A — {thumb_a.name}")
         else:
-            thumb_out = video_path.parent / f"{topic_id}_thumb.jpg"
-            thumbnail_path = create_thumbnail(raw_thumb, metadata["title"], thumb_out)
-            print(f"    Thumbnail: auto-generated — {thumb_out.name}")
+            thumb_a_out = video_path.parent / f"{topic_id}_thumb_a.jpg"
+            thumbnail_path = create_thumbnail(raw_thumb_a, metadata["title"], thumb_a_out)
+            print(f"    Thumbnail A: auto-generated — {thumb_a_out.name}")
+            if not thumb_b:
+                thumb_b_out = video_path.parent / f"{topic_id}_thumb_b.jpg"
+                thumb_b = create_thumbnail(raw_thumb_b, metadata["title"], thumb_b_out)
+                print(f"    Thumbnail B: auto-generated — {thumb_b_out.name}")
 
         current_agent = "messenger"
         print("\n[6/6] The Messenger — uploading to YouTube...")

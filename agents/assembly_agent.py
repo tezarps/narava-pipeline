@@ -444,4 +444,8 @@ def create_video(audio_path, category, topic_id, topic_slug=None):
 
     size_mb = out_path.stat().st_size / 1024 / 1024
     print(f"    Video: {size_mb:.0f}MB, {duration/60:.0f} min → {out_path.name}")
-    return out_path, images[0], duration
+    # Two distinct source frames for thumbnail A/B — first scene and a later,
+    # visually different one — so an auto-generated A/B pair isn't just the
+    # same crop twice.
+    thumb_src_b = images[len(images) // 2] if len(images) > 1 else images[0]
+    return out_path, images[0], thumb_src_b, duration
