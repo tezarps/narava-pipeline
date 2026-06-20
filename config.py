@@ -5,7 +5,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
-GEMINI_API_KEY = os.environ["GEMINI_API_KEY"]
+# Leftover from the Gemini TTS era (migrated to ElevenLabs — see project memory
+# project_narava_pipeline.md) — only a few one-off debug scripts still reference
+# it, the real pipeline doesn't, so this must not be a hard requirement.
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 ELEVENLABS_API_KEY = os.environ.get("ELEVENLABS_API_KEY", "")
 YOUTUBE_CLIENT_SECRET = os.environ.get("YOUTUBE_CLIENT_SECRET_PATH", "youtube_client_secret.json")
 
