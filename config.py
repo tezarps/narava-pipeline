@@ -9,6 +9,8 @@ ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 # project_narava_pipeline.md) — only a few one-off debug scripts still reference
 # it, the real pipeline doesn't, so this must not be a hard requirement.
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+GEMINI_IMAGE_API_KEY = os.environ.get("GEMINI_IMAGE_API_KEY", "")
+NANO_BANANA_MODEL = "gemini-3.1-flash-image"
 ELEVENLABS_API_KEY = os.environ.get("ELEVENLABS_API_KEY", "")
 YOUTUBE_CLIENT_SECRET = os.environ.get("YOUTUBE_CLIENT_SECRET_PATH", "youtube_client_secret.json")
 

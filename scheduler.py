@@ -10,6 +10,7 @@ import supabase_io as sb
 from agents.script_agent import generate_script
 from agents.tts_agent import generate_audio
 from agents.assembly_agent import create_video, create_thumbnail, get_manual_thumbnails
+from agents.image_agent import generate_images
 from agents.metadata_agent import generate_metadata
 from agents.upload_agent import upload_video
 from status_manager import (
@@ -26,16 +27,23 @@ def _has_local_images(local_dir):
     return local_dir.exists() and any(p.suffix.lower() in (".jpg", ".jpeg", ".png") for p in local_dir.glob("*"))
 
 
-def _ensure_local_images(category, slug):
+def _ensure_local_images(category, slug, topic=None, angle=None):
     """Pull images down from Supabase Storage if they're not already on disk —
     a fresh GitHub Actions checkout has none (images/ is gitignored, never
-    committed; assets live in Supabase Storage instead, pushed there via
-    supabase_setup/sync_images_up.py after each Google Flow batch)."""
+    committed; assets live in Supabase Storage instead). If Supabase has none
+    either (first time this topic runs), generate them on the spot via Nano
+    Banana 2 (agents/image_agent.py) and cache them up to Supabase Storage so
+    future re-renders of this topic don't pay for generation again."""
     local_dir = IMAGES_DIR / category.lower() / slug.lower()
     if _has_local_images(local_dir):
         return
     print(f"    No local images for {category}/{slug} — pulling from Supabase Storage...")
-    sb.download_topic_images(category, slug, local_dir)
+    try:
+        sb.download_topic_images(category, slug, local_dir)
+    except FileNotFoundError:
+        print(f"    None in Supabase either — generating via Nano Banana 2...")
+        generate_images(topic, angle, category, slug)
+        sb.upload_topic_images(category, slug, local_dir)
 
 
 def _ensure_local_thumbnails(category, slug):
@@ -147,7 +155,7 @@ def run(audio_only=False):
         print("\n[4/6] The Architect — assembling video...")
         agent_start("architect", "Running FFmpeg...")
         sb.run_update_agent(sb_run_id, "architect")
-        _ensure_local_images(topic["category"], topic_slug)
+        _ensure_local_images(topic["category"], topic_slug, topic=topic["topic"], angle=topic.get("angle", ""))
         _ensure_local_thumbnails(topic["category"], topic_slug)
         video_path, raw_thumb, duration_sec = create_video(audio_path, topic["category"], topic_id, topic_slug=topic_slug)
         size_mb = video_path.stat().st_size / 1024 / 1024
