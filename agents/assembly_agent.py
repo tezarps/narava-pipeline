@@ -184,7 +184,8 @@ def _text_width(d, text, font, tracking=0):
     return sum(d.textbbox((0, 0), ch, font=font)[2] for ch in text) + tracking * (len(text) - 1)
 
 
-def _draw_text_layer(text, font, glow_color=None, fill_gradient=None, solid_color=None, tracking=0):
+def _draw_text_layer(text, font, glow_color=None, fill_gradient=None, solid_color=None, tracking=0,
+                      glow_blur=14, glow_alpha=0.85, glow_offset=(0, 0)):
     """Renders `text` onto its own tight RGBA layer (with padding for blur bleed),
     filled either with a vertical gradient or a solid color, with an optional
     soft glow behind it, and optional letter-spacing. Returns (layer, (text_w, text_h))."""
@@ -210,10 +211,10 @@ def _draw_text_layer(text, font, glow_color=None, fill_gradient=None, solid_colo
 
     layer = Image.new("RGBA", mask.size, (0, 0, 0, 0))
     if glow_color:
-        glow_mask = mask.filter(ImageFilter.GaussianBlur(14))
+        glow_mask = mask.filter(ImageFilter.GaussianBlur(glow_blur))
         glow = Image.new("RGBA", mask.size, glow_color + (0,))
-        glow.putalpha(glow_mask.point(lambda a: int(a * 0.85)))
-        layer.alpha_composite(glow)
+        glow.putalpha(glow_mask.point(lambda a: int(a * glow_alpha)))
+        layer.alpha_composite(glow, glow_offset)
 
     if fill_gradient:
         fill = _v_gradient(mask.size, *fill_gradient).convert("RGBA")
@@ -298,7 +299,8 @@ def _render_thumbnail(image_path, title, out_path):
         base.alpha_composite(layer, (left_margin - pad, y - pad))
         y += lh + 6
 
-    # Subtitle (per-episode title): gold gradient + soft glow, letter-spaced
+    # Subtitle (per-episode title): gold gradient fill + a thin, tightly
+    # blurred BLACK drop shadow (not a glow) for legibility, letter-spaced
     # like the reference thumbnail.
     SUBTITLE_TRACKING = 10
     subtitle_font, subtitle_lines = _fit_wrapped(
@@ -308,7 +310,8 @@ def _render_thumbnail(image_path, title, out_path):
     for line in subtitle_lines:
         layer, (_, sh), pad = _draw_text_layer(
             line, subtitle_font,
-            glow_color=GOLD_TOP, fill_gradient=(GOLD_TOP, GOLD_BOTTOM), tracking=SUBTITLE_TRACKING,
+            glow_color=(0, 0, 0), glow_blur=3, glow_alpha=0.55, glow_offset=(2, 2),
+            fill_gradient=(GOLD_TOP, GOLD_BOTTOM), tracking=SUBTITLE_TRACKING,
         )
         base.alpha_composite(layer, (left_margin - pad, y - pad))
         y += sh + 12
