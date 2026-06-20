@@ -178,16 +178,35 @@ def _v_gradient(size, top_rgb, bottom_rgb):
     return col.resize((w, h))
 
 
-def _draw_text_layer(text, font, glow_color=None, fill_gradient=None, solid_color=None):
+def _text_width(d, text, font, tracking=0):
+    if not tracking:
+        return d.textbbox((0, 0), text, font=font)[2]
+    return sum(d.textbbox((0, 0), ch, font=font)[2] for ch in text) + tracking * (len(text) - 1)
+
+
+def _draw_text_layer(text, font, glow_color=None, fill_gradient=None, solid_color=None, tracking=0):
     """Renders `text` onto its own tight RGBA layer (with padding for blur bleed),
     filled either with a vertical gradient or a solid color, with an optional
-    soft glow behind it. Returns (layer, (text_w, text_h))."""
+    soft glow behind it, and optional letter-spacing. Returns (layer, (text_w, text_h))."""
     tmp = Image.new("L", (1, 1))
-    bbox = ImageDraw.Draw(tmp).textbbox((0, 0), text, font=font)
-    tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    d = ImageDraw.Draw(tmp)
     pad = 36
-    mask = Image.new("L", (tw + pad * 2, th + pad * 2), 0)
-    ImageDraw.Draw(mask).text((pad - bbox[0], pad - bbox[1]), text, font=font, fill=255)
+    if tracking:
+        char_widths = [d.textbbox((0, 0), ch, font=font)[2] for ch in text]
+        tw = sum(char_widths) + tracking * (len(text) - 1)
+        bbox = d.textbbox((0, 0), text, font=font)
+        th = bbox[3] - bbox[1]
+        mask = Image.new("L", (tw + pad * 2, th + pad * 2), 0)
+        dm = ImageDraw.Draw(mask)
+        x = pad
+        for ch, cw in zip(text, char_widths):
+            dm.text((x, pad - bbox[1]), ch, font=font, fill=255)
+            x += cw + tracking
+    else:
+        bbox = d.textbbox((0, 0), text, font=font)
+        tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+        mask = Image.new("L", (tw + pad * 2, th + pad * 2), 0)
+        ImageDraw.Draw(mask).text((pad - bbox[0], pad - bbox[1]), text, font=font, fill=255)
 
     layer = Image.new("RGBA", mask.size, (0, 0, 0, 0))
     if glow_color:
@@ -226,19 +245,13 @@ def _render_thumbnail(image_path, title, out_path):
     y0 = (base.height - 720) // 2
     base = base.crop((x0, y0, x0 + 1280, y0 + 720)).convert("RGBA")
 
-    # Dark gradient panel, left -> right — a single smoothstep ease across the
-    # whole fade span (no flat plateau + linear-decay elbow) so the transition
-    # reads as one continuous curve instead of two joined segments.
-    shadow = Image.new("L", (1280, 1), 0)
-    fade_end = int(1280 * 0.66)
-    for x in range(1280):
-        t = min(max(x / fade_end, 0), 1)
-        eased = t * t * (3 - 2 * t)  # smoothstep
-        shadow.putpixel((x, 0), int(238 * (1 - eased)))
-    shadow = shadow.resize((1280, 720))
-    black = Image.new("RGBA", (1280, 720), (0, 0, 0, 255))
-    black.putalpha(shadow)
-    base.alpha_composite(black)
+    # Dark panel — pre-made transparent overlay (assets/shadow.png) instead of
+    # a generated gradient, so the fade exactly matches the Canva reference.
+    shadow_path = ASSETS_DIR / "shadow.png"
+    if shadow_path.exists():
+        shadow_img = Image.open(shadow_path).convert("RGBA").resize((1280, 720))
+        base.alpha_composite(shadow_img)
+    fade_end = int(1280 * 0.66)  # still used to confine text width to the panel
 
     # Text column is confined to the dark panel only — never bleed past the
     # fade edge into the photo side (this was the "memanjang satu baris" bug:
@@ -246,13 +259,13 @@ def _render_thumbnail(image_path, title, out_path):
     left_margin = 64
     text_max_w = fade_end - left_margin - 70
 
-    def _wrap_pixels(text, font, max_w):
+    def _wrap_pixels(text, font, max_w, tracking=0):
         tmp = Image.new("L", (1, 1))
         d = ImageDraw.Draw(tmp)
         words, lines, cur = text.split(), [], ""
         for word in words:
             trial = (cur + " " + word).strip()
-            if d.textbbox((0, 0), trial, font=font)[2] <= max_w or not cur:
+            if _text_width(d, trial, font, tracking) <= max_w or not cur:
                 cur = trial
             else:
                 lines.append(cur)
@@ -261,37 +274,41 @@ def _render_thumbnail(image_path, title, out_path):
             lines.append(cur)
         return lines
 
-    def _fit_wrapped(text, font_path, max_w, start_size, min_size=26, max_lines=3):
+    def _fit_wrapped(text, font_path, max_w, start_size, min_size=26, max_lines=3, tracking=0):
         size = start_size
         while size >= min_size:
             font = ImageFont.truetype(font_path, size)
-            lines = _wrap_pixels(text, font, max_w)
+            lines = _wrap_pixels(text, font, max_w, tracking)
             if len(lines) <= max_lines:
                 return font, lines
             size -= 2
         font = ImageFont.truetype(font_path, min_size)
-        return font, _wrap_pixels(text, font, max_w)
+        return font, _wrap_pixels(text, font, max_w, tracking)
 
-    # Main headline: WHITE + white glow (fixed brand line). Starts large (like
-    # the Canva reference, text filling most of the panel width) and only
-    # shrinks as far as needed to stay within 3 lines.
+    # Main headline: WHITE fill + GOLD glow (fixed brand line). Starts large
+    # (like the Canva reference, text filling most of the panel width) and
+    # only shrinks as far as needed to stay within 3 lines.
     headline_font, headline_lines = _fit_wrapped(HEADLINE, CINZEL_BOLD, text_max_w, start_size=110, min_size=50)
     y = 58
     for line in headline_lines:
         layer, (_, lh), pad = _draw_text_layer(
             line, headline_font,
-            glow_color=(255, 255, 255), solid_color=(255, 255, 255, 255),
+            glow_color=GOLD_TOP, solid_color=(255, 255, 255, 255),
         )
         base.alpha_composite(layer, (left_margin - pad, y - pad))
         y += lh + 6
 
-    # Subtitle (per-episode title): gold gradient + soft glow.
-    subtitle_font, subtitle_lines = _fit_wrapped(title.upper(), LATO_REGULAR, text_max_w, start_size=44, min_size=26)
+    # Subtitle (per-episode title): gold gradient + soft glow, letter-spaced
+    # like the reference thumbnail.
+    SUBTITLE_TRACKING = 4
+    subtitle_font, subtitle_lines = _fit_wrapped(
+        title.upper(), LATO_REGULAR, text_max_w, start_size=44, min_size=26, tracking=SUBTITLE_TRACKING
+    )
     y += 30
     for line in subtitle_lines:
         layer, (_, sh), pad = _draw_text_layer(
             line, subtitle_font,
-            glow_color=GOLD_TOP, fill_gradient=(GOLD_TOP, GOLD_BOTTOM),
+            glow_color=GOLD_TOP, fill_gradient=(GOLD_TOP, GOLD_BOTTOM), tracking=SUBTITLE_TRACKING,
         )
         base.alpha_composite(layer, (left_margin - pad, y - pad))
         y += sh + 12
