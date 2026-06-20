@@ -3,15 +3,27 @@ import shutil
 import subprocess
 import textwrap
 from pathlib import Path
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from config import IMAGES_DIR, OUTPUT_DIR
 
 FPS = 25
 SLIDE_DURATION = 10  # seconds per image (Ken Burns)
 
-MUSIC_DIR = Path(__file__).parent.parent / "assets" / "music"
-AMBIENCE_DIR = Path(__file__).parent.parent / "assets" / "ambience"
+ASSETS_DIR = Path(__file__).parent.parent / "assets"
+MUSIC_DIR = ASSETS_DIR / "music"
+AMBIENCE_DIR = ASSETS_DIR / "ambience"
 THUMBNAILS_DIR = Path(__file__).parent.parent / "thumbnails"
-FONT = "/System/Library/Fonts/Avenir Next.ttc"
+
+# Thumbnail brand assets — bundled in-repo (not OS fonts) so rendering is
+# identical on a Mac and on a GitHub Actions Ubuntu runner. See project memory
+# feedback_narava_thumbnail_workflow.md: brand line is fixed text, episode
+# title is the dynamic subtitle underneath it.
+CINZEL_BOLD = str(ASSETS_DIR / "fonts" / "Cinzel-Bold.ttf")
+LATO_REGULAR = str(ASSETS_DIR / "fonts" / "Lato-Regular.ttf")
+LOGO_PATH = ASSETS_DIR / "logo_narava.png"
+HEADLINE = "ANCIENT MYTHOLOGY FOR SLEEP"
+GOLD_TOP = (228, 158, 34)      # #e49e22
+GOLD_BOTTOM = (242, 226, 157)  # #f2e29d
 
 # Per-topic-id contextual ambience timeline: ordered list of (ambience_track_name,
 # weight). Weights are each segment's *target* word count from the generator script
@@ -157,66 +169,120 @@ def _audio_duration(audio_path):
     return float(r.stdout.strip())
 
 
-def create_thumbnail(image_path, title, out_path):
-    """Generate 1280x720 YouTube thumbnail with title text overlay."""
-    # Split title at " | " for two lines, else wrap at 42 chars
-    if " | " in title:
-        parts = title.split(" | ", 1)
-        line1, line2 = parts[0].strip(), parts[1].strip()
+def _v_gradient(size, top_rgb, bottom_rgb):
+    w, h = size
+    col = Image.new("RGB", (1, max(h, 1)))
+    for y in range(h):
+        t = y / max(h - 1, 1)
+        col.putpixel((0, y), tuple(int(top_rgb[i] + (bottom_rgb[i] - top_rgb[i]) * t) for i in range(3)))
+    return col.resize((w, h))
+
+
+def _draw_text_layer(text, font, glow_color=None, fill_gradient=None, solid_color=None):
+    """Renders `text` onto its own tight RGBA layer (with padding for blur bleed),
+    filled either with a vertical gradient or a solid color, with an optional
+    soft glow behind it. Returns (layer, (text_w, text_h))."""
+    tmp = Image.new("L", (1, 1))
+    bbox = ImageDraw.Draw(tmp).textbbox((0, 0), text, font=font)
+    tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    pad = 36
+    mask = Image.new("L", (tw + pad * 2, th + pad * 2), 0)
+    ImageDraw.Draw(mask).text((pad - bbox[0], pad - bbox[1]), text, font=font, fill=255)
+
+    layer = Image.new("RGBA", mask.size, (0, 0, 0, 0))
+    if glow_color:
+        glow_mask = mask.filter(ImageFilter.GaussianBlur(9))
+        glow = Image.new("RGBA", mask.size, glow_color + (0,))
+        glow.putalpha(glow_mask.point(lambda a: int(a * 0.85)))
+        layer.alpha_composite(glow)
+
+    if fill_gradient:
+        fill = _v_gradient(mask.size, *fill_gradient).convert("RGBA")
     else:
-        wrapped = textwrap.wrap(title, width=42)
-        line1 = wrapped[0] if wrapped else title
-        line2 = wrapped[1] if len(wrapped) > 1 else ""
+        fill = Image.new("RGBA", mask.size, solid_color)
+    fill.putalpha(mask)
+    layer.alpha_composite(fill)
+    return layer, (tw, th), pad
 
-    # Escape special chars for FFmpeg drawtext
-    def esc(s):
-        return s.replace("'", "\\'").replace(":", "\\:")
 
-    # Fit text to ~1180px wide at Avenir Next Bold (~0.56 * fontsize per char)
-    def fit_fontsize(text, max_px=1180, max_size=92):
-        if not text:
-            return max_size
-        size = max_size
-        while size > 28 and size * 0.56 * len(text) > max_px:
+def create_thumbnail(image_path, title, out_path):
+    try:
+        return _render_thumbnail(image_path, title, out_path)
+    except Exception as e:
+        print(f"    Thumbnail PIL render failed ({e}), falling back to plain frame")
+        return _create_thumbnail_ffmpeg_fallback(image_path, out_path)
+
+
+def _render_thumbnail(image_path, title, out_path):
+    """Generate a 1280x720 YouTube thumbnail: scene image, a dark gradient
+    panel on the left for legibility, the fixed brand headline (Cinzel Bold,
+    gold gradient + glow), the per-episode title as subtitle (Lato Regular,
+    all-caps), and the Narava logo bottom-left."""
+    base = Image.open(image_path).convert("RGB")
+    w0, h0 = base.size
+    scale = max(1280 / w0, 720 / h0)
+    base = base.resize((int(w0 * scale) + 1, int(h0 * scale) + 1))
+    x0 = (base.width - 1280) // 2
+    y0 = (base.height - 720) // 2
+    base = base.crop((x0, y0, x0 + 1280, y0 + 720)).convert("RGBA")
+
+    # Dark gradient panel, left -> right (opaque at x=0 fading out by ~62% width)
+    shadow = Image.new("L", (1280, 1), 0)
+    fade_end = int(1280 * 0.62)
+    for x in range(1280):
+        a = 235 if x < fade_end * 0.5 else int(235 * max(0, 1 - (x - fade_end * 0.5) / (fade_end * 0.5)))
+        shadow.putpixel((x, 0), a)
+    shadow = shadow.resize((1280, 720))
+    black = Image.new("RGBA", (1280, 720), (0, 0, 0, 255))
+    black.putalpha(shadow)
+    base.alpha_composite(black)
+
+    subtitle_lines = textwrap.wrap(title.upper(), width=34)[:3]
+
+    def _fit(text, font_path, start_size, max_w):
+        size = start_size
+        tmp = Image.new("L", (1, 1))
+        while size > 24:
+            font = ImageFont.truetype(font_path, size)
+            tw = ImageDraw.Draw(tmp).textbbox((0, 0), text, font=font)[2]
+            if tw <= max_w:
+                return font
             size -= 2
-        return size
+        return ImageFont.truetype(font_path, 24)
 
-    size1 = fit_fontsize(line1, max_size=92)
-    size2 = fit_fontsize(line2, max_size=54) if line2 else 0
+    headline_font = _fit(HEADLINE, CINZEL_BOLD, 64, max_w=1160)
+    headline_layer, (_, hh), hpad = _draw_text_layer(
+        HEADLINE, headline_font,
+        glow_color=GOLD_TOP, fill_gradient=(GOLD_TOP, GOLD_BOTTOM),
+    )
+    base.alpha_composite(headline_layer, (56 - hpad, 120 - hpad))
 
-    # Bold high-contrast text block — competitor inspection (soothingpod, Get Sleepy)
-    # showed thumbnails win CTR with text filling ~30-40% of frame height, not a
-    # small bottom caption. Dark box now covers the upper third instead of a thin strip.
-    vf_parts = [
-        "scale=1280:720:force_original_aspect_ratio=increase",
-        "crop=1280:720",
-        # Dark gradient block at top for max text contrast regardless of scene brightness
-        "drawbox=x=0:y=0:w=1280:h=300:color=black@0.55:t=fill",
-        # Channel brand bottom-left, small
-        f"drawtext=fontfile='{FONT}':text='NARAVA':fontcolor=0xd4a843:fontsize=30:x=36:y=664:alpha=0.9",
-        # Main title line 1 — large, bold, high in frame, auto-fit to width
-        f"drawtext=fontfile='{FONT}':text='{esc(line1)}':fontcolor=white:fontsize={size1}:x=(w-tw)/2:y=60:shadowcolor=black@0.9:shadowx=3:shadowy=3",
-    ]
-    if line2:
-        vf_parts.append(
-            f"drawtext=fontfile='{FONT}':text='{esc(line2)}':fontcolor=0xd4a843:fontsize={size2}:x=(w-tw)/2:y=180:shadowcolor=black@0.9:shadowx=3:shadowy=3"
+    y = 120 + hh + 36
+    for line in subtitle_lines:
+        sub_layer, (_, sh), spad = _draw_text_layer(
+            line, ImageFont.truetype(LATO_REGULAR, 36),
+            glow_color=(0, 0, 0), solid_color=(240, 240, 240, 255),
         )
+        base.alpha_composite(sub_layer, (56 - spad, y - spad))
+        y += sh + 14
 
-    vf = ",".join(vf_parts)
-    cmd = [
+    if LOGO_PATH.exists():
+        logo = Image.open(LOGO_PATH).convert("RGBA")
+        logo_w = 220
+        logo = logo.resize((logo_w, int(logo.height * logo_w / logo.width)))
+        base.alpha_composite(logo, (56, 720 - logo.height - 40))
+
+    base.convert("RGB").save(out_path, quality=95)
+    return out_path
+
+
+def _create_thumbnail_ffmpeg_fallback(image_path, out_path):
+    """Last-resort fallback if PIL rendering fails for any reason — just a
+    plain resized frame with no text, so the pipeline never hard-stops here."""
+    result = subprocess.run([
         "ffmpeg", "-y", "-i", str(image_path),
-        "-vf", vf,
-        "-frames:v", "1",
-        "-q:v", "2",
-        str(out_path),
-    ]
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    if result.returncode != 0:
-        # Fallback: just resize the original without text
-        subprocess.run([
-            "ffmpeg", "-y", "-i", str(image_path),
-            "-vf", "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720",
-            "-frames:v", "1", str(out_path)
+        "-vf", "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720",
+        "-frames:v", "1", str(out_path)
         ], capture_output=True)
     return out_path
 
