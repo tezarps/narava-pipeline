@@ -17,6 +17,7 @@ from status_manager import (
     run_start, run_done, run_failed,
 )
 from config import OUTPUT_DIR, IMAGES_DIR
+from telegram_notify import notify
 
 THUMBNAILS_DIR = Path(__file__).parent / "thumbnails"
 
@@ -88,6 +89,7 @@ def run(audio_only=False):
 
     run_start(topic_id, angle)
     sb_run_id = sb.run_start(topic_id, angle)
+    notify(f"🔱 Narava — started\nTopic #{topic_id}: {topic['topic']} ({topic['category']})\n{angle}")
 
     current_agent = "oracle"
     try:
@@ -186,6 +188,7 @@ def run(audio_only=False):
         run_done(topic_id, angle, video_id, started_at)
         sb.run_done(sb_run_id)
         print(f"\n✓ Complete — youtube.com/watch?v={video_id}")
+        notify(f"✅ Narava — published\n{topic['topic']} ({topic['category']})\nyoutube.com/watch?v={video_id}")
         if thumb_b:
             print(f"⚡ A/B Test: upload thumbnail B manually →")
             print(f"   https://studio.youtube.com/video/{video_id}/edit → Thumbnail → Test & Compare")
@@ -199,6 +202,7 @@ def run(audio_only=False):
         sb.mark_topic_failed(topic_id, e)
         run_failed(topic_id, angle, e, started_at)
         sb.run_failed(sb_run_id, e)
+        notify(f"❌ Narava — failed at [{current_agent}]\nTopic #{topic_id}: {topic['topic']}\n{str(e)[:300]}")
         _cleanup(topic_id, current_agent)
 
 
