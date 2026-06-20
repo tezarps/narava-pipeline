@@ -191,7 +191,7 @@ def _draw_text_layer(text, font, glow_color=None, fill_gradient=None, solid_colo
 
     layer = Image.new("RGBA", mask.size, (0, 0, 0, 0))
     if glow_color:
-        glow_mask = mask.filter(ImageFilter.GaussianBlur(9))
+        glow_mask = mask.filter(ImageFilter.GaussianBlur(14))
         glow = Image.new("RGBA", mask.size, glow_color + (0,))
         glow.putalpha(glow_mask.point(lambda a: int(a * 0.85)))
         layer.alpha_composite(glow)
@@ -226,12 +226,15 @@ def _render_thumbnail(image_path, title, out_path):
     y0 = (base.height - 720) // 2
     base = base.crop((x0, y0, x0 + 1280, y0 + 720)).convert("RGBA")
 
-    # Dark gradient panel, left -> right (opaque at x=0 fading out by ~62% width)
+    # Dark gradient panel, left -> right — a single smoothstep ease across the
+    # whole fade span (no flat plateau + linear-decay elbow) so the transition
+    # reads as one continuous curve instead of two joined segments.
     shadow = Image.new("L", (1280, 1), 0)
-    fade_end = int(1280 * 0.62)
+    fade_end = int(1280 * 0.66)
     for x in range(1280):
-        a = 235 if x < fade_end * 0.5 else int(235 * max(0, 1 - (x - fade_end * 0.5) / (fade_end * 0.5)))
-        shadow.putpixel((x, 0), a)
+        t = min(max(x / fade_end, 0), 1)
+        eased = t * t * (3 - 2 * t)  # smoothstep
+        shadow.putpixel((x, 0), int(238 * (1 - eased)))
     shadow = shadow.resize((1280, 720))
     black = Image.new("RGBA", (1280, 720), (0, 0, 0, 255))
     black.putalpha(shadow)
@@ -240,8 +243,8 @@ def _render_thumbnail(image_path, title, out_path):
     # Text column is confined to the dark panel only — never bleed past the
     # fade edge into the photo side (this was the "memanjang satu baris" bug:
     # the headline measured its own width and ignored where the shadow ends).
-    left_margin = 56
-    text_max_w = fade_end - left_margin - 30
+    left_margin = 64
+    text_max_w = fade_end - left_margin - 70
 
     def _wrap_pixels(text, font, max_w):
         tmp = Image.new("L", (1, 1))
@@ -269,27 +272,29 @@ def _render_thumbnail(image_path, title, out_path):
         font = ImageFont.truetype(font_path, min_size)
         return font, _wrap_pixels(text, font, max_w)
 
-    # Main headline: WHITE + white glow (fixed brand line).
-    headline_font, headline_lines = _fit_wrapped(HEADLINE, CINZEL_BOLD, text_max_w, start_size=58)
-    y = 110
+    # Main headline: WHITE + white glow (fixed brand line). Starts large (like
+    # the Canva reference, text filling most of the panel width) and only
+    # shrinks as far as needed to stay within 3 lines.
+    headline_font, headline_lines = _fit_wrapped(HEADLINE, CINZEL_BOLD, text_max_w, start_size=110, min_size=50)
+    y = 58
     for line in headline_lines:
         layer, (_, lh), pad = _draw_text_layer(
             line, headline_font,
             glow_color=(255, 255, 255), solid_color=(255, 255, 255, 255),
         )
         base.alpha_composite(layer, (left_margin - pad, y - pad))
-        y += lh + 10
+        y += lh + 6
 
     # Subtitle (per-episode title): gold gradient + soft glow.
-    subtitle_font, subtitle_lines = _fit_wrapped(title.upper(), LATO_REGULAR, text_max_w, start_size=36, min_size=24)
-    y += 26
+    subtitle_font, subtitle_lines = _fit_wrapped(title.upper(), LATO_REGULAR, text_max_w, start_size=44, min_size=26)
+    y += 30
     for line in subtitle_lines:
         layer, (_, sh), pad = _draw_text_layer(
             line, subtitle_font,
             glow_color=GOLD_TOP, fill_gradient=(GOLD_TOP, GOLD_BOTTOM),
         )
         base.alpha_composite(layer, (left_margin - pad, y - pad))
-        y += sh + 14
+        y += sh + 12
 
     if LOGO_PATH.exists():
         logo = Image.open(LOGO_PATH).convert("RGBA")
