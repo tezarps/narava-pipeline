@@ -300,7 +300,7 @@ def _render_thumbnail(image_path, title, out_path):
 
     # Subtitle (per-episode title): gold gradient + soft glow, letter-spaced
     # like the reference thumbnail.
-    SUBTITLE_TRACKING = 4
+    SUBTITLE_TRACKING = 10
     subtitle_font, subtitle_lines = _fit_wrapped(
         title.upper(), LATO_REGULAR, text_max_w, start_size=44, min_size=26, tracking=SUBTITLE_TRACKING
     )
