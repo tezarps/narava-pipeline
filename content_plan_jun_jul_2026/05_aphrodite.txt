@@ -34,5 +34,6 @@ Style anchor: painterly brushstroke texture, canvas grain, pastel dawn palette, 
 Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
 
 === TEKS OVERLAY (sama untuk A & B) ===
-Besar (brand, konsisten semua video): "Ancient Mythology for Sleep"
-Kecil (topik): "Aphrodite's Attendant on the Sunlit Isle of Cyprus"
+Besar (brand, konsisten semua video, fixed di kode): "Ancient Mythology for Sleep"
+Hook (auto dari metadata_agent.py, generate-script otomatis): "THE ETERNAL ISLE"
+(Subtitle panjang versi lama sudah dihapus — hook pendek ini yang dirender, lihat skema baru di 00_SCHEDULE.md)

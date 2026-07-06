@@ -8,9 +8,9 @@ A painterly oil painting illustration, visible brushstroke texture and canvas gr
 
 Scene: a vast volcanic forge cave, a massive stone furnace glowing deep red-gold at its center, half-finished metalwork resting nearby. Tools hang along the rough cave walls, catching the firelight. Faint smoke drifts upward toward an unseen opening above.
 
-Lighting: warm red-gold firelight from the furnace as the dominant source, deep black-brown shadow at the cave's edges.
+Lighting: warm red-gold firelight from the furnace as the dominant source, soft warm brown ambient glow at the cave's edges.
 
-Color palette: deep volcanic black-brown, warm red-gold fire, faint amber metal glow.
+Color palette: warm volcanic brown, warm red-gold fire, faint amber metal glow.
 
 Composition: 16:9, furnace and cave filling the frame, open shadowed space across the top third for text overlay.
 
@@ -23,9 +23,9 @@ A painterly oil painting illustration, visible brushstroke texture and canvas gr
 
 Scene: a close view of an anvil with a glowing red-gold piece of metal being shaped, sparks drifting upward into darkness. A hammer rests beside the anvil. Behind, the soft blur of the furnace glow and volcanic cave wall.
 
-Lighting: intense warm red-gold glow from the heated metal as the dominant source, deep shadow surrounding it.
+Lighting: intense warm red-gold glow from the heated metal as the dominant source, soft warm brown ambient light surrounding it.
 
-Color palette: brilliant red-gold metal glow, deep black-brown shadow, faint ember orange sparks.
+Color palette: brilliant red-gold metal glow, warm brown surroundings, faint ember orange sparks.
 
 Composition: 16:9, anvil and metal filling the right two-thirds of frame, open dark space across the left third for text overlay.
 
@@ -34,5 +34,6 @@ Style anchor: painterly brushstroke texture, canvas grain, intense red-gold pale
 Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
 
 === TEKS OVERLAY (sama untuk A & B) ===
-Besar (brand, konsisten semua video): "Ancient Mythology for Sleep"
-Kecil (topik): "Tending Hephaestus' Forge Beneath the Volcano"
+Besar (brand, konsisten semua video, fixed di kode): "Ancient Mythology for Sleep"
+Hook (auto dari metadata_agent.py, generate-script otomatis): "THE GOD'S FORGE"
+(Subtitle panjang versi lama sudah dihapus — hook pendek ini yang dirender, lihat skema baru di 00_SCHEDULE.md)

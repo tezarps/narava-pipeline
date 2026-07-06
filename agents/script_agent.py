@@ -1,7 +1,7 @@
-import anthropic
-from config import ANTHROPIC_API_KEY, HAIKU_MODEL, SONNET_MODEL
+from openai import OpenAI
+from config import DEEPSEEK_API_KEY, DEEPSEEK_MODEL
 
-client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
 
 # Four narrative frame devices, rotated by topic id, so the channel isn't a single
 # fill-in-the-blank skeleton with only the deity name swapped (this directly targets
@@ -101,13 +101,11 @@ listener IS the character. Never switch to "he/she/they" for the protagonist.
 Tone: increasingly slow and sleep-inducing. The last 500 words should be almost entirely sensory — very little narrative action, just ambient beauty.
 Output only the script text. No headers."""
 
-_OPENING = """Welcome... to Ancient Mythology for Sleep... the channel that helps you drift into peaceful rest each night...
+_OPENING = """Welcome... to Ancient Mythology for Sleep...
 
 Tonight's story... {angle}...
 
-Narrated by Shelby...
-
-Close your eyes... breathe slowly... and let the ancient world carry you..."""
+Close your eyes... and let the ancient world carry you..."""
 
 _POLISH = """You are a sleep content editor. Enhance this mythology sleep story draft.
 
@@ -125,13 +123,13 @@ Draft:
 Output only the enhanced script."""
 
 
-def _call(model, prompt, max_tokens=8000):
-    r = client.messages.create(
-        model=model,
+def _call(prompt, max_tokens=8000):
+    r = client.chat.completions.create(
+        model=DEEPSEEK_MODEL,
         max_tokens=max_tokens,
         messages=[{"role": "user", "content": prompt}],
     )
-    return r.content[0].text
+    return r.choices[0].message.content
 
 
 def generate_script(topic_data):
@@ -146,24 +144,24 @@ def generate_script(topic_data):
     opening_rule_part2 = "Do NOT add any welcome/opening line — this continues directly from Part 1, already mid-story."
 
     print(f"    Frame variant: {variant_key}")
-    print("    Drafting Part 1 (Haiku)...")
-    draft1 = _call(HAIKU_MODEL, _DRAFT_PART1.format(
+    print("    Drafting Part 1 (DeepSeek)...")
+    draft1 = _call(_DRAFT_PART1.format(
         topic=topic, angle=angle, category=category,
         role_line=variant["role_line"], part1_structure=variant["part1_structure"],
     ))
 
-    print("    Drafting Part 2 (Haiku)...")
-    draft2 = _call(HAIKU_MODEL, _DRAFT_PART2.format(
+    print("    Drafting Part 2 (DeepSeek)...")
+    draft2 = _call(_DRAFT_PART2.format(
         topic=topic, angle=angle, category=category,
         role_line=variant["role_line"], part2_structure=variant["part2_structure"],
         part2_open=variant["part2_open"],
     ))
 
-    print("    Polishing Part 1 (Sonnet)...")
-    final1 = _call(SONNET_MODEL, _POLISH.format(draft=draft1, opening_rule=opening_rule_part1))
+    print("    Polishing Part 1 (DeepSeek)...")
+    final1 = _call(_POLISH.format(draft=draft1, opening_rule=opening_rule_part1))
 
-    print("    Polishing Part 2 (Sonnet)...")
-    final2 = _call(SONNET_MODEL, _POLISH.format(draft=draft2, opening_rule=opening_rule_part2))
+    print("    Polishing Part 2 (DeepSeek)...")
+    final2 = _call(_POLISH.format(draft=draft2, opening_rule=opening_rule_part2))
 
     full_script = final1.strip() + "\n\n" + final2.strip()
     word_count = len(full_script.split())

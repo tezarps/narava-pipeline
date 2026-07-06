@@ -2,8 +2,13 @@ name: Narava Pipeline
 
 on:
   schedule:
-    # Sun/Wed/Fri 00:00 UTC = 07:00 WIB — matches PUBLISH_WEEKDAYS in agents/upload_agent.py
-    - cron: "0 0 * * 0,3,5"
+    # Daily 00:00 UTC = 07:00 WIB, switched from Sun/Wed/Fri 2026-07-06 — pipeline
+    # runs fully in the cloud now, matches PUBLISH_WEEKDAYS (every day) in
+    # agents/upload_agent.py. If a topic's manual images (Google Flow) aren't in
+    # Supabase Storage yet, scheduler.py pauses that topic cleanly (status
+    # "awaiting_images") instead of failing — this same daily trigger just picks
+    # it back up once they're ready, no separate re-trigger needed.
+    - cron: "0 0 * * *"
   workflow_dispatch: {}  # manual "Run workflow" button in the Actions tab, for testing
 
 jobs:
@@ -24,6 +29,20 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
+      - name: Cache Kokoro TTS model files
+        id: kokoro-cache
+        uses: actions/cache@v4
+        with:
+          path: kokoro-models
+          key: kokoro-models-v1.0
+
+      - name: Download Kokoro TTS model files
+        if: steps.kokoro-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p kokoro-models
+          curl -L -o kokoro-models/kokoro-v1.0.onnx https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
+          curl -L -o kokoro-models/voices-v1.0.bin https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
+
       - name: Restore YouTube credentials
         run: |
           echo "${{ secrets.YOUTUBE_CLIENT_SECRET_B64 }}" | base64 -d > youtube_client_secret.json
@@ -31,9 +50,7 @@ jobs:
 
       - name: Run pipeline
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
-          GEMINI_IMAGE_API_KEY: ${{ secrets.GEMINI_IMAGE_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

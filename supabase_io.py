@@ -43,7 +43,12 @@ def _require_client() -> Client:
 
 def get_next_topic():
     db = _require_client()
-    res = db.table("topics").select("*").eq("status", "pending").order("id").limit(1).execute()
+    # Include "awaiting_images" so a topic paused because its manually-generated
+    # (Google Flow) images weren't in Supabase Storage yet gets retried by the
+    # next scheduled run instead of being stuck forever. Deliberately excludes
+    # "failed" — a real failure (TTS, upload, API error) still requires manual
+    # reset before retrying, per project memory feedback_pipeline_no_autoloop.md.
+    res = db.table("topics").select("*").in_("status", ["pending", "awaiting_images"]).order("id").limit(1).execute()
     return res.data[0] if res.data else None
 
 
@@ -55,6 +60,16 @@ def mark_topic_done(topic_id, video_id=""):
 def mark_topic_failed(topic_id, reason=""):
     db = _require_client()
     db.table("topics").update({"status": "failed", "notes": str(reason)[:200]}).eq("id", topic_id).execute()
+
+
+def mark_topic_awaiting_images(topic_id, reason=""):
+    """Distinct from mark_topic_failed — not an error. Paused because the
+    topic's manually-generated (Google Flow) images weren't uploaded to
+    Supabase Storage yet. Script/audio/metadata already generated stay
+    cached, so the next scheduled run resumes from architect onward instead
+    of reprocessing — see project memory feedback_pipeline_no_autoloop.md."""
+    db = _require_client()
+    db.table("topics").update({"status": "awaiting_images", "notes": str(reason)[:200]}).eq("id", topic_id).execute()
 
 
 def get_topic(topic_id):
@@ -93,6 +108,17 @@ def run_failed(run_id, error):
     db = _require_client()
     db.table("pipeline_runs").update({
         "status": "failed", "error": str(error)[:500], "finished_at": "now()",
+    }).eq("id", run_id).execute()
+
+
+def run_paused(run_id, reason=""):
+    """Distinct from run_failed — a clean, expected stop (waiting on manually
+    generated images), not an error."""
+    if run_id is None:
+        return
+    db = _require_client()
+    db.table("pipeline_runs").update({
+        "status": "paused", "error": str(reason)[:500], "finished_at": "now()",
     }).eq("id", run_id).execute()
 
 

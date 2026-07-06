@@ -1,9 +1,9 @@
 import json
-import anthropic
+from openai import OpenAI
 from pathlib import Path
-from config import ANTHROPIC_API_KEY, HAIKU_MODEL
+from config import DEEPSEEK_API_KEY, DEEPSEEK_MODEL
 
-client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
 
 PLAYLIST_IDS_FILE = Path(__file__).parent.parent / "playlist_ids.json"
 CHANNEL_URL = "https://www.youtube.com/@NaravaAI"
@@ -77,15 +77,29 @@ TITLE rules:
   more standalone search value than the generic mythology-type tag, so it must never be
   pushed past the truncation point. NEVER lead with the mythology type or a generic brand
   phrase — always lead with the specific character/scene.
+- Lead with a curiosity-gap question ("Why...", "What Happened When...", "The Night...") built
+  around the specific, concrete conflict in the angle — not a vague mood description. This is
+  the same structure used by top-performing history/mythology channels: a short, plain-language
+  question anyone can understand at a glance, answered by watching.
 - Must contain: exact phrase "for Sleep" AND the mythology type (Greek/Norse/Egyptian/Celtic/Japanese/Aztec)
 - If character budget allows after the mythology type, append "Bedtime Story" — a
   high-frequency keyword phrase among top competitors in this niche
-- Format that performs best: "[Specific Scene or Character] for Sleep | [Mythology Type] Bedtime Story"
+- Format that performs best: "Why [Character] [Specific Conflict/Situation] for Sleep | [Mythology Type] Bedtime Story"
 - Examples of HIGH-performing titles in this niche:
-  "Serving Zeus on Mount Olympus for Sleep | Greek Mythology Bedtime Story"
-  "A Night in Valhalla for Sleep | Norse Mythology Bedtime Story"
-  "Walking the Nile with Isis for Sleep | Egyptian Bedtime Story"
-- NO clickbait, NO ALL CAPS, NO emojis in title
+  "Why Penelope Waited 20 Years for Sleep | Greek Mythology Bedtime Story"
+  "Why Zeus Never Slept on Olympus for Sleep | Greek Mythology Bedtime Story"
+  "What Hermes Carried Across Greece for Sleep | Greek Mythology Bedtime Story"
+- NO clickbait, NO ALL CAPS, NO emojis in title — curious and specific, not sensational
+
+HOOK rules (separate from TITLE — used ONLY as the short overlay text on the thumbnail image,
+never shown anywhere else):
+- 2–4 words MAXIMUM, ALL CAPS
+- This is the single punchy line that sits under the fixed brand headline on the thumbnail —
+  it replaces what used to be the full video title crammed onto the image. Short and bold,
+  like a one-line caption, not a description.
+- Must capture the specific emotional/narrative hook of the angle — not a generic restatement
+  of the character's name or role
+- Examples: "THE TWENTY-YEAR WAIT", "THE SACRED ORACLE", "KEEPER OF THE STYX"
 
 DESCRIPTION rules:
 - First 125 characters are critical — shown in YouTube search snippets
@@ -107,6 +121,8 @@ TAGS rules:
 Output EXACTLY this format, nothing else:
 
 TITLE: [your optimized title]
+
+HOOK: [2-4 word ALL CAPS thumbnail overlay hook]
 
 DESCRIPTION:
 [First line: 125-char hook matching search intent]
@@ -142,8 +158,8 @@ def generate_metadata(topic_data, duration_min=60):
     topic_tag = topic_data["topic"].replace(" ", "")
     category = topic_data["category"]
     source_note = CATEGORY_SOURCES.get(category.lower(), "Sourced from traditional mythological texts.")
-    r = client.messages.create(
-        model=HAIKU_MODEL,
+    r = client.chat.completions.create(
+        model=DEEPSEEK_MODEL,
         max_tokens=2000,
         messages=[{"role": "user", "content": _PROMPT.format(
             topic=topic_data["topic"],
@@ -160,8 +176,8 @@ def generate_metadata(topic_data, duration_min=60):
         )}],
     )
 
-    text = r.content[0].text
-    title, description, tags = "", "", []
+    text = r.choices[0].message.content
+    title, hook, description, tags = "", "", "", []
     lines = text.strip().split("\n")
     mode = None
     desc_lines = []
@@ -170,6 +186,9 @@ def generate_metadata(topic_data, duration_min=60):
         if line.startswith("TITLE:"):
             title = line.replace("TITLE:", "").strip()[:100]
             mode = "title"
+        elif line.startswith("HOOK:"):
+            hook = line.replace("HOOK:", "").strip().upper()
+            mode = "hook"
         elif line.startswith("DESCRIPTION:"):
             mode = "description"
         elif line.startswith("TAGS:"):
@@ -183,4 +202,4 @@ def generate_metadata(topic_data, duration_min=60):
     if not description:
         description = "\n".join(desc_lines).strip()
 
-    return {"title": title, "description": description, "tags": tags}
+    return {"title": title, "hook": hook or title, "description": description, "tags": tags}

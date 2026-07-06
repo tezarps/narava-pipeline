@@ -20,11 +20,14 @@ SCOPES = [
 # 8 PM EDT = 07:00 WIB next day — prime time US sleep viewers
 PUBLISH_HOUR = 20  # 8 PM
 
-# 3x/week cadence (upgraded from 2x on 2026-06-19): Sunday (highest sleep-seeking
-# demand — "Sunday Scaries" insomnia, 31% of adults report Sunday as their hardest
-# night to fall asleep) + Wednesday (mid-week) + Friday (even spacing: Sun-Wed=3
-# days, Wed-Fri=2, Fri-Sun=2). Python weekday(): Mon=0..Sun=6.
-PUBLISH_WEEKDAYS = {6, 2, 4}  # Sunday, Wednesday, Friday
+# Daily cadence (upgraded from 3x/week on 2026-07-06) — pipeline runs fully in
+# the cloud now (GitHub Actions), so there's no local-Mac bottleneck limiting
+# how often a topic can be produced. Only the content images are still a
+# manual step (Google Flow); when they're not ready yet, scheduler.py pauses
+# that topic cleanly (status "awaiting_images") and the same daily trigger
+# picks it back up once they're uploaded — see project memory
+# feedback_pipeline_no_autoloop.md. Python weekday(): Mon=0..Sun=6.
+PUBLISH_WEEKDAYS = {0, 1, 2, 3, 4, 5, 6}  # every day
 
 
 def _latest_scheduled_utc():

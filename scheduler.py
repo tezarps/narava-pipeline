@@ -10,12 +10,11 @@ import supabase_io as sb
 from agents.script_agent import generate_script
 from agents.tts_agent import generate_audio
 from agents.assembly_agent import create_video, create_thumbnail, get_manual_thumbnails
-from agents.image_agent import generate_images
 from agents.metadata_agent import generate_metadata
 from agents.upload_agent import upload_video
 from status_manager import (
     agent_start, agent_done, agent_error,
-    run_start, run_done, run_failed,
+    run_start, run_done, run_failed, run_paused,
 )
 from config import OUTPUT_DIR, IMAGES_DIR
 from telegram_notify import notify
@@ -23,27 +22,35 @@ from telegram_notify import notify
 THUMBNAILS_DIR = Path(__file__).parent / "thumbnails"
 
 
+class ImagesNotReadyError(Exception):
+    """Raised when a topic's content images (manually generated via Google
+    Flow) aren't yet in Supabase Storage. This is expected/routine, not a
+    bug — the pipeline pauses cleanly (mark_topic_awaiting_images, run_paused)
+    instead of failing, so the next scheduled (daily) run picks the SAME
+    topic back up without reprocessing script/audio that's already cached."""
+
+
 def _has_local_images(local_dir):
     return local_dir.exists() and any(p.suffix.lower() in (".jpg", ".jpeg", ".png") for p in local_dir.glob("*"))
 
 
-def _ensure_local_images(category, slug, topic=None, angle=None):
-    """Pull images down from Supabase Storage if they're not already on disk —
-    a fresh GitHub Actions checkout has none (images/ is gitignored, never
-    committed; assets live in Supabase Storage instead). If Supabase has none
-    either (first time this topic runs), generate them on the spot via Nano
-    Banana 2 (agents/image_agent.py) and cache them up to Supabase Storage so
-    future re-renders of this topic don't pay for generation again."""
+def _ensure_local_images(category, slug):
+    """Pull manually-generated (Google Flow) images down from Supabase
+    Storage if not already on disk. No auto-generation fallback — images are
+    manual only (2026-07-06 decision, same as apophenia-pipeline). Raises
+    ImagesNotReadyError if images aren't in Supabase yet, which run() catches
+    to pause cleanly instead of failing."""
     local_dir = IMAGES_DIR / category.lower() / slug.lower()
     if _has_local_images(local_dir):
         return
-    print(f"    No local images for {category}/{slug} — pulling from Supabase Storage...")
+    print(f"    No local images for {category}/{slug} — checking Supabase Storage...")
     try:
         sb.download_topic_images(category, slug, local_dir)
     except FileNotFoundError:
-        print(f"    None in Supabase either — generating via Nano Banana 2...")
-        generate_images(topic, angle, category, slug)
-        sb.upload_topic_images(category, slug, local_dir)
+        raise ImagesNotReadyError(
+            f"No manually-generated images yet for {category}/{slug} — "
+            "waiting for them to be uploaded to Supabase Storage."
+        )
 
 
 def _ensure_local_thumbnails(category, slug):
@@ -101,7 +108,7 @@ def run(audio_only=False):
 
     current_agent = "oracle"
     try:
-        print("[1/6] The Oracle — selecting topic...")
+        print("[1/6] Daphne — selecting topic...")
         agent_done("oracle", f"Topic #{topic_id}: {topic['topic']}", payload={
             "id": topic_id,
             "category": topic["category"],
@@ -114,18 +121,18 @@ def run(audio_only=False):
         script_path = OUTPUT_DIR / "scripts" / f"{topic_id}.txt"
         script_path.parent.mkdir(parents=True, exist_ok=True)
         if script_path.exists():
-            print("[2/6] The Scribe — using cached local script (no API call)...")
+            print("[2/6] Elias — using cached local script (no API call)...")
             script = script_path.read_text(encoding="utf-8")
             agent_done("scribe", f"{len(script.split()):,} words (cached)")
         else:
             try:
                 sb.download_script(topic_id, script_path)
                 script = script_path.read_text(encoding="utf-8")
-                print("[2/6] The Scribe — using script cached in Supabase (no API call)...")
+                print("[2/6] Elias — using script cached in Supabase (no API call)...")
                 agent_done("scribe", f"{len(script.split()):,} words (cached in Supabase)")
             except Exception:
-                print("[2/6] The Scribe — writing script...")
-                agent_start("scribe", "Drafting with Haiku...")
+                print("[2/6] Elias — writing script...")
+                agent_start("scribe", "Drafting with DeepSeek...")
                 sb.run_update_agent(sb_run_id, "scribe")
                 script = generate_script(topic)
                 script_path.write_text(script, encoding="utf-8")
@@ -136,7 +143,7 @@ def run(audio_only=False):
         tts_script = " ".join(script.split()[:550]) if audio_only else script
 
         current_agent = "voice"
-        print("\n[3/6] The Voice — narrating story...")
+        print("\n[3/6] Mira — narrating story...")
         if audio_only:
             print("    [SAMPLE: first 550 words only]")
         agent_start("voice", "Converting to audio...")
@@ -152,17 +159,17 @@ def run(audio_only=False):
             return audio_path
 
         current_agent = "architect"
-        print("\n[4/6] The Architect — assembling video...")
+        print("\n[4/6] Theo — assembling video...")
         agent_start("architect", "Running FFmpeg...")
         sb.run_update_agent(sb_run_id, "architect")
-        _ensure_local_images(topic["category"], topic_slug, topic=topic["topic"], angle=topic.get("angle", ""))
+        _ensure_local_images(topic["category"], topic_slug)
         _ensure_local_thumbnails(topic["category"], topic_slug)
         video_path, raw_thumb_a, raw_thumb_b, duration_sec = create_video(audio_path, topic["category"], topic_id, topic_slug=topic_slug)
         size_mb = video_path.stat().st_size / 1024 / 1024
         agent_done("architect", f"Video ready: {size_mb:.0f}MB")
 
         current_agent = "herald"
-        print("\n[5/6] The Herald — crafting metadata...")
+        print("\n[5/6] Iris — crafting metadata...")
         agent_start("herald", "Writing SEO title & description...")
         sb.run_update_agent(sb_run_id, "herald")
         duration_min = int(duration_sec / 60)
@@ -184,15 +191,15 @@ def run(audio_only=False):
             print(f"    Thumbnail: manual A — {thumb_a.name}")
         else:
             thumb_a_out = video_path.parent / f"{topic_id}_thumb_a.jpg"
-            thumbnail_path = create_thumbnail(raw_thumb_a, metadata["title"], thumb_a_out)
+            thumbnail_path = create_thumbnail(raw_thumb_a, metadata["hook"], thumb_a_out)
             print(f"    Thumbnail A: auto-generated — {thumb_a_out.name}")
             if not thumb_b:
                 thumb_b_out = video_path.parent / f"{topic_id}_thumb_b.jpg"
-                thumb_b = create_thumbnail(raw_thumb_b, metadata["title"], thumb_b_out)
+                thumb_b = create_thumbnail(raw_thumb_b, metadata["hook"], thumb_b_out)
                 print(f"    Thumbnail B: auto-generated — {thumb_b_out.name}")
 
         current_agent = "messenger"
-        print("\n[6/6] The Messenger — uploading to YouTube...")
+        print("\n[6/6] Atlas — uploading to YouTube...")
         agent_start("messenger", "Uploading...")
         sb.run_update_agent(sb_run_id, "messenger")
         video_id = upload_video(video_path, thumbnail_path, metadata, category=topic["category"])
@@ -215,6 +222,18 @@ def run(audio_only=False):
             sb.create_thumbnail_test(topic_id, video_id)
             print(f"⚡ A/B test registered — ab_test_check.py will rotate thumbnails A/B automatically")
         print()
+
+    except ImagesNotReadyError as e:
+        # Clean, expected pause — not a failure. Script/audio already
+        # generated this run stay cached in Supabase, so tomorrow's scheduled
+        # run resumes from architect onward instead of reprocessing anything.
+        # Per project memory feedback_pipeline_no_autoloop.md — this pause is
+        # the daily cron re-checking, not a same-session blind retry.
+        print(f"\n⏸ Paused — {e}")
+        sb.mark_topic_awaiting_images(topic_id, str(e))
+        run_paused(topic_id, angle, e, started_at)
+        sb.run_paused(sb_run_id, e)
+        notify(f"⏸ Narava — paused, waiting on manual images\nTopic #{topic_id}: {topic['topic']}\nUpload images to Supabase, next scheduled run will pick it back up.")
 
     except Exception as e:
         agent_error(current_agent, e)

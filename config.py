@@ -2,9 +2,9 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
-ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # Leftover from the Gemini TTS era (migrated to ElevenLabs — see project memory
 # project_narava_pipeline.md) — only a few one-off debug scripts still reference
 # it, the real pipeline doesn't, so this must not be a hard requirement.
@@ -16,6 +16,15 @@ YOUTUBE_CLIENT_SECRET = os.environ.get("YOUTUBE_CLIENT_SECRET_PATH", "youtube_cl
 
 HAIKU_MODEL = "claude-haiku-4-5-20251001"
 SONNET_MODEL = "claude-sonnet-4-6"
+
+# Switched all script/metadata/image-prompt generation from Claude to DeepSeek
+# 2026-07-06 after Anthropic credits ran out — confirmed via test run (Apollo,
+# topic 7) producing comparable-quality, comparable-length scripts. Same
+# prompts/instructions as before, just routed through DeepSeek's OpenAI-compatible
+# API instead of Anthropic's. ANTHROPIC_API_KEY kept optional above so this file
+# still imports cleanly even with no Anthropic credentials configured.
+DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY", "")
+DEEPSEEK_MODEL = "deepseek-chat"  # DeepSeek-V3, flagship chat-tier model
 
 BASE_DIR = Path(__file__).parent
 IMAGES_DIR = BASE_DIR / "images"
@@ -54,6 +63,15 @@ COMPARATIVE_VOICE_SETTINGS = {
 # ($22/mo). Falling back to the highest-quality lossy format Creator supports until
 # a tier decision is made; see project memory project_narava_pipeline.md.
 ELEVENLABS_OUTPUT_FORMAT = "mp3_44100_192"
+
+# Switched narration from ElevenLabs to Kokoro (local, free) 2026-07-06
+# after ElevenLabs credits ran out. bm_george selected on apophenia-pipeline
+# audition (af_heart / bm_george / am_echo) — same voice used for both pipelines.
+KOKORO_VOICE = "bm_george"
+KOKORO_SPEED = 0.85          # match ElevenLabs' prior 0.85 speed for sleep pace
+KOKORO_MODELS_DIR = BASE_DIR / "kokoro-models"
+KOKORO_MODEL_PATH = str(KOKORO_MODELS_DIR / "kokoro-v1.0.onnx")
+KOKORO_VOICES_PATH = str(KOKORO_MODELS_DIR / "voices-v1.0.bin")
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 (OUTPUT_DIR / "audio").mkdir(exist_ok=True)

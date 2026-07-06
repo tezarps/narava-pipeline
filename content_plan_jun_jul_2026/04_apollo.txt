@@ -23,7 +23,7 @@ A painterly oil painting illustration, visible brushstroke texture and canvas gr
 
 Scene: the interior of the oracle's chamber, a bronze tripod seat positioned over a fissure in the rock, thick sacred smoke curling upward and catching shafts of golden light from a high opening. Ancient carved walls surround the space in soft shadow.
 
-Lighting: golden light shafts cutting through rising smoke, deep warm shadow at the chamber's edges.
+Lighting: golden light shafts cutting through rising smoke, soft warm daylight glow at the chamber's edges.
 
 Color palette: warm gold light, pale smoke, deep amber-brown stone.
 
@@ -34,5 +34,6 @@ Style anchor: painterly brushstroke texture, canvas grain, golden smoke palette,
 Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
 
 === TEKS OVERLAY (sama untuk A & B) ===
-Besar (brand, konsisten semua video): "Ancient Mythology for Sleep"
-Kecil (topik): "Guarding Apollo's Oracle at Delphi"
+Besar (brand, konsisten semua video, fixed di kode): "Ancient Mythology for Sleep"
+Hook (auto dari metadata_agent.py, generate-script otomatis): "THE SACRED ORACLE"
+(Subtitle panjang versi lama sudah dihapus — hook pendek ini yang dirender, lihat skema baru di 00_SCHEDULE.md)

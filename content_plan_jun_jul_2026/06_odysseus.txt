@@ -3,36 +3,37 @@ ODYSSEUS — Rabu, 15 Juli (2 hari sebelum film "The Odyssey" Nolan rilis, 17 Ju
 === PROMPT GAMBAR ISI-VIDEO (Google Flow) ===
 Generate 10 images on the theme of sailing with Odysseus across the ancient seas — a wooden ship amid a storm, a mysterious island, distant sirens, a Cyclops' cave, and stars guiding the way home.
 
-=== PROMPT THUMBNAIL VARIANT A — "Storm Sea Voyage" (siap paste ke Flow) ===
+=== PROMPT THUMBNAIL VARIANT A — "The Open Sea Voyage" (siap paste ke Flow) ===
 A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
 
-Scene: a wooden ship silhouette on a vast star-filled night sea, sails catching faint moonlight, the ship small against towering storm clouds parting to reveal stars above. Gentle bioluminescent waves trail behind the hull.
+Scene: a wooden ship silhouette on a vast sunlit sea, sails catching warm afternoon light, the ship small against towering golden clouds parting to reveal open sky above. Gentle sunlit waves trail behind the hull.
 
-Lighting: cool silver moonlight breaking through dark storm clouds, faint warm glow from a lantern on deck.
+Lighting: warm golden sunlight breaking through scattered clouds, soft highlight on the sails and water.
 
-Color palette: deep navy sea and sky, silver moonlight, warm amber lantern glow.
+Color palette: warm gold and azure sea and sky, soft white cloud light, warm amber deck glow.
 
 Composition: 16:9, ship small and centered against vast sky and sea, open space across the top third for text overlay.
 
-Style anchor: painterly brushstroke texture, canvas grain, deep navy and silver palette, epic adventurous mood, 16:9 cinematic composition, no text, no watermark.
+Style anchor: painterly brushstroke texture, canvas grain, warm gold and azure palette, epic adventurous mood, 16:9 cinematic composition, no text, no watermark.
 
-Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, dark/night scenes, text, watermark.
 
 === PROMPT THUMBNAIL VARIANT B — "The Mysterious Island" (siap paste ke Flow) ===
 A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
 
-Scene: a misty island rising from calm moonlit waters, strange glowing flowers along its shore, faint distant figures (sirens) suggested on a rocky outcrop, their forms soft and indistinct. A ship's mast just visible at the frame's edge, anchored offshore.
+Scene: a misty island rising from calm sunlit waters, strange glowing flowers along its shore, faint distant figures (sirens) suggested on a rocky outcrop, their forms soft and indistinct. A ship's mast just visible at the frame's edge, anchored offshore.
 
-Lighting: cool soft moonlight on the water, faint warm glow from the island's strange flowers.
+Lighting: soft warm daylight through morning mist, gentle glow from the island's strange flowers.
 
-Color palette: deep blue-violet night sea, soft glowing green-gold island light, pale mist.
+Color palette: warm gold-green island light, soft blue daylight sea, pale mist.
 
 Composition: 16:9, island filling the right two-thirds of frame, calm sea and ship's mast edge on the left, open sky across the top third for text overlay.
 
-Style anchor: painterly brushstroke texture, canvas grain, mysterious nocturnal palette, enchanting eerie-but-not-scary mood, 16:9 cinematic composition, no text, no watermark.
+Style anchor: painterly brushstroke texture, canvas grain, warm daylight palette, enchanting wondrous mood, 16:9 cinematic composition, no text, no watermark.
 
 Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
 
 === TEKS OVERLAY (sama untuk A & B) ===
-Besar (brand, konsisten semua video): "Ancient Mythology for Sleep"
-Kecil (topik): "Sailing with Odysseus Across the Ancient Seas"
+Besar (brand, konsisten semua video, fixed di kode): "Ancient Mythology for Sleep"
+Hook (auto dari metadata_agent.py, generate-script otomatis): "THE LONG VOYAGE HOME"
+(Subtitle panjang versi lama sudah dihapus — hook pendek ini yang dirender, lihat skema baru di 00_SCHEDULE.md)

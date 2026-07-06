@@ -161,11 +161,23 @@
           </div>
           <div class="btn-row">
             ${t.video_id ? `<button class="secondary" onclick="toggleAnalytics('${t.video_id}')">📊 Analitik</button>` : ""}
+            ${t.community_post ? `<button class="secondary" onclick="copyPost(${t.id})">📋 Copy Post</button>` : ""}
             ${t.video_id ? `<a href="https://youtube.com/watch?v=${t.video_id}" target="_blank">Tonton →</a>` : ""}
           </div>
         </div>
         ${t.video_id ? `<div id="analytics-${t.video_id}" class="analytics-panel"></div>` : ""}
+        ${t.community_post ? `<textarea id="post-${t.id}" class="analytics-panel show" style="width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px;font-size:12px;resize:vertical;" rows="3" readonly>${t.community_post}</textarea>` : ""}
       </div>`).join("");
+  }
+
+  function copyPost(id) {
+    const ta = document.getElementById(`post-${id}`);
+    navigator.clipboard.writeText(ta.value).then(() => {
+      const btn = event.target;
+      const old = btn.textContent;
+      btn.textContent = "✓ Disalin";
+      setTimeout(() => { btn.textContent = old; }, 1500);
+    });
   }
 
   async function toggleAnalytics(videoId) {

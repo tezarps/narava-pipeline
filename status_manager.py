@@ -5,12 +5,12 @@ from pathlib import Path
 STATUS_FILE = Path(__file__).parent / "pipeline_status.json"
 
 AGENTS = {
-    "oracle":    {"name": "The Oracle",    "icon": "🔮", "role": "Picks next topic from the sacred scroll"},
-    "scribe":    {"name": "The Scribe",    "icon": "📜", "role": "Writes the ancient tale"},
-    "voice":     {"name": "The Voice",     "icon": "🎙️", "role": "Narrates the story"},
-    "architect": {"name": "The Architect", "icon": "🏛️", "role": "Assembles the final video"},
-    "herald":    {"name": "The Herald",    "icon": "📯", "role": "Crafts title & summons viewers"},
-    "messenger": {"name": "The Messenger", "icon": "⚡", "role": "Delivers the video to the world"},
+    "oracle":    {"name": "Daphne",    "icon": "🔮", "role": "Picks next topic from the sacred scroll"},
+    "scribe":    {"name": "Elias",    "icon": "📜", "role": "Writes the ancient tale"},
+    "voice":     {"name": "Mira",     "icon": "🎙️", "role": "Narrates the story"},
+    "architect": {"name": "Theo", "icon": "🏛️", "role": "Assembles the final video"},
+    "herald":    {"name": "Iris",    "icon": "📯", "role": "Crafts title & summons viewers"},
+    "messenger": {"name": "Atlas", "icon": "⚡", "role": "Delivers the video to the world"},
 }
 
 
@@ -108,6 +108,28 @@ def run_failed(topic_id, topic_angle, reason, started_at):
         "id": topic_id,
         "topic": topic_angle,
         "status": "failed",
+        "video_id": "",
+        "started_at": started_at,
+        "finished_at": datetime.now().isoformat(),
+        "duration_min": duration,
+        "error": str(reason)[:200],
+    })
+    data["runs"] = data["runs"][:50]
+    _write(data)
+
+
+def run_paused(topic_id, topic_angle, reason, started_at):
+    """Distinct from run_failed — waiting on manually-generated (Google Flow)
+    images, not an error. Script/audio/metadata already cached, so the next
+    scheduled run resumes from architect onward instead of reprocessing."""
+    data = _read()
+    data["current_run"] = None
+    started = datetime.fromisoformat(started_at)
+    duration = int((datetime.now() - started).total_seconds() / 60)
+    data.setdefault("runs", []).insert(0, {
+        "id": topic_id,
+        "topic": topic_angle,
+        "status": "awaiting_images",
         "video_id": "",
         "started_at": started_at,
         "finished_at": datetime.now().isoformat(),

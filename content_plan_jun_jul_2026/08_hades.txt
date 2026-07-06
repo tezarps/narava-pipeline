@@ -6,33 +6,34 @@ Generate 10 images on the theme of life as a river ferryman in Hades' underworld
 === PROMPT THUMBNAIL VARIANT A — "The Styx Ferry" (siap paste ke Flow) ===
 A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
 
-Scene: a vast underground river flowing through a cavern of dark stone, a simple wooden ferry boat resting at the bank, faint pale-green phosphorescent light glowing from the cavern walls. A massive gate of dark iron looms in the distant background.
+Scene: a vast underground river flowing through a cavern of warm sandstone, a simple wooden ferry boat resting at the bank, soft golden phosphorescent light glowing from the cavern walls. A grand gate of weathered bronze looms in the distant background.
 
-Lighting: cool pale blue-green glow from the cavern walls and river, deep shadow elsewhere.
+Lighting: warm golden glow from the cavern walls and river, soft ambient light throughout.
 
-Color palette: deep charcoal-black stone, pale blue-green glow, faint silver river reflection.
+Color palette: warm amber-gold stone, soft golden glow, faint warm river reflection.
 
-Composition: 16:9, river and cavern filling the frame at vast scale, open dark space across the bottom third for text overlay.
+Composition: 16:9, river and cavern filling the frame at vast scale, open warm-lit space across the bottom third for text overlay.
 
-Style anchor: painterly brushstroke texture, canvas grain, deep cavern palette with glowing accents, solemn reverent mood, 16:9 cinematic composition, no text, no watermark.
+Style anchor: painterly brushstroke texture, canvas grain, warm golden cavern palette, solemn reverent mood, 16:9 cinematic composition, no text, no watermark.
 
-Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror/scary elements, text, watermark.
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror/scary elements, dark/cold/dim scenes, text, watermark.
 
-=== PROMPT THUMBNAIL VARIANT B — "The Silent Throne" (siap paste ke Flow) ===
+=== PROMPT THUMBNAIL VARIANT B — "The Quiet Throne" (siap paste ke Flow) ===
 A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
 
-Scene: a vast underworld throne room carved from dark stone, a simple obsidian throne at its center catching a faint cool glow from unseen sources. Tall columns rise into shadow, and faint blue-green light pools on the floor like still water.
+Scene: a vast underworld throne room carved from warm sandstone, a simple gold-veined obsidian throne at its center catching a soft warm glow from unseen sources. Tall columns rise into soft golden haze, and warm amber light pools on the floor like still water.
 
-Lighting: cool pale blue-green ambient glow, deep shadow throughout.
+Lighting: warm amber ambient glow, soft golden haze throughout.
 
-Color palette: deep charcoal and obsidian black, pale blue-green glow, faint silver highlights.
+Color palette: warm sandstone and bronze, soft amber glow, faint gold highlights.
 
-Composition: 16:9, throne and chamber filling the frame at vast scale, open dark floor space across the bottom third for text overlay.
+Composition: 16:9, throne and chamber filling the frame at vast scale, open warm-lit floor space across the bottom third for text overlay.
 
-Style anchor: painterly brushstroke texture, canvas grain, deep solemn palette with glowing accents, quiet authoritative mood, 16:9 cinematic composition, no text, no watermark.
+Style anchor: painterly brushstroke texture, canvas grain, warm amber palette, quiet authoritative mood, 16:9 cinematic composition, no text, no watermark.
 
-Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror/scary elements, text, watermark.
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror/scary elements, dark/cold/dim scenes, text, watermark.
 
 === TEKS OVERLAY (sama untuk A & B) ===
-Besar (brand, konsisten semua video): "Ancient Mythology for Sleep"
-Kecil (topik): "A River Ferryman in Hades' Underworld"
+Besar (brand, konsisten semua video, fixed di kode): "Ancient Mythology for Sleep"
+Hook (auto dari metadata_agent.py, generate-script otomatis): "KEEPER OF THE STYX"
+(Subtitle panjang versi lama sudah dihapus — hook pendek ini yang dirender, lihat skema baru di 00_SCHEDULE.md)

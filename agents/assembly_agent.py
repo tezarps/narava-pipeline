@@ -289,7 +289,7 @@ def _render_thumbnail(image_path, title, out_path):
     # Main headline: WHITE fill + GOLD glow (fixed brand line). Starts large
     # (like the Canva reference, text filling most of the panel width) and
     # only shrinks as far as needed to stay within 3 lines.
-    headline_font, headline_lines = _fit_wrapped(HEADLINE, CINZEL_BOLD, text_max_w, start_size=110, min_size=50)
+    headline_font, headline_lines = _fit_wrapped(HEADLINE, CINZEL_BOLD, text_max_w, start_size=92, min_size=50)
     y = 58
     for line in headline_lines:
         layer, (_, lh), pad = _draw_text_layer(
@@ -304,7 +304,7 @@ def _render_thumbnail(image_path, title, out_path):
     # like the reference thumbnail.
     SUBTITLE_TRACKING = 10
     subtitle_font, subtitle_lines = _fit_wrapped(
-        title.upper(), LATO_REGULAR, text_max_w, start_size=44, min_size=26, tracking=SUBTITLE_TRACKING
+        title.upper(), LATO_REGULAR, text_max_w, start_size=36, min_size=24, tracking=SUBTITLE_TRACKING
     )
     y += 30
     for line in subtitle_lines:

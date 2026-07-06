@@ -6,33 +6,34 @@ Generate 10 images on the theme of Persephone's companion in the quiet underworl
 === PROMPT THUMBNAIL VARIANT A — "The Pomegranate Garden" (siap paste ke Flow) ===
 A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
 
-Scene: an underground garden glowing softly, pomegranate trees heavy with fruit growing impossibly in darkness, pale flowers blooming along dark crystal walls. A single shaft of soft light filters down from far above, illuminating the garden's center.
+Scene: an underground garden glowing warmly, pomegranate trees heavy with fruit growing impossibly under soft golden light, pale flowers blooming along warm sandstone walls. A wide shaft of warm light filters down from far above, illuminating the garden's center.
 
-Lighting: soft pale light from above mixing with a faint warm glow from the pomegranates themselves.
+Lighting: warm golden light from above mixing with a soft glow from the pomegranates themselves.
 
-Color palette: deep violet-black background, warm pomegranate red and gold, pale soft light.
+Color palette: warm amber-gold background, warm pomegranate red and gold, soft warm light.
 
-Composition: 16:9, garden filling the frame, open dark space across the bottom third for text overlay.
+Composition: 16:9, garden filling the frame, open warm-lit space across the bottom third for text overlay.
 
-Style anchor: painterly brushstroke texture, canvas grain, violet and pomegranate-red palette, quietly wondrous mood, 16:9 cinematic composition, no text, no watermark.
+Style anchor: painterly brushstroke texture, canvas grain, amber and pomegranate-red palette, quietly wondrous mood, 16:9 cinematic composition, no text, no watermark.
 
-Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, dark/cold/dim scenes, text, watermark.
 
-=== PROMPT THUMBNAIL VARIANT B — "Persephone's Resting Chamber" (siap paste ke Flow) ===
+=== PROMPT THUMBNAIL VARIANT B — "Persephone's Garden Chamber" (siap paste ke Flow) ===
 A painterly oil painting illustration, visible brushstroke texture and canvas grain throughout — NOT a smooth digital render, NOT CGI.
 
-Scene: a quiet underground chamber lined with pale crystal, a simple resting place draped in soft dark fabric, surrounded by small glowing white flowers growing from the crystal walls themselves. Faint warm light pools near the resting place.
+Scene: a quiet chamber lined with warm sandstone, a simple resting place draped in soft cream fabric, surrounded by small glowing golden flowers growing from the walls themselves. Warm light pools gently near the resting place.
 
-Lighting: soft warm glow from the flowers, cool pale crystal reflections in the walls.
+Lighting: soft warm glow from the flowers, warm sandstone reflections in the walls.
 
-Color palette: deep violet-black, soft white flower glow, warm faint gold accents.
+Color palette: warm amber and sandstone, soft golden flower glow, warm cream accents.
 
-Composition: 16:9, chamber filling the frame, open dark space across the top third for text overlay.
+Composition: 16:9, chamber filling the frame, open warm-lit space across the top third for text overlay.
 
-Style anchor: painterly brushstroke texture, canvas grain, violet and soft white palette, serene intimate mood, 16:9 cinematic composition, no text, no watermark.
+Style anchor: painterly brushstroke texture, canvas grain, warm amber and gold palette, serene intimate mood, 16:9 cinematic composition, no text, no watermark.
 
-Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, text, watermark.
+Avoid: smooth digital/CGI rendering, video-game key-art style, close-up face, cluttered composition, modern objects, horror elements, dark/cold/dim scenes, text, watermark.
 
 === TEKS OVERLAY (sama untuk A & B) ===
-Besar (brand, konsisten semua video): "Ancient Mythology for Sleep"
-Kecil (topik): "Persephone's Companion in the Quiet Underworld"
+Besar (brand, konsisten semua video, fixed di kode): "Ancient Mythology for Sleep"
+Hook (auto dari metadata_agent.py, generate-script otomatis): "THE QUIET REALM"
+(Subtitle panjang versi lama sudah dihapus — hook pendek ini yang dirender, lihat skema baru di 00_SCHEDULE.md)

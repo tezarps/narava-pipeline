@@ -29,3 +29,13 @@ venv/
 
 # Local schedule/state cache (superseded by Supabase once migrated)
 schedule.json
+pipeline_status.json
+logs/
+
+# Kokoro TTS model files — large binaries (310MB+27MB), downloaded fresh by
+# the GitHub Actions workflow each run (see .github/workflows/pipeline.yml).
+# Locally this is a symlink to ~/kokoro-models/, not meant to live in git.
+kokoro-models
+
+# Standalone local test script — not part of the production pipeline.
+test_deepseek_script.py
