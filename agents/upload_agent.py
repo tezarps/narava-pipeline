@@ -31,7 +31,14 @@ PUBLISH_WEEKDAYS = {0, 1, 2, 3, 4, 5, 6}  # every day
 
 
 def _latest_scheduled_utc():
-    """Latest still-future publish_at_utc already queued in schedule.json, or None."""
+    """Latest still-future publish_at_utc already queued in schedule.json, or
+    None. Only counts entries UPLOADED recently (last 3 days) as genuine
+    collisions to avoid — old leftover entries from the pre-daily 2-3x/week
+    cadence (e.g. a backlog video queued weeks ago for a date far in the
+    future) must not push a brand-new upload's slot out by days. Confirmed
+    2026-07-07: without this filter, a fresh Apollo re-upload got pushed to
+    2026-07-12 because of a stale Great Flood entry from 2026-06-19 still
+    sitting in schedule.json with publish_at_utc=2026-07-11."""
     import json
     schedule_file = TOKEN_FILE.parent / "schedule.json"
     if not schedule_file.exists():
@@ -41,21 +48,23 @@ def _latest_scheduled_utc():
     except Exception:
         return None
     now = datetime.now(timezone.utc)
+    recency_cutoff = now - timedelta(days=3)
     future = []
     for e in entries:
         try:
             ts = datetime.strptime(e["publish_at_utc"], "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=timezone.utc)
+            uploaded = datetime.strptime(e["uploaded_at"], "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=timezone.utc)
         except Exception:
             continue
-        if ts >= now:
+        if ts >= now and uploaded >= recency_cutoff:
             future.append(ts)
     return max(future) if future else None
 
 
 def _next_publish_time():
-    """Return next Sunday/Wednesday 8 PM US Eastern as UTC RFC3339, queued
-    after any already-scheduled (future) upload so videos publish on the
-    2x/week cadence without colliding."""
+    """Return the next 8 PM US Eastern slot as UTC RFC3339, queued after any
+    recently-scheduled (future) upload so videos publish on the daily cadence
+    without two uploads landing on the same day."""
     # Detect if US East is currently on EDT (UTC-4) or EST (UTC-5)
     # Simple approach: use UTC offset based on month (EDT: Mar-Nov, EST: Nov-Mar)
     month = datetime.now(timezone.utc).month
@@ -91,11 +100,27 @@ def get_credentials():
         with open(TOKEN_FILE, "rb") as f:
             creds = pickle.load(f)
     if not creds or not creds.valid:
+        refreshed = False
         if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
+            try:
+                creds.refresh(Request())
+                refreshed = True
+            except Exception as e:
+                # Refresh token itself revoked/expired (not just the access
+                # token) — fall back to a fresh browser OAuth flow instead of
+                # crashing here. Confirmed 2026-07-07: a stale refresh token
+                # made this raise invalid_grant and abort setup_youtube_auth.py
+                # before it ever got a chance to open the browser.
+                print(f"    Refresh failed ({e}) — starting fresh OAuth flow...")
+        if not refreshed:
             flow = InstalledAppFlow.from_client_secrets_file(YOUTUBE_CLIENT_SECRET, SCOPES)
-            creds = flow.run_local_server(port=8080)
+            # prompt=select_account forces Google's account chooser instead of
+            # silently reusing whatever Google session is already active in the
+            # browser — confirmed 2026-07-07: without this, a fresh OAuth flow
+            # silently authenticated as the wrong channel ("Tezarism" instead of
+            # "NaravaAI", a separate Google account) because the browser already
+            # had a Tezarism session logged in.
+            creds = flow.run_local_server(port=8080, prompt="select_account")
         with open(TOKEN_FILE, "wb") as f:
             pickle.dump(creds, f)
     return creds
