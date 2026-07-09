@@ -1,4 +1,4 @@
-# Secrets — never commit
+# Secrets — never commit (includes DATABASE_URL, a direct Postgres password)
 .env
 youtube_token.pickle
 youtube_client_secret.json
@@ -39,3 +39,5 @@ kokoro-models
 
 # Standalone local test script — not part of the production pipeline.
 test_deepseek_script.py
+google_service_account.json
+narava-google-service-account.json
