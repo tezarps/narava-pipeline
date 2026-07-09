@@ -1,0 +1,229 @@
+{
+  "current_run": {
+    "topic_id": 18,
+    "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
+    "started_at": "2026-07-07T11:19:00.364218",
+    "status": "running"
+  },
+  "agents": {
+    "oracle": {
+      "name": "Daphne",
+      "icon": "🔮",
+      "role": "Picks next topic from the sacred scroll",
+      "status": "done",
+      "detail": "Topic #18: Thor",
+      "updated_at": "2026-07-07T11:19:01.827727",
+      "payload": {
+        "id": 18,
+        "category": "norse",
+        "topic": "Thor",
+        "angle": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep"
+      }
+    },
+    "scribe": {
+      "name": "Elias",
+      "icon": "📜",
+      "role": "Writes the ancient tale",
+      "status": "running",
+      "detail": "Drafting with DeepSeek...",
+      "updated_at": "2026-07-07T11:19:02.946116"
+    },
+    "voice": {
+      "name": "Mira",
+      "icon": "🎙️",
+      "role": "Narrates the story",
+      "status": "idle",
+      "detail": "",
+      "updated_at": "2026-07-07T11:19:00.364250"
+    },
+    "architect": {
+      "name": "Theo",
+      "icon": "🏛️",
+      "role": "Assembles the final video",
+      "status": "idle",
+      "detail": "",
+      "updated_at": "2026-07-07T11:19:00.364252"
+    },
+    "herald": {
+      "name": "Iris",
+      "icon": "📯",
+      "role": "Crafts title & summons viewers",
+      "status": "idle",
+      "detail": "",
+      "updated_at": "2026-07-07T11:19:00.364253"
+    },
+    "messenger": {
+      "name": "Atlas",
+      "icon": "⚡",
+      "role": "Delivers the video to the world",
+      "status": "idle",
+      "detail": "",
+      "updated_at": "2026-07-07T11:19:00.364255"
+    }
+  },
+  "runs": [
+    {
+      "id": 17,
+      "topic": "What It Was Like to Serve Odin in the Great Hall of Valhalla for Sleep",
+      "status": "failed",
+      "video_id": "",
+      "started_at": "2026-07-06T22:45:58.247939",
+      "finished_at": "2026-07-06T22:46:03.761355",
+      "duration_min": 0,
+      "error": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purcha"
+    },
+    {
+      "id": 16,
+      "topic": "A Morning in the Great Hall of Mount Olympus Among the Gods for Sleep",
+      "status": "failed",
+      "video_id": "",
+      "started_at": "2026-07-06T22:35:31.935004",
+      "finished_at": "2026-07-06T22:39:03.222910",
+      "duration_min": 3,
+      "error": "TTS quota/credit/plan error (not retrying): 401: {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 131000. You have 82 credits remaining, while "
+    },
+    {
+      "id": 8,
+      "topic": "A Day in Hades' Underworld as a River Ferryman for Sleep",
+      "status": "failed",
+      "video_id": "",
+      "started_at": "2026-06-21T02:08:11.567840",
+      "finished_at": "2026-06-21T02:11:14.914164",
+      "duration_min": 3,
+      "error": "TTS quota/credit/plan error (not retrying): 401: {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 131000. You have 82 credits remaining, while "
+    },
+    {
+      "id": 5,
+      "topic": "A Night as Hermes' Messenger Crossing the Ancient Greek World for Sleep",
+      "status": "published",
+      "video_id": "xx0CsQ8rjhw",
+      "started_at": "2026-06-19T00:14:07.982772",
+      "finished_at": "2026-06-19T00:21:26.937054",
+      "duration_min": 7
+    },
+    {
+      "id": 4,
+      "topic": "What It Was Like to Tend Demeter's Sacred Fields Through the Seasons for Sleep",
+      "status": "failed",
+      "video_id": "",
+      "started_at": "2026-06-19T00:01:18.240266",
+      "finished_at": "2026-06-19T00:12:51.303584",
+      "duration_min": 11,
+      "error": "Media larger than: 2097152"
+    },
+    {
+      "id": 6,
+      "topic": "Life as Athena's Weaver in the Temple of Ancient Athens for Sleep",
+      "status": "published",
+      "video_id": "drVGCbN4G_k",
+      "started_at": "2026-06-18T23:33:18.614308",
+      "finished_at": "2026-06-18T23:54:24.737427",
+      "duration_min": 21
+    },
+    {
+      "id": 6,
+      "topic": "Life as Athena's Weaver in the Temple of Ancient Athens for Sleep",
+      "status": "published",
+      "video_id": "iAqGsB7w7Ww",
+      "started_at": "2026-06-18T23:27:07.517908",
+      "finished_at": "2026-06-18T23:29:21.278038",
+      "duration_min": 2
+    },
+    {
+      "id": 3,
+      "topic": "Life as Poseidon's Sea-Keeper in the Depths of the Ancient Ocean for Sleep",
+      "status": "published",
+      "video_id": "TSQBGOsRwwY",
+      "started_at": "2026-06-18T17:36:00.336141",
+      "finished_at": "2026-06-18T17:41:43.231348",
+      "duration_min": 5
+    },
+    {
+      "id": 3,
+      "topic": "Life as Poseidon's Sea-Keeper in the Depths of the Ancient Ocean for Sleep",
+      "status": "failed",
+      "video_id": "",
+      "started_at": "2026-06-18T16:33:07.745204",
+      "finished_at": "2026-06-18T16:43:24.763644",
+      "duration_min": 10,
+      "error": "No images found in images/greek/poseidon/"
+    },
+    {
+      "id": 2,
+      "topic": "A Day as Hera's Handmaiden in the Palace of Olympus for Sleep",
+      "status": "failed",
+      "video_id": "",
+      "started_at": "2026-06-18T15:23:53.986050",
+      "finished_at": "2026-06-18T15:31:36.216148",
+      "duration_min": 7,
+      "error": "Media larger than: 2097152"
+    },
+    {
+      "id": 2,
+      "topic": "A Day as Hera's Handmaiden in the Palace of Olympus for Sleep",
+      "status": "published",
+      "video_id": "jteX6af7vTg",
+      "started_at": "2026-06-18T13:59:57.308978",
+      "finished_at": "2026-06-18T14:49:34.161439",
+      "duration_min": 49
+    },
+    {
+      "id": 2,
+      "topic": "A Day as Hera's Handmaiden in the Palace of Olympus for Sleep",
+      "status": "failed",
+      "video_id": "",
+      "started_at": "2026-06-18T09:51:57.689738",
+      "finished_at": "2026-06-18T09:58:31.523645",
+      "duration_min": 6,
+      "error": "TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this e"
+    },
+    {
+      "id": 2,
+      "topic": "A Day as Hera's Handmaiden in the Palace of Olympus for Sleep",
+      "status": "failed",
+      "video_id": "",
+      "started_at": "2026-06-18T02:21:14.465649",
+      "finished_at": "2026-06-18T02:33:36.285518",
+      "duration_min": 12,
+      "error": "TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this e"
+    },
+    {
+      "id": 3,
+      "topic": "Life as Poseidon's Sea-Keeper in the Depths of the Ancient Ocean for Sleep",
+      "status": "failed",
+      "video_id": "",
+      "started_at": "2026-06-18T02:19:23.740164",
+      "finished_at": "2026-06-18T02:31:29.586357",
+      "duration_min": 12,
+      "error": "TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this e"
+    },
+    {
+      "id": 1,
+      "topic": "What It Was Like to Serve Zeus on Mount Olympus for Sleep",
+      "status": "published",
+      "video_id": "zc9qdkwvkiU",
+      "started_at": "2026-06-18T02:08:00.873198",
+      "finished_at": "2026-06-18T02:16:49.874407",
+      "duration_min": 8
+    },
+    {
+      "id": 1,
+      "topic": "What It Was Like to Serve Zeus on Mount Olympus for Sleep",
+      "status": "published",
+      "video_id": "1Y63uidOAR0",
+      "started_at": "2026-06-17T16:18:38.244577",
+      "finished_at": "2026-06-17T16:24:56.963916",
+      "duration_min": 6
+    },
+    {
+      "id": 1,
+      "topic": "What It Was Like to Serve Zeus on Mount Olympus for Sleep",
+      "status": "failed",
+      "video_id": "",
+      "started_at": "2026-06-17T09:14:39.757301",
+      "finished_at": "2026-06-17T09:29:22.842771",
+      "duration_min": 14,
+      "error": "TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this e"
+    }
+  ]
+}
