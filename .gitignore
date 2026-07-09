@@ -29,8 +29,10 @@ venv/
 
 # Local schedule/state cache (superseded by Supabase once migrated)
 schedule.json
-pipeline_status.json
 logs/
+# pipeline_status.json intentionally NOT ignored (was, until 2026-07-08):
+# status_manager.py now commits+pushes it after every stage so the unified
+# dashboard can read it live via raw.githubusercontent.com.
 
 # Kokoro TTS model files — large binaries (310MB+27MB), downloaded fresh by
 # the GitHub Actions workflow each run (see .github/workflows/pipeline.yml).
