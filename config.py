@@ -65,10 +65,15 @@ COMPARATIVE_VOICE_SETTINGS = {
 ELEVENLABS_OUTPUT_FORMAT = "mp3_44100_192"
 
 # Switched narration from ElevenLabs to Kokoro (local, free) 2026-07-06
-# after ElevenLabs credits ran out. bm_george selected on apophenia-pipeline
-# audition (af_heart / bm_george / am_echo) — same voice used for both pipelines.
-KOKORO_VOICE = "bm_george"
-KOKORO_SPEED = 0.85          # match ElevenLabs' prior 0.85 speed for sleep pace
+# after ElevenLabs credits ran out. Voice changed bm_george -> bm_fable
+# 2026-07-10 — user confirmed apophenia-pipeline's bm_fable sounds noticeably
+# closer to ElevenLabs quality than bm_george's "generic AI" intonation on
+# Narava's actual published videos. Speed matched to apophenia's 0.95 too
+# (up from 0.85) per explicit "samakan settingannya" request — note this is
+# a faster pace than the sleep-story genre historically used, revisit if the
+# faster delivery reads as less calming once a real video is out.
+KOKORO_VOICE = "bm_fable"
+KOKORO_SPEED = 0.95
 KOKORO_MODELS_DIR = BASE_DIR / "kokoro-models"
 KOKORO_MODEL_PATH = str(KOKORO_MODELS_DIR / "kokoro-v1.0.onnx")
 KOKORO_VOICES_PATH = str(KOKORO_MODELS_DIR / "voices-v1.0.bin")

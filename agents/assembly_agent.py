@@ -397,7 +397,9 @@ def create_video(audio_path, category, topic_id, topic_slug=None):
         # Applying aloop's giant buffer to an already ~78-minute stream was crashing
         # the filter graph ("Invalid argument") partway through — drop it when the
         # ambience track is already full-length, keep it for the legacy short-loop case.
-        music_filter = "volume=0.30" if ambience_map else "volume=0.30,aloop=loop=-1:size=2e+09"
+        # Matched to apophenia-pipeline's mixing level 2026-07-10 (0.30 -> 0.45)
+        # per explicit user request to align the two channels' audio settings.
+        music_filter = "volume=0.45" if ambience_map else "volume=0.45,aloop=loop=-1:size=2e+09"
         af = (
             # Force both inputs to the same sample rate/channel layout before mixing —
             # narration and music/ambience sources don't always share the same rate
