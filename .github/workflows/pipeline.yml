@@ -16,6 +16,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 180  # full run is ~90min; generous headroom, well under the
                            # ~1,160 min/month estimate against the 2,000 min free tier
+    permissions:
+      contents: write  # status_manager.py commits+pushes pipeline_status.json after
+                        # every stage for the live dashboard (content-empire-hub) —
+                        # the default GITHUB_TOKEN is read-only, which silently broke
+                        # every push attempt until this was added (confirmed 2026-07-09:
+                        # zero commits from narava-pipeline-bot existed despite the
+                        # feature being live since 2026-07-08).
     steps:
       - uses: actions/checkout@v4
 
