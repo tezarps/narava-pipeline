@@ -1,5 +1,6 @@
 import json
 import asyncio
+import sys
 from pathlib import Path
 from datetime import datetime
 
@@ -8,11 +9,16 @@ from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse, StreamingResponse, JSONResponse
 
 BASE = Path(__file__).parent.parent
+sys.path.insert(0, str(BASE))
+import supabase_io as sb
+
 TOPICS_FILE = BASE / "topics" / "mythology_topics.csv"
 STATUS_FILE = BASE / "pipeline_status.json"
 SCHEDULE_FILE = BASE / "schedule.json"
 LOG_FILE = BASE / "logs" / "pipeline.log"
 OUTPUT_DIR = BASE / "output"
+IMAGE_PROMPTS_FILE = BASE / "content_plan_jun_jul_2026" / "image_prompts.json"
+IMAGES_DIR = BASE / "images"
 LOG_FILE.parent.mkdir(exist_ok=True)
 
 _HTML = (Path(__file__).parent / "templates" / "index.html").read_text()
@@ -120,6 +126,55 @@ def api_schedule():
     upcoming = [e for e in entries if e.get("publish_at_utc", "") > now_utc]
     past = [e for e in entries if e.get("publish_at_utc", "") <= now_utc]
     return {"upcoming": upcoming, "past": past}
+
+
+@app.get("/api/image-prompts")
+def api_image_prompts():
+    """Topics currently blocked on manually-generated (Google Flow) images —
+    queried live from Supabase (the real source of truth, not the stale local
+    CSV) and cross-referenced with content_plan_jun_jul_2026/image_prompts.json
+    for the ready-to-paste theme + 10 scene prompts, so the user can copy them
+    straight from the webapp instead of digging through chat history."""
+    prompts = {}
+    if IMAGE_PROMPTS_FILE.exists():
+        prompts = json.loads(IMAGE_PROMPTS_FILE.read_text())
+
+    db = sb._require_client()
+    # "awaiting_images" is always genuinely paused. A "failed"/"pending" topic
+    # only counts as paused-on-images if it already has a drafted prompt below
+    # (i.e. it's next-in-queue, not just one of dozens of far-future backlog
+    # topics that haven't been worked on yet) — keeps this list to what the
+    # user actually needs to act on today, not the whole 50-topic backlog.
+    topics = db.table("topics").select("id,category,topic,angle,status").in_(
+        "id", [int(k) for k in prompts.keys()]
+    ).execute().data
+    awaiting = db.table("topics").select("id,category,topic,angle,status").eq(
+        "status", "awaiting_images"
+    ).execute().data
+    seen = {t["id"] for t in topics}
+    topics += [t for t in awaiting if t["id"] not in seen]
+    topics.sort(key=lambda t: t["id"])
+
+    out = []
+    for t in topics:
+        local_dir = IMAGES_DIR / t["category"].lower() / t["topic"].lower().replace(" ", "_")
+        has_images = local_dir.exists() and any(
+            p.suffix.lower() in (".jpg", ".jpeg", ".png") for p in local_dir.glob("*")
+        )
+        if has_images:
+            continue
+        entry = prompts.get(str(t["id"]))
+        out.append({
+            "id": t["id"],
+            "category": t["category"],
+            "topic": t["topic"],
+            "angle": t["angle"],
+            "status": t["status"],
+            "has_prompt": entry is not None,
+            "theme": entry["theme"] if entry else "",
+            "scenes": entry["scenes"] if entry else [],
+        })
+    return out
 
 
 @app.get("/api/logs")

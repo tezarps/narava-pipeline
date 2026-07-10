@@ -228,11 +228,24 @@
     </div>
   </div>
 
+  <!-- ═══ TAB: PROMPTS ═════════════════════════════════════════════ -->
+  <div class="tab-content" id="tab-prompts">
+    <div class="px-4 mt-4">
+      <div class="flex items-center justify-between mb-3">
+        <div class="text-xs text-ink-faint tracking-widest uppercase">Image Prompts</div>
+        <button onclick="loadPrompts()" class="text-xs text-ink-muted">Refresh</button>
+      </div>
+      <div id="prompts-list" class="space-y-3">
+        <div class="text-sm text-ink-muted py-4 text-center">Loading...</div>
+      </div>
+    </div>
+  </div>
+
 </div><!-- /main -->
 
 <!-- BOTTOM NAV -->
 <div class="fixed bottom-0 left-0 right-0 z-30 bottom-nav" style="background: rgba(10,10,20,.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-top: 1px solid rgba(255,255,255,.06);">
-  <div class="grid grid-cols-4">
+  <div class="grid grid-cols-5">
     <button class="tab-btn py-3 flex flex-col items-center gap-1" onclick="switchTab('dashboard', this)" id="nav-dashboard">
       <span class="text-xl">⚡</span>
       <span class="text-xs">Dashboard</span>
@@ -248,6 +261,10 @@
     <button class="tab-btn py-3 flex flex-col items-center gap-1" onclick="switchTab('logs', this)" id="nav-logs">
       <span class="text-xl">📄</span>
       <span class="text-xs">Logs</span>
+    </button>
+    <button class="tab-btn py-3 flex flex-col items-center gap-1" onclick="switchTab('prompts', this)" id="nav-prompts">
+      <span class="text-xl">🎨</span>
+      <span class="text-xs">Prompts</span>
     </button>
   </div>
 </div>
@@ -296,11 +313,12 @@ function switchTab(tab, btn) {
   else stopLogStream();
   if (tab === 'topics') loadTopics();
   if (tab === 'schedule') loadSchedule();
+  if (tab === 'prompts') loadPrompts();
 }
 
 // Init nav color
 document.getElementById('nav-dashboard').style.color = '#d4a843';
-['nav-topics','nav-schedule','nav-logs'].forEach(id => {
+['nav-topics','nav-schedule','nav-logs','nav-prompts'].forEach(id => {
   const el = document.getElementById(id);
   if (el) el.style.color = '#4a4a6a';
 });
@@ -452,6 +470,43 @@ async function deleteTopic(id) {
   await fetch(`/api/topics/${id}`, { method:'DELETE' });
   showToast('Deleted');
   loadTopics();
+}
+
+// ── Image Prompts ──────────────────────────────────────────────────
+function promptBlock(item) {
+  return item.theme + '\n\n' + item.scenes.map((s, i) => `${i + 1}. ${s}`).join('\n');
+}
+
+async function loadPrompts() {
+  const res = await fetch('/api/image-prompts');
+  const items = await res.json();
+  const list = document.getElementById('prompts-list');
+  if (!items.length) { list.innerHTML = '<div class="text-sm text-ink-muted py-4 text-center">Semua topic sudah punya gambar ✓</div>'; return; }
+
+  list.innerHTML = items.map(t => {
+    const catEmoji = { greek:'🏺', norse:'⚔️', egyptian:'𓂀', celtic:'🍀', japanese:'⛩️', aztec:'🌞' }[t.category] || '🌍';
+    const block = t.has_prompt ? promptBlock(t) : '';
+    return `
+    <div class="rounded-2xl p-4" style="background:#12121c; border:1px solid #1e1e36;">
+      <div class="flex items-center gap-2 flex-wrap mb-1">
+        <span class="text-lg">${catEmoji}</span>
+        <span class="text-sm font-semibold text-ink">${t.topic}</span>
+        <span class="badge badge-${t.status === 'awaiting_images' ? 'pending' : t.status}">${t.status}</span>
+      </div>
+      <div class="text-xs text-ink-muted leading-snug mb-2">${t.angle}</div>
+      ${t.has_prompt ? `
+        <textarea readonly class="text-xs" style="min-height:180px; font-family:'SF Mono',Menlo,monospace; line-height:1.6;" id="prompt-${t.id}">${block}</textarea>
+        <button onclick="copyPrompt(${t.id})" class="w-full mt-2 py-2.5 rounded-xl text-sm font-semibold" style="background:rgba(212,168,67,.15); color:#d4a843; border:1px solid rgba(212,168,67,.3);">
+          📋 Copy Prompt
+        </button>
+      ` : `<div class="text-xs py-2" style="color:#ef4444; opacity:.8;">Belum ada prompt untuk topic ini — minta dibuatkan dulu.</div>`}
+    </div>`;
+  }).join('');
+}
+
+function copyPrompt(id) {
+  const ta = document.getElementById(`prompt-${id}`);
+  navigator.clipboard.writeText(ta.value).then(() => showToast('Prompt copied ✓'));
 }
 
 // ── Schedule ───────────────────────────────────────────────────────
