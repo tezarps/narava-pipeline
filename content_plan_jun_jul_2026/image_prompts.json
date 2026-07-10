@@ -1,6 +1,7 @@
 {
   "9": {
     "topic": "Aphrodite",
+    "angle": "Life as Aphrodite's Attendant on the Sunlit Isle of Cyprus for Sleep",
     "theme": "Generate 10 images on the theme of life as Aphrodite's attendant on the sunlit isle of Cyprus — the Aegean shore at dusk, an eternal rose garden, a bronze hand-mirror, sacred doves, and gentle waves carrying moonlight.",
     "scenes": [
       "A quiet shore on the isle of Cyprus glows amber at dusk, gentle waves rolling onto pale sand.",
@@ -17,6 +18,7 @@
   },
   "10": {
     "topic": "Persephone",
+    "angle": "A Season as Persephone's Companion in the Quiet Underworld for Sleep",
     "theme": "Generate 10 images on the theme of Persephone's companion in the quiet underworld — an underworld pomegranate garden, a dark crystal corridor, flowers blooming in darkness, soft light filtering from above, and Persephone's resting chamber.",
     "scenes": [
       "A pomegranate garden grows deep underground, dark fruit hanging heavy beneath leaves lit by no visible sun.",
@@ -33,6 +35,7 @@
   },
   "11": {
     "topic": "Hephaestus",
+    "angle": "A Day Tending Hephaestus' Forge Beneath the Volcano for Sleep",
     "theme": "Generate 10 images on the theme of tending Hephaestus' forge beneath the volcano — a roaring furnace, metal being forged, volcanic smoke, sacred tools hanging on the walls, and red-gold light reflecting off the cave walls.",
     "scenes": [
       "A roaring furnace glows at the heart of a cavern deep beneath the volcano, casting long red-gold shadows.",
@@ -49,6 +52,7 @@
   },
   "15": {
     "topic": "Odyssey",
+    "angle": "What It Was Like to Sail with Odysseus Across the Ancient Seas for Sleep",
     "theme": "Generate 10 images on the theme of sailing with Odysseus across the ancient seas — a wooden ship amid a storm, a mysterious island, distant sirens, a Cyclops' cave, and stars guiding the way home.",
     "scenes": [
       "A wooden ship battles through a violent storm, waves towering over the deck as lightning splits the sky.",
@@ -65,6 +69,7 @@
   },
   "51": {
     "topic": "Penelope",
+    "angle": "Penelope's Twenty-Year Wait in the Quiet Halls of Ithaca for Sleep",
     "theme": "Generate 10 images on the theme of Penelope's long wait in the halls of Ithaca — a loom woven by day and unraveled by night, a window looking out over the sea, a quiet palace chamber, a single oil lamp burning, and a gull carrying hope.",
     "scenes": [
       "A great loom stands in a sunlit hall, half-finished cloth stretched across its wooden frame.",
@@ -81,6 +86,7 @@
   },
   "18": {
     "topic": "Thor",
+    "angle": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
     "theme": "Generate 10 images on the theme of life as Thor's shield-bearer crossing the realms of Asgard — the Bifrost rainbow bridge, Asgard's golden halls, Mjolnir resting on an anvil, the vast bridge over the starlit void, and the walls of Valhalla.",
     "scenes": [
       "A shield-bearer stands at the foot of the Bifrost, the rainbow bridge arcing endlessly into a starlit void.",
