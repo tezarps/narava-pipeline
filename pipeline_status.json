@@ -2,7 +2,7 @@
   "current_run": {
     "topic_id": 18,
     "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
-    "started_at": "2026-07-07T11:19:00.364218",
+    "started_at": "2026-07-11T01:55:20.213107",
     "status": "running"
   },
   "agents": {
@@ -10,23 +10,17 @@
       "name": "Daphne",
       "icon": "🔮",
       "role": "Picks next topic from the sacred scroll",
-      "status": "done",
-      "detail": "Topic #18: Thor",
-      "updated_at": "2026-07-07T11:19:01.827727",
-      "payload": {
-        "id": 18,
-        "category": "norse",
-        "topic": "Thor",
-        "angle": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep"
-      }
+      "status": "idle",
+      "detail": "",
+      "updated_at": "2026-07-11T01:55:20.213113"
     },
     "scribe": {
       "name": "Elias",
       "icon": "📜",
       "role": "Writes the ancient tale",
-      "status": "running",
-      "detail": "Drafting with DeepSeek...",
-      "updated_at": "2026-07-07T11:19:02.946116"
+      "status": "idle",
+      "detail": "",
+      "updated_at": "2026-07-11T01:55:20.213117"
     },
     "voice": {
       "name": "Mira",
@@ -34,7 +28,7 @@
       "role": "Narrates the story",
       "status": "idle",
       "detail": "",
-      "updated_at": "2026-07-07T11:19:00.364250"
+      "updated_at": "2026-07-11T01:55:20.213120"
     },
     "architect": {
       "name": "Theo",
@@ -42,7 +36,7 @@
       "role": "Assembles the final video",
       "status": "idle",
       "detail": "",
-      "updated_at": "2026-07-07T11:19:00.364252"
+      "updated_at": "2026-07-11T01:55:20.213122"
     },
     "herald": {
       "name": "Iris",
@@ -50,7 +44,7 @@
       "role": "Crafts title & summons viewers",
       "status": "idle",
       "detail": "",
-      "updated_at": "2026-07-07T11:19:00.364253"
+      "updated_at": "2026-07-11T01:55:20.213124"
     },
     "messenger": {
       "name": "Atlas",
@@ -58,7 +52,7 @@
       "role": "Delivers the video to the world",
       "status": "idle",
       "detail": "",
-      "updated_at": "2026-07-07T11:19:00.364255"
+      "updated_at": "2026-07-11T01:55:20.213126"
     }
   },
   "runs": [
