@@ -1,43 +1,42 @@
 {
-  "current_run": null,
+  "current_run": {
+    "topic_id": 18,
+    "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
+    "started_at": "2026-07-12T01:58:18.900671",
+    "status": "running"
+  },
   "agents": {
     "oracle": {
       "name": "Daphne",
       "icon": "🔮",
       "role": "Picks next topic from the sacred scroll",
-      "status": "done",
-      "detail": "Topic #18: Thor",
-      "updated_at": "2026-07-11T01:55:22.767290",
-      "payload": {
-        "id": 18,
-        "category": "norse",
-        "topic": "Thor",
-        "angle": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep"
-      }
+      "status": "idle",
+      "detail": "",
+      "updated_at": "2026-07-12T01:58:18.900677"
     },
     "scribe": {
       "name": "Elias",
       "icon": "📜",
       "role": "Writes the ancient tale",
-      "status": "done",
-      "detail": "6,541 words (cached in Supabase)",
-      "updated_at": "2026-07-11T01:55:25.424886"
+      "status": "idle",
+      "detail": "",
+      "updated_at": "2026-07-12T01:58:18.900682"
     },
     "voice": {
       "name": "Mira",
       "icon": "🎙️",
       "role": "Narrates the story",
-      "status": "done",
-      "detail": "Audio ready: 18.mp3",
-      "updated_at": "2026-07-11T02:12:01.237572"
+      "status": "idle",
+      "detail": "",
+      "updated_at": "2026-07-12T01:58:18.900685"
     },
     "architect": {
       "name": "Theo",
       "icon": "🏛️",
       "role": "Assembles the final video",
-      "status": "running",
-      "detail": "Running FFmpeg...",
-      "updated_at": "2026-07-11T02:12:02.407495"
+      "status": "idle",
+      "detail": "",
+      "updated_at": "2026-07-12T01:58:18.900688"
     },
     "herald": {
       "name": "Iris",
@@ -45,7 +44,7 @@
       "role": "Crafts title & summons viewers",
       "status": "idle",
       "detail": "",
-      "updated_at": "2026-07-11T01:55:20.213124"
+      "updated_at": "2026-07-12T01:58:18.900690"
     },
     "messenger": {
       "name": "Atlas",
@@ -53,7 +52,7 @@
       "role": "Delivers the video to the world",
       "status": "idle",
       "detail": "",
-      "updated_at": "2026-07-11T01:55:20.213126"
+      "updated_at": "2026-07-12T01:58:18.900692"
     }
   },
   "runs": [
