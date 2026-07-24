@@ -1,10 +1,5 @@
 {
-  "current_run": {
-    "topic_id": 18,
-    "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
-    "started_at": "2026-07-24T01:57:37.985161",
-    "status": "running"
-  },
+  "current_run": null,
   "agents": {
     "oracle": {
       "name": "Daphne",
@@ -62,6 +57,16 @@
     }
   },
   "runs": [
+    {
+      "id": 18,
+      "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
+      "status": "awaiting_images",
+      "video_id": "",
+      "started_at": "2026-07-24T01:57:37.984877",
+      "finished_at": "2026-07-24T02:12:59.731199",
+      "duration_min": 15,
+      "error": "No manually-generated images yet for norse/thor — waiting for them to be uploaded to Supabase Storage."
+    },
     {
       "id": 18,
       "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
