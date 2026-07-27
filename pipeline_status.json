@@ -24,9 +24,9 @@
       "name": "Elias",
       "icon": "📜",
       "role": "Writes the ancient tale",
-      "status": "idle",
-      "detail": "",
-      "updated_at": "2026-07-27T02:08:52.992160"
+      "status": "done",
+      "detail": "6,541 words (cached in Supabase)",
+      "updated_at": "2026-07-27T02:08:57.244188"
     },
     "voice": {
       "name": "Mira",
