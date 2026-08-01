@@ -32,9 +32,9 @@
       "name": "Mira",
       "icon": "🎙️",
       "role": "Narrates the story",
-      "status": "idle",
-      "detail": "",
-      "updated_at": "2026-08-01T02:31:12.245372"
+      "status": "running",
+      "detail": "Converting to audio...",
+      "updated_at": "2026-08-01T02:31:18.847622"
     },
     "architect": {
       "name": "Theo",
