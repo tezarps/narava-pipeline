@@ -1,10 +1,5 @@
 {
-  "current_run": {
-    "topic_id": 18,
-    "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
-    "started_at": "2026-08-15T00:45:57.763101",
-    "status": "running"
-  },
+  "current_run": null,
   "agents": {
     "oracle": {
       "name": "Daphne",
@@ -62,6 +57,16 @@
     }
   },
   "runs": [
+    {
+      "id": 18,
+      "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
+      "status": "awaiting_images",
+      "video_id": "",
+      "started_at": "2026-08-15T00:45:57.762751",
+      "finished_at": "2026-08-15T01:03:52.462063",
+      "duration_min": 17,
+      "error": "No manually-generated images yet for norse/thor — waiting for them to be uploaded to Supabase Storage."
+    },
     {
       "id": 18,
       "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
@@ -546,15 +551,6 @@
       "finished_at": "2026-06-18T02:31:29.586357",
       "duration_min": 12,
       "error": "TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this e"
-    },
-    {
-      "id": 1,
-      "topic": "What It Was Like to Serve Zeus on Mount Olympus for Sleep",
-      "status": "published",
-      "video_id": "zc9qdkwvkiU",
-      "started_at": "2026-06-18T02:08:00.873198",
-      "finished_at": "2026-06-18T02:16:49.874407",
-      "duration_min": 8
     }
   ]
 }
