@@ -1,10 +1,5 @@
 {
-  "current_run": {
-    "topic_id": 18,
-    "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
-    "started_at": "2026-08-16T00:49:09.058628",
-    "status": "running"
-  },
+  "current_run": null,
   "agents": {
     "oracle": {
       "name": "Daphne",
@@ -62,6 +57,16 @@
     }
   },
   "runs": [
+    {
+      "id": 18,
+      "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
+      "status": "awaiting_images",
+      "video_id": "",
+      "started_at": "2026-08-16T00:49:09.058289",
+      "finished_at": "2026-08-16T01:05:53.052762",
+      "duration_min": 16,
+      "error": "No manually-generated images yet for norse/thor — waiting for them to be uploaded to Supabase Storage."
+    },
     {
       "id": 18,
       "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
@@ -544,16 +549,6 @@
       "video_id": "-rOtd0lIH00",
       "started_at": "2026-06-18T02:21:14.465649",
       "finished_at": "2026-06-18T02:33:36.285518",
-      "duration_min": 12,
-      "error": "TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this e"
-    },
-    {
-      "id": 3,
-      "topic": "Life as Poseidon's Sea-Keeper in the Depths of the Ancient Ocean for Sleep",
-      "status": "published",
-      "video_id": "TSQBGOsRwwY",
-      "started_at": "2026-06-18T02:19:23.740164",
-      "finished_at": "2026-06-18T02:31:29.586357",
       "duration_min": 12,
       "error": "TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this e"
     }
