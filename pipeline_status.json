@@ -1,10 +1,5 @@
 {
-  "current_run": {
-    "topic_id": 18,
-    "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
-    "started_at": "2026-08-18T00:47:34.994661",
-    "status": "running"
-  },
+  "current_run": null,
   "agents": {
     "oracle": {
       "name": "Daphne",
@@ -62,6 +57,16 @@
     }
   },
   "runs": [
+    {
+      "id": 18,
+      "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
+      "status": "awaiting_images",
+      "video_id": "",
+      "started_at": "2026-08-18T00:47:34.994288",
+      "finished_at": "2026-08-18T01:04:36.519867",
+      "duration_min": 17,
+      "error": "No manually-generated images yet for norse/thor — waiting for them to be uploaded to Supabase Storage."
+    },
     {
       "id": 18,
       "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
@@ -546,16 +551,6 @@
       "started_at": "2026-06-18T13:59:57.308978",
       "finished_at": "2026-06-18T14:49:34.161439",
       "duration_min": 49
-    },
-    {
-      "id": 2,
-      "topic": "A Day as Hera's Handmaiden in the Palace of Olympus for Sleep",
-      "status": "published",
-      "video_id": "-rOtd0lIH00",
-      "started_at": "2026-06-18T09:51:57.689738",
-      "finished_at": "2026-06-18T09:58:31.523645",
-      "duration_min": 6,
-      "error": "TTS API failed after 5 attempts: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this e"
     }
   ]
 }
