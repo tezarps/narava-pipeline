@@ -1,10 +1,5 @@
 {
-  "current_run": {
-    "topic_id": 18,
-    "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
-    "started_at": "2026-08-19T00:45:36.441003",
-    "status": "running"
-  },
+  "current_run": null,
   "agents": {
     "oracle": {
       "name": "Daphne",
@@ -62,6 +57,16 @@
     }
   },
   "runs": [
+    {
+      "id": 18,
+      "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
+      "status": "awaiting_images",
+      "video_id": "",
+      "started_at": "2026-08-19T00:45:36.440681",
+      "finished_at": "2026-08-19T01:02:51.048609",
+      "duration_min": 17,
+      "error": "No manually-generated images yet for norse/thor — waiting for them to be uploaded to Supabase Storage."
+    },
     {
       "id": 18,
       "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
@@ -547,15 +552,6 @@
       "finished_at": "2026-06-18T15:31:36.216148",
       "duration_min": 7,
       "error": "Media larger than: 2097152"
-    },
-    {
-      "id": 2,
-      "topic": "A Day as Hera's Handmaiden in the Palace of Olympus for Sleep",
-      "status": "published",
-      "video_id": "jteX6af7vTg",
-      "started_at": "2026-06-18T13:59:57.308978",
-      "finished_at": "2026-06-18T14:49:34.161439",
-      "duration_min": 49
     }
   ]
 }
