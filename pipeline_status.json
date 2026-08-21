@@ -1,10 +1,5 @@
 {
-  "current_run": {
-    "topic_id": 18,
-    "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
-    "started_at": "2026-08-21T00:50:49.625423",
-    "status": "running"
-  },
+  "current_run": null,
   "agents": {
     "oracle": {
       "name": "Daphne",
@@ -62,6 +57,16 @@
     }
   },
   "runs": [
+    {
+      "id": 18,
+      "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
+      "status": "awaiting_images",
+      "video_id": "",
+      "started_at": "2026-08-21T00:50:49.625141",
+      "finished_at": "2026-08-21T00:59:51.459621",
+      "duration_min": 9,
+      "error": "No manually-generated images yet for norse/thor — waiting for them to be uploaded to Supabase Storage."
+    },
     {
       "id": 18,
       "topic": "A Day as Thor's Shield-Bearer Crossing the Realms of Asgard for Sleep",
@@ -547,16 +552,6 @@
       "started_at": "2026-06-18T17:36:00.336141",
       "finished_at": "2026-06-18T17:41:43.231348",
       "duration_min": 5
-    },
-    {
-      "id": 3,
-      "topic": "Life as Poseidon's Sea-Keeper in the Depths of the Ancient Ocean for Sleep",
-      "status": "published",
-      "video_id": "TSQBGOsRwwY",
-      "started_at": "2026-06-18T16:33:07.745204",
-      "finished_at": "2026-06-18T16:43:24.763644",
-      "duration_min": 10,
-      "error": "No images found in images/greek/poseidon/"
     }
   ]
 }
